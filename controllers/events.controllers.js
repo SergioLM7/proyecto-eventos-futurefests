@@ -12,7 +12,7 @@ const createEvent = async (req, res) => {
 
 const getEvent = async (req, res) => {
     try {
-        const events = await service.getAllEvents();
+        const events = await eventService.getAllEvents();
         res.status(200).json(events);
     }
     catch (error) {
@@ -21,3 +21,39 @@ const getEvent = async (req, res) => {
     }
 };
 
+const updateEvent = async(req, res) => {
+    try {
+        const data = req.body;
+        const answer = await eventService.updateEvent(data, { new: true });
+
+        if(answer) {
+            res.status(200).send({message: `Se ha actualizado el producto: ${answer.title}`, event:answer});
+        } else {
+            res.status(404).send({message: "Evento no encontrado", event:answer});
+        }
+    }
+    catch (error) {
+        console.log(`ERROR: ${error.stack}`);
+        res.status(500).json({msj:`ERROR: ${error.stack}`});
+    }
+};
+
+const deleteEvent = async (req,res) => {
+    try{
+        const eventName = req.body;
+        const answer = await eventService.deleteEvent(eventName);
+        console.log(answer);
+        res.status(200).send({message: `Se ha borrado el evento ${eventName}`});
+
+    }catch (error) {
+        console.log(`ERROR: ${error.stack}`);
+        res.status(500).json({msj:`ERROR: ${error.stack}`});
+    }
+};
+
+module.exports = {
+    createEvent,
+    getEvent,
+    updateEvent,
+    deleteEvent
+};

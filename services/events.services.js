@@ -45,29 +45,29 @@ module.exports = {
 
 //PRUEBAS
 /*const objPrueba = {
-    event_name: "Mobile World Congress 2025",
-    description: "A conference about the latest in technology.",
-    date_start: "2024-06-02",
-    date_end: "2024-06-07",
-    address: "C/Llobregat, 21, Barcelona, Spain",
-    technologies: ["AI", "Full Stack Development", "Cybersecurity"],
+    event_name: "Devops Barcelona 2024",
+    description: "Una feria única en una ciudad única",
+    date_start: "2024-11-14",
+    date_end: "2024-11-15",
+    address: "Gran Via de les Corts Catalanes, 521, Barcelona",
+    technologies: ["AI", "DevOps"],
     event_type: "Feria",
-    price: 199.99,
-    url: "http://www.evento.com",
+    price: 299,
+    url: "https://devops.barcelona.com",
     speakers: [
         {
-            name: "John Doe",
+            name: "Juan Palacios",
             bio: "Expert in AI and Machine Learning",
             company: "TechCorp"
         },
         {
-            name: "Jane Smith",
+            name: "Jaime De La Vega",
             bio: "Blockchain Developer",
             company: "Blockchain Inc."
         }
     ],
-    participants: 1000,
-    poster: "https://mobile2024.com/poster.jpg"
+    participants: 2000,
+    poster: "https://cdn.slidesharecdn.com/ss_thumbnails/devops-intro-180409201218-thumbnail.jpg"
 };*/
 
 /*const objUpdate = {
@@ -77,8 +77,10 @@ module.exports = {
     price: 9.99,
     url: "http://www.eventazo.com",
     participants: 900,
-    poster: "https://mobile2025.com/poster.jpg"
+    poster: "https://event-assets.gsma.com/Header-Images/_1200x630_crop_center-center_82_none/MWC_GSMA_IMAGE.png"
 };*/
+
 
 //createEvent(objPrueba).then(data=> console.log(data));
 //deleteEvent('Mobile World Congress').then(data => console.log(data));
+//updateEvent(objUpdate).then(data=>console.log(data));
