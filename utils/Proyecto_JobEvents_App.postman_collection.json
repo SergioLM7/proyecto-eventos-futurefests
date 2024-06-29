@@ -1,0 +1,245 @@
+{
+	"info": {
+		"_postman_id": "c1521f41-af91-494f-bf42-d8b6817c1f46",
+		"name": "Proyecto_JobEvents_App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "35364824"
+	},
+	"item": [
+		{
+			"name": "SQL",
+			"item": [
+				{
+					"name": "http://localhost:3000/api/users?email=user1@user.com",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users?email=user1@user.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "user1@user.com"
+								}
+							]
+						},
+						"description": "GET a user by his/her email"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users",
+						"description": "GET all users saved in SQL"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"juanita@gmail.com\",\n    \"password_hash\": \"safavngsell\",\n    \"first_name\": \"Juanita\",\n    \"last_name\": \"Banana\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users",
+						"description": "POST to create a user in SQL Data Base"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/users",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"juanita@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users",
+						"description": "DELETE a user by his/her email"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/users?email=pepito@hotmail.com",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users?email=pepito@hotmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "pepito@hotmail.com"
+								}
+							]
+						},
+						"description": "DELETE a user by his/her email by QUERY"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/users/pass",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password_hash\": \"safdsafsafasf97\",\n    \"email\":\"sergio@hotmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users/pass",
+						"description": "PUT to change user password"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/users",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"role_id\": 1,\n    \"email\": \"juanita@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users",
+						"description": "PUT to edit user's role_id or is_active "
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "http://localhost:3000/api/events",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/api/events",
+				"description": "POST to Create event in AtlasDB"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/events",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"event_name\": \"The Bridge Webinnar Week 2024\",\n    \"description\": \"Los mejores webinnar tecnológicos.\",\n    \"date_start\": \"2024-12-01\",\n    \"date_end\": \"2024-12-03\",\n    \"address\": \"Paseo de Recoletos, 23, Madrid\",\n    \"technologies\": [\"Data Science\", \"Full Stack Development\", \"Cibersecurity\"],\n    \"event_type\": \"Webinnar\",\n    \"price\": 50,\n    \"url\": \"https://www.thebridge.com\",\n    \"speakers\": [\n        {\n            \"name\": \"Alejandro\",\n            \"bio\": \"Expert in FS\",\n            \"company\": \"The Bridge\"\n        },\n        {\n            \"name\": \"Guillermo\",\n            \"bio\": \"FS Developer\",\n            \"company\": \"The Bridge\"\n        }\n    ],\n    \"participants\": 250,\n    \"poster\": \"https://media.licdn.com/dms/image/D5610AQGIZlmtUeqo2A/image-shrink_800/0/1692792610833/financiacion_bootcamps_TB_6_1080x1080_12jpg?e=2147483647&v=beta&t=uPE6ZDdN6VX_31zlALkgDyiccK0jkPHjYM0bYdL7Ef4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/api/events"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/events",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"event_name\": \"The Bridge Webinnar Week 2024\",\n    \"description\": \"Los mejores webinnar tecnológicos.\",\n    \"date_start\": \"2024-12-02\",\n    \"date_end\": \"2024-12-04\",\n    \"address\": \"Paseo de Recoletos, 23, Madrid\",\n    \"technologies\": [\"Data Science\", \"Full Stack Development\", \"Cibersecurity\", \"AI\"],\n    \"event_type\": \"Webinnar\",\n    \"price\": 50,\n    \"url\": \"https://www.thebridge.com\",\n    \"speakers\": [\n        {\n            \"name\": \"Alejandro\",\n            \"bio\": \"Expert in FS\",\n            \"company\": \"The Bridge\"\n        },\n        {\n            \"name\": \"Guillermo\",\n            \"bio\": \"FS Developer\",\n            \"company\": \"The Bridge\"\n        }\n    ],\n    \"participants\": 250,\n    \"poster\": \"https://media.licdn.com/dms/image/D5610AQGIZlmtUeqo2A/image-shrink_800/0/1692792610833/financiacion_bootcamps_TB_6_1080x1080_12jpg?e=2147483647&v=beta&t=uPE6ZDdN6VX_31zlALkgDyiccK0jkPHjYM0bYdL7Ef4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/api/events",
+				"description": "PUT to Update any field of and event document by its event_name"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/events",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"event_name\": \"The Bridge Webinnar Week 2024\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/api/events",
+				"description": "DELETE to delete an event from its event_name"
+			},
+			"response": []
+		}
+	]
+}

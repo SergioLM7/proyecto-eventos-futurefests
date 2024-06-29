@@ -13,6 +13,7 @@ app.use(morgan(':method :host :status - :response-time ms :body'));
 
 // Rutas
 const eventsApiRoutes = require("./routes/events.routes")
+const usersApiRoutes = require("./routes/users.routes")
 
 app.use(express.json()); // Habilito recepción de JSON en servidor
 
@@ -38,6 +39,7 @@ mongoose.connect(uri, {
 // Rutas
 //API
 app.use('/api',eventsApiRoutes);
+app.use('/api', usersApiRoutes);
 
 // Para rutas no existentes
 app.use('*',error404);

@@ -1,6 +1,6 @@
 /**
  * @author Luis Carlos, Stephani, Sergio <futurefest.com> 
- * @exports entries
+ * @exports models
  * @memberof SQLQueries 
  */
 
@@ -21,7 +21,7 @@ const createUser = async (entry) => {
     let role_id = 2;
     let is_active = true;
     try {
-        client = await pool.connect(); // Espera a abrir conexion
+        client = await pool.connect();
         const data = await client.query(queries.createUser, [email, password_hash, first_name, last_name, role_id, is_active])
         result = data.rowCount;
     } catch (err) {
@@ -38,20 +38,29 @@ const createUser = async (entry) => {
  * @memberof SQLQueries 
  * @method editUser 
  * @async 
- * @return {Integer} Devuelve el número de rows creadas en la tabla
+ * @return {Integer} Devuelve el número de rows modificadas en la tabla
  * @throws {Error} Error de consulta a la BBDD
  */
 const editUser = async (entry) => {
-    const { newValue, email } = entry;
     let client, result;
     try {
-        client = await pool.connect(); // Espera a abrir conexion
-        if (Number.isInteger(newValue)) {
-            const data = await client.query(queries.editRoleByAdmin, [newValue, email])
-            result = data.rowCount;
-        } else if (typeof newValue === 'boolean') {
-            const data = await client.query(queries.editActiveByAdmin, [newValue, email])
-            result = data.rowCount;
+        client = await pool.connect();
+        if (entry.role_id) {
+            const { role_id, email } = entry
+            if (Number.isInteger(role_id)) {
+                const data = await client.query(queries.editRoleByAdmin, [role_id, email]);
+                result = { rowCount: data.rowCount, email };
+                return result
+            }
+        } else {
+            const { is_active, email } = entry
+            if (typeof is_active == "boolean") {
+                const data = await client.query(queries.editActiveByAdmin, [is_active, email]);
+                result = { rowCount: data.rowCount, email };
+                return result
+            } else {
+                console.log('El valor introducido no es válido.')
+            }
         }
     } catch (err) {
         console.log(err);
@@ -67,16 +76,16 @@ const editUser = async (entry) => {
  * @memberof SQLQueries 
  * @method editPasswordByUser 
  * @async 
- * @return {Integer} Devuelve el número de rows creadas en la tabla
+ * @return {Integer} Devuelve el número de rows modificadas en la tabla
  * @throws {Error} Error de consulta a la BBDD
  */
-const editPasswordByUser = async(entry) => {
-    const { newPass, email } = entry;
+const editPasswordByUser = async (entry) => {
+    const { password_hash, email } = entry;
     let client, result;
     try {
-        client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(queries.editPasswordByUser, [newPass, email])
-        result = data.rowCount;
+        client = await pool.connect();
+        const data = await client.query(queries.editPasswordByUser, [password_hash, email])
+        result = { rowCount: data.rowCount, email };
     } catch (err) {
         console.log(err);
         throw err;
@@ -97,7 +106,7 @@ const editPasswordByUser = async(entry) => {
 const deleteUserByAdmin = async (email) => {
     let client, result;
     try {
-        client = await pool.connect(); // Espera a abrir conexion
+        client = await pool.connect();
         const data = await client.query(queries.deleteUserByAdmin, [email])
         result = data.rowCount;
     } catch (err) {
@@ -117,10 +126,10 @@ const deleteUserByAdmin = async (email) => {
  * @return {Array} Devuelve array con todos los usuarios de la tabla
  * @throws {Error} Error de consulta a la BBDD
  */
-const getAllUsers = async() => {
+const getAllUsers = async () => {
     let client, result;
     try {
-        client = await pool.connect(); // Espera a abrir conexion
+        client = await pool.connect();
         const data = await client.query(queries.getAllUsers)
         result = data.rows;
     } catch (err) {
@@ -130,7 +139,6 @@ const getAllUsers = async() => {
         client.release();
     }
     return result
-
 };
 
 /**
@@ -141,10 +149,10 @@ const getAllUsers = async() => {
  * @return {Array} Devuelve array con el usuario seleccionado de la tabla
  * @throws {Error} Error de consulta a la BBDD
  */
-const getUsersByEmail = async(email) => {
+const getUsersByEmail = async (email) => {
     let client, result;
     try {
-        client = await pool.connect(); // Espera a abrir conexion
+        client = await pool.connect();
         const data = await client.query(queries.getUsersByEmail, [email])
         result = data.rows;
     } catch (err) {
@@ -166,21 +174,21 @@ module.exports = {
 }
 
 //PRUEBAS
-const objUser = {
+/*const objUser = {
     email: 'juan@hotmail.com',
     password_hash: 'sasbñgmfd',
     first_name: 'Juan',
     last_name: 'García'
-};
+};*/
 
-createUser(objUser).then(data=>console.log(data));
-
-/*PRUEBA 2 const objUser = {
-    newRole: true,
+//createUser(objUser).then(data=>console.log(data));
+/*PRUEBA 2 */
+const objUpdate = {
+    newPass: "safafas9999",
     email: 'juan@hotmail.com'
 }
 
-editRoleByAdmin(objUser).then(data=>console.log(data));*/
+//editPasswordByUser(objUpdate).then(data=>console.log(data));
 
 /*PRUEBA 3 const objPassUser = {
     newPass: 'asdafasffa8087',
