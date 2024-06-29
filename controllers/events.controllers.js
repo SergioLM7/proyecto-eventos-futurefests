@@ -27,7 +27,7 @@ const updateEvent = async(req, res) => {
         const answer = await eventService.updateEvent(data, { new: true });
 
         if(answer) {
-            res.status(200).send({message: `Se ha actualizado el producto: ${answer.title}`, event:answer});
+            res.status(200).send({message: `Se ha actualizado el producto: ${answer.event_name}`, event:answer});
         } else {
             res.status(404).send({message: "Evento no encontrado", event:answer});
         }
@@ -41,9 +41,9 @@ const updateEvent = async(req, res) => {
 const deleteEvent = async (req,res) => {
     try{
         const eventName = req.body;
-        const answer = await eventService.deleteEvent(eventName);
+        const answer = await eventService.deleteEvent(eventName.event_name);
         console.log(answer);
-        res.status(200).send({message: `Se ha borrado el evento ${eventName}`});
+        res.status(200).send({message: `Se ha borrado el evento ${eventName.event_name}`});
 
     }catch (error) {
         console.log(`ERROR: ${error.stack}`);

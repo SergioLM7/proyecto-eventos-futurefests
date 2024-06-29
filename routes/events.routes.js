@@ -12,6 +12,6 @@ router.post("/events", eventsController.createEvent);
 router.put("/events", eventsController.updateEvent);
 
 // DELETE http://localhost:3000/api/events/  name???
-router.delete("/products/", eventsController.deleteEvent);
+router.delete("/events", eventsController.deleteEvent);
 
 module.exports = router;

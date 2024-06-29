@@ -4,6 +4,13 @@ const mongoose = require('mongoose');
 const app = express();
 const port = 3000;
 
+// Middlewares
+const error404 = require('./middlewares/error404');
+const morgan = require('./middlewares/morgan');
+
+// Logger
+app.use(morgan(':method :host :status - :response-time ms :body'));
+
 // Rutas
 const eventsApiRoutes = require("./routes/events.routes")
 
@@ -19,11 +26,9 @@ mongoose.connect(uri, {
 .then(() => {
   console.log('Connected to MongoDB Atlas');
 
-  // Iniciar el servidor solo si la conexión a MongoDB es exitosa
+  // Iniciar el servidor solo si la conexión a AtlasDB es exitosa
   app.listen(port, () => {
-    console.log({
-        text: `Funcionando en: http://localhost:${port}`
-      })
+    console.log(`Funcionando en: http://localhost:${port}`)
   });
 })
 .catch(err => {
@@ -34,3 +39,5 @@ mongoose.connect(uri, {
 //API
 app.use('/api',eventsApiRoutes);
 
+// Para rutas no existentes
+app.use('*',error404);
