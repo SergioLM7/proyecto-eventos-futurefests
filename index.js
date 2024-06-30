@@ -12,8 +12,9 @@ const morgan = require('./middlewares/morgan');
 app.use(morgan(':method :host :status - :response-time ms :body'));
 
 // Rutas
-const eventsApiRoutes = require("./routes/events.routes")
-const usersApiRoutes = require("./routes/users.routes")
+const eventsApiRoutes = require("./routes/events.routes");
+const usersApiRoutes = require("./routes/users.routes");
+const userFavoriteApiRoutes = require("./routes/userFavorite.routes");
 
 app.use(express.json()); // Habilito recepción de JSON en servidor
 
@@ -40,6 +41,8 @@ mongoose.connect(uri, {
 //API
 app.use('/api',eventsApiRoutes);
 app.use('/api', usersApiRoutes);
+app.use('/api',userFavoriteApiRoutes);
+
 
 // Para rutas no existentes
 app.use('*',error404);

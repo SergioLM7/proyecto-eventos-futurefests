@@ -8,6 +8,4 @@ router.delete('/users/:email?', usersControllers.deleteUser);
 router.put('/users', usersControllers.updateUsers);
 router.put('/users/pass', usersControllers.updatePassword);
 
-
-
 module.exports = router;

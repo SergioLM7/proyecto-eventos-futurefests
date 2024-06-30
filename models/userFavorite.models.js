@@ -6,7 +6,7 @@ const createUserFavorite = async (entry) => {
     const { user_id, favorite_id } = entry;
     let client, result;
     try {
-        client = await pool.connect(); // Espera a abrir conexion
+        client = await pool.connect();
         const data = await client.query(queries.createUserFavorite, [user_id, favorite_id])
         result = data.rowCount;
     } catch (err) {
@@ -23,7 +23,7 @@ const deleteUserFavorite = async (entry) => {
     const { user_id, favorite_id } = entry;
     let client, result;
     try {
-        client = await pool.connect(); // Espera a abrir conexion
+        client = await pool.connect();
         const data = await client.query(queries.deleteUserFavorite, [user_id, favorite_id])
         result = data.rowCount;
     } catch (err) {
@@ -46,4 +46,4 @@ const userFavorite = {
     favorite_id: 2
 }
 
-createUserFavorite(userFavorite).then(data=>console.log(data))
+//createUserFavorite(userFavorite).then(data=>console.log(data))

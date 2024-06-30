@@ -160,6 +160,44 @@
 						"description": "PUT to edit user's role_id or is_active "
 					},
 					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/userFavorite",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 6,\n    \"favorite_id\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/userFavorite",
+						"description": "POST to create user-favorite relationship by user_id and favorite_id"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/userFavorite",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 6,\n    \"favorite_id\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/userFavorite",
+						"description": "DELETE to delete user-favorite relationship by user_id and favorite_id"
+					},
+					"response": []
 				}
 			]
 		},
