@@ -9,10 +9,11 @@ const queries = require('../queries/favorites.queries');
 
 
 /**
- * Descripción: Esta función crea un rol en la tabla Roles
+ * Descripción: Esta función crea un favorito en la tabla Favorites
  * @memberof SQLQueries 
- * @method createRole 
+ * @method createFavorite 
  * @async 
+ * @param {JSON} entry - JSON con todos los valores de cada favorito
  * @return {Integer} Devuelve el número de rows creadas en la tabla
  * @throws {Error} Error de consulta a la BBDD
  */
@@ -20,7 +21,7 @@ const createFavorite = async (entry) => {
     let { favorite_name, favorite_image, date_start, date_end, favorite_url, favorite_type } = entry;
     let client, result;
     try {
-        client = await pool.connect(); // Espera a abrir conexion
+        client = await pool.connect();
         const data = await client.query(queries.createFavorite, [favorite_name,favorite_image, date_start,date_end, favorite_url, favorite_type])
         result = data.rowCount;
     } catch (err) {
@@ -33,17 +34,18 @@ const createFavorite = async (entry) => {
 };
 
 /**
- * Descripción: Esta función edita el campo role_name de la tabla Roles
+ * Descripción: Esta función elimina un favorito de la tabla Favorites por su nombre
  * @memberof SQLQueries 
- * @method editRole 
+ * @method deleteFavorite 
  * @async 
- * @return {Integer} Devuelve el número de rows editadas en la tabla
+ * @param {JSON} name - JSON con el nombre del favorito a elimiar
+ * @return {Integer} Devuelve el número de rows eliminadas en la tabla
  * @throws {Error} Error de consulta a la BBDD
  */
 const deleteFavorite = async (name) => {
     let client, result;
     try {
-        client = await pool.connect(); // Espera a abrir conexion
+        client = await pool.connect();
         const data = await client.query(queries.deleteFavorite, [name])
         result = data.rowCount;
     } catch (err) {
@@ -55,10 +57,19 @@ const deleteFavorite = async (name) => {
     return result
 };
 
+/**
+ * Descripción: Esta función selecciona un favorito de la tabla Favorites por su nombre
+ * @memberof SQLQueries 
+ * @method getFavoriteByName 
+ * @async 
+ * @param {JSON} name - JSON con el nombre del favorito a mostrar
+ * @return {Integer} Devuelve el ID del favorito obtenido.
+ * @throws {Error} Error de consulta a la BBDD
+ */
 const getFavoriteByName = async(name) => {
     let client, result;
     try {
-        client = await pool.connect(); // Espera a abrir conexion
+        client = await pool.connect();
         const data = await client.query(queries.getFavoriteByName, [name])
         result = data.rows[0].favorite_id;
     } catch (err) {
@@ -70,10 +81,19 @@ const getFavoriteByName = async(name) => {
     return result
 };
 
+/**
+ * Descripción: Esta función selecciona un favorito de la tabla Favorites por el ID del ususario con el que se relaciona
+ * @memberof SQLQueries 
+ * @method getFavoriteByUserId 
+ * @async 
+ * @param {JSON} id - JSON con el ID del usuario.
+ * @return {Array} Devuelve una array con todos los favoritos (objetos) guardados por dicho usuario.
+ * @throws {Error} Error de consulta a la BBDD
+ */
 const getFavoriteByUserId = async(id) => {
     let client, result;
     try {
-        client = await pool.connect(); // Espera a abrir conexion
+        client = await pool.connect();
         const data = await client.query(queries.getFavoriteByUserId, [id])
         result = data.rows;
     } catch (err) {
@@ -83,6 +103,13 @@ const getFavoriteByUserId = async(id) => {
         client.release();
     }
     return result
+};
+
+module.exports = {
+    createFavorite,
+    deleteFavorite,
+    getFavoriteByName,
+    getFavoriteByUserId
 };
 
 //PRUEBAS
@@ -96,12 +123,4 @@ const getFavoriteByUserId = async(id) => {
     favorite_type: "Feria"
 }*/
 
-//getFavoriteByUserId(6).then(data=>console.log(data));
-
-
-module.exports = {
-    createFavorite,
-    deleteFavorite,
-    getFavoriteByName,
-    getFavoriteByUserId
-}
+//getFavoriteByName("World Tech Congress").then(data=>console.log(data));

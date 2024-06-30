@@ -1,7 +1,21 @@
+/**
+ * @author Luis Carlos, Stephani, Sergio <futurefest.com> 
+ * @exports controllers
+ * @memberof SQLQueries 
+ */
+
 const usersEntry = require('../models/users.models');
 
-// CREATE Users
-// POST http://localhost:3000/api/users
+/**
+ * Descripción: Esta función llama desde la ruta http://localhost:3000/api/users al método createUser
+ * Este espera recibir por body todos los campos para crear el user
+ * @memberof SQLQueries 
+ * @method createUser
+ * @async 
+ * @param {Object} req objeto de petición HTTP
+ * @param {Object} res objeto de respuesta HTTP
+ * @throws {Error} Error al crear el usuario
+ */
 const createUser = async (req, res) => {
     try {
         const response = await usersEntry.createUser(req.body);
@@ -13,9 +27,16 @@ const createUser = async (req, res) => {
     }
 };
 
-// GET http://localhost:3000/api/users --> ALL
-// GET http://localhost:3000/api/users?email= --> by Email in Body
-// GET http://localhost:3000/api/users?email= --> by Email in Query
+/**
+ * Descripción: Esta función llama desde la ruta http://localhost:3000/api/users:email? al método getUsers
+ * Este espera recibir por query o por body el email del usuario a buscar. Si no, mostrará todos los usuarios
+ * @memberof SQLQueries 
+ * @method getUsers
+ * @async 
+ * @param {Object} req objeto de petición HTTP
+ * @param {Object} res objeto de respuesta HTTP
+ * @throws {Error} Error al buscar los/el usuario/s
+ */
 const getUsers = async (req, res) => {
     let users;
     try {
@@ -35,8 +56,16 @@ const getUsers = async (req, res) => {
     }
 };
 
-// DELETE http://localhost:3000/api/users --> By email in body
-// DELETE http://localhost:3000/api/users?email= --> By email in query
+/**
+ * Descripción: Esta función llama desde la ruta http://localhost:3000/api/users/:email?  al método deleteUserByAdmin
+ * Este espera recibir por query o por body el email del usuario a eliminar. 
+ * @memberof SQLQueries 
+ * @method deleteUser
+ * @async 
+ * @param {Object} req objeto de petición HTTP
+ * @param {Object} res objeto de respuesta HTTP
+ * @throws {Error} Error al eliminar el usuario
+ */
 const deleteUser = async (req, res) => {
     let user;
     try {
@@ -52,6 +81,17 @@ const deleteUser = async (req, res) => {
     }
 };
 
+
+/**
+ * Descripción: Esta función llama desde la ruta http://localhost:3000/api/users al método editUser
+ * Este espera recibir por body uno de los dos campos editables (role_id / is_active) y el email del usuario a editar.
+ * @memberof SQLQueries 
+ * @method updateUsers
+ * @async 
+ * @param {Object} req objeto de petición HTTP
+ * @param {Object} res objeto de respuesta HTTP
+ * @throws {Error} Error al editar el usuario
+ */
 const updateUsers = async (req, res) => {
     console.log(req.body)
    try {
@@ -67,6 +107,16 @@ const updateUsers = async (req, res) => {
         }
 };
 
+/**
+ * Descripción: Esta función llama desde la ruta http://localhost:3000/api/users/pass al método editPasswordByUser
+ * Este espera recibir por body un nuevo valor de password_hash y el email del usuario a editar.
+ * @memberof SQLQueries 
+ * @method updatePassword
+ * @async 
+ * @param {Object} req objeto de petición HTTP
+ * @param {Object} res objeto de respuesta HTTP
+ * @throws {Error} Error al editar la contraseña del usuario
+ */
 const updatePassword = async (req, res) => {
     if (req.body.password_hash) {
         console.log(req.body)

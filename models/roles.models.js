@@ -13,13 +13,14 @@ const queries = require('../queries/roles.queries');
  * @memberof SQLQueries 
  * @method createRole 
  * @async 
+ * @param {String} role - Una cadena de texto con el nombre del rol a crear
  * @return {Integer} Devuelve el número de rows creadas en la tabla
  * @throws {Error} Error de consulta a la BBDD
  */
 const createRole = async (role) => {
     let client, result;
     try {
-        client = await pool.connect(); // Espera a abrir conexion
+        client = await pool.connect();
         const data = await client.query(queries.createRole, [role])
         result = data.rowCount;
     } catch (err) {
@@ -35,7 +36,8 @@ const createRole = async (role) => {
  * Descripción: Esta función edita el campo role_name de la tabla Roles
  * @memberof SQLQueries 
  * @method editRole 
- * @async 
+ * @async
+ * @param {JSON} entry - Un JSON con el nuevo nombre del rol y con el nombre antiguo.
  * @return {Integer} Devuelve el número de rows editadas en la tabla
  * @throws {Error} Error de consulta a la BBDD
  */
@@ -43,7 +45,7 @@ const editRole = async (entry) => {
     const { newRole, oldRole } = entry;
     let client, result;
     try {
-        client = await pool.connect(); // Espera a abrir conexion
+        client = await pool.connect();
         const data = await client.query(queries.editRole, [newRole, oldRole])
         result = data.rowCount;
     } catch (err) {
@@ -55,6 +57,11 @@ const editRole = async (entry) => {
     return result
 };
 
+module.exports = {
+    createRole,
+    editRole
+};
+
 
 //PRUEBAS
 //createRole('admin5').then(data=>console.log(data));
@@ -63,8 +70,3 @@ const editRole = async (entry) => {
     oldRole: 'superAdmin'
 }
 editRole(objRoles).then(data=>console.log(data));*/
-
-module.exports = {
-    createRole,
-    editRole
-}

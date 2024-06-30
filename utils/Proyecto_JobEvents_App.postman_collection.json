@@ -198,86 +198,159 @@
 						"description": "DELETE to delete user-favorite relationship by user_id and favorite_id"
 					},
 					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/favorites?user_id=6",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/favorites?user_id=6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"favorites"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "6"
+								}
+							]
+						},
+						"description": "GET favorites by user_id in param"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/favorites",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 6\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/favorites",
+						"description": "GET favorites by user_id in body"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/favorites",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"favorite_name\": \"WWDC 2022\",\n    \"favorite_image\": \"https://wwwdc/imagen.png\",\n    \"date_start\": \"2022-03-20\", \n    \"date_end\": \"2022-03-30\", \n    \"favorite_url\": \"https://apple.com\", \n    \"favorite_type\": \"Feria\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/favorites",
+						"description": "POST to create a favorite by body"
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"name": "http://localhost:3000/api/events",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+			"name": "MongoDB",
+			"item": [
+				{
+					"name": "http://localhost:3000/api/events",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/events",
+						"description": "POST to Create event in AtlasDB"
+					},
+					"response": []
 				},
-				"url": "http://localhost:3000/api/events",
-				"description": "POST to Create event in AtlasDB"
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/api/events",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"event_name\": \"The Bridge Webinnar Week 2024\",\n    \"description\": \"Los mejores webinnar tecnológicos.\",\n    \"date_start\": \"2024-12-01\",\n    \"date_end\": \"2024-12-03\",\n    \"address\": \"Paseo de Recoletos, 23, Madrid\",\n    \"technologies\": [\"Data Science\", \"Full Stack Development\", \"Cibersecurity\"],\n    \"event_type\": \"Webinnar\",\n    \"price\": 50,\n    \"url\": \"https://www.thebridge.com\",\n    \"speakers\": [\n        {\n            \"name\": \"Alejandro\",\n            \"bio\": \"Expert in FS\",\n            \"company\": \"The Bridge\"\n        },\n        {\n            \"name\": \"Guillermo\",\n            \"bio\": \"FS Developer\",\n            \"company\": \"The Bridge\"\n        }\n    ],\n    \"participants\": 250,\n    \"poster\": \"https://media.licdn.com/dms/image/D5610AQGIZlmtUeqo2A/image-shrink_800/0/1692792610833/financiacion_bootcamps_TB_6_1080x1080_12jpg?e=2147483647&v=beta&t=uPE6ZDdN6VX_31zlALkgDyiccK0jkPHjYM0bYdL7Ef4\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+				{
+					"name": "http://localhost:3000/api/events",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event_name\": \"The Bridge Webinnar Week 2024\",\n    \"description\": \"Los mejores webinnar tecnológicos.\",\n    \"date_start\": \"2024-12-01\",\n    \"date_end\": \"2024-12-03\",\n    \"address\": \"Paseo de Recoletos, 23, Madrid\",\n    \"technologies\": [\"Data Science\", \"Full Stack Development\", \"Cibersecurity\"],\n    \"event_type\": \"Webinnar\",\n    \"price\": 50,\n    \"url\": \"https://www.thebridge.com\",\n    \"speakers\": [\n        {\n            \"name\": \"Alejandro\",\n            \"bio\": \"Expert in FS\",\n            \"company\": \"The Bridge\"\n        },\n        {\n            \"name\": \"Guillermo\",\n            \"bio\": \"FS Developer\",\n            \"company\": \"The Bridge\"\n        }\n    ],\n    \"participants\": 250,\n    \"poster\": \"https://media.licdn.com/dms/image/D5610AQGIZlmtUeqo2A/image-shrink_800/0/1692792610833/financiacion_bootcamps_TB_6_1080x1080_12jpg?e=2147483647&v=beta&t=uPE6ZDdN6VX_31zlALkgDyiccK0jkPHjYM0bYdL7Ef4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/events"
+					},
+					"response": []
 				},
-				"url": "http://localhost:3000/api/events"
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/api/events",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"event_name\": \"The Bridge Webinnar Week 2024\",\n    \"description\": \"Los mejores webinnar tecnológicos.\",\n    \"date_start\": \"2024-12-02\",\n    \"date_end\": \"2024-12-04\",\n    \"address\": \"Paseo de Recoletos, 23, Madrid\",\n    \"technologies\": [\"Data Science\", \"Full Stack Development\", \"Cibersecurity\", \"AI\"],\n    \"event_type\": \"Webinnar\",\n    \"price\": 50,\n    \"url\": \"https://www.thebridge.com\",\n    \"speakers\": [\n        {\n            \"name\": \"Alejandro\",\n            \"bio\": \"Expert in FS\",\n            \"company\": \"The Bridge\"\n        },\n        {\n            \"name\": \"Guillermo\",\n            \"bio\": \"FS Developer\",\n            \"company\": \"The Bridge\"\n        }\n    ],\n    \"participants\": 250,\n    \"poster\": \"https://media.licdn.com/dms/image/D5610AQGIZlmtUeqo2A/image-shrink_800/0/1692792610833/financiacion_bootcamps_TB_6_1080x1080_12jpg?e=2147483647&v=beta&t=uPE6ZDdN6VX_31zlALkgDyiccK0jkPHjYM0bYdL7Ef4\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+				{
+					"name": "http://localhost:3000/api/events",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event_name\": \"The Bridge Webinnar Week 2024\",\n    \"description\": \"Los mejores webinnar tecnológicos.\",\n    \"date_start\": \"2024-12-02\",\n    \"date_end\": \"2024-12-04\",\n    \"address\": \"Paseo de Recoletos, 23, Madrid\",\n    \"technologies\": [\"Data Science\", \"Full Stack Development\", \"Cibersecurity\", \"AI\"],\n    \"event_type\": \"Webinnar\",\n    \"price\": 50,\n    \"url\": \"https://www.thebridge.com\",\n    \"speakers\": [\n        {\n            \"name\": \"Alejandro\",\n            \"bio\": \"Expert in FS\",\n            \"company\": \"The Bridge\"\n        },\n        {\n            \"name\": \"Guillermo\",\n            \"bio\": \"FS Developer\",\n            \"company\": \"The Bridge\"\n        }\n    ],\n    \"participants\": 250,\n    \"poster\": \"https://media.licdn.com/dms/image/D5610AQGIZlmtUeqo2A/image-shrink_800/0/1692792610833/financiacion_bootcamps_TB_6_1080x1080_12jpg?e=2147483647&v=beta&t=uPE6ZDdN6VX_31zlALkgDyiccK0jkPHjYM0bYdL7Ef4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/events",
+						"description": "PUT to Update any field of and event document by its event_name"
+					},
+					"response": []
 				},
-				"url": "http://localhost:3000/api/events",
-				"description": "PUT to Update any field of and event document by its event_name"
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/api/events",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"event_name\": \"The Bridge Webinnar Week 2024\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": "http://localhost:3000/api/events",
-				"description": "DELETE to delete an event from its event_name"
-			},
-			"response": []
+				{
+					"name": "http://localhost:3000/api/events",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event_name\": \"The Bridge Webinnar Week 2024\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/events",
+						"description": "DELETE to delete an event from its event_name"
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

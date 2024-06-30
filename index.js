@@ -15,6 +15,7 @@ app.use(morgan(':method :host :status - :response-time ms :body'));
 const eventsApiRoutes = require("./routes/events.routes");
 const usersApiRoutes = require("./routes/users.routes");
 const userFavoriteApiRoutes = require("./routes/userFavorite.routes");
+const favoritesApiRoutes = require ("./routes/favorites.routes");
 
 app.use(express.json()); // Habilito recepción de JSON en servidor
 
@@ -42,6 +43,7 @@ mongoose.connect(uri, {
 app.use('/api',eventsApiRoutes);
 app.use('/api', usersApiRoutes);
 app.use('/api',userFavoriteApiRoutes);
+app.use('/api', favoritesApiRoutes);
 
 
 // Para rutas no existentes

@@ -1,6 +1,21 @@
+/**
+ * @author Luis Carlos, Stephani, Sergio <futurefest.com> 
+ * @exports controllers
+ * @namespace MongoDBFunctions 
+ */
+
 const eventService = require('../services/events.services');
 
-
+/**
+ * Descripción: Esta función llama desde la ruta http://localhost:3000/api/events al método createEvent
+ * Este espera recibir por body un JSON con todos los campos del evento.
+ * @memberof MongoDBFunctions 
+ * @method createEvent 
+ * @async 
+ * @param {Object} req objeto de petición HTTP
+ * @param {Object} res objeto de respuesta HTTP
+ * @throws {Error} Error al crear el evento
+ */
 const createEvent = async (req, res) => {
     try {
         const newEvent = await eventService.createEvent(req.body);
@@ -10,6 +25,15 @@ const createEvent = async (req, res) => {
     }
 };
 
+/**
+ * Descripción: Esta función llama desde la ruta http://localhost:3000/api/events al método getEvent
+ * @memberof MongoDBFunctions 
+ * @method getEvent 
+ * @async 
+ * @param {Object} req objeto de petición HTTP
+ * @param {Object} res objeto de respuesta HTTP
+ * @throws {Error} Error al buscar los eventos
+ */
 const getEvent = async (req, res) => {
     try {
         const events = await eventService.getAllEvents();
@@ -21,6 +45,16 @@ const getEvent = async (req, res) => {
     }
 };
 
+/**
+ * Descripción: Esta función llama desde la ruta http://localhost:3000/api/events al método updateEvent
+ * Este espera recibir por body los campos a modificar del evento
+ * @memberof MongoDBFunctions 
+ * @method updateEvent 
+ * @async 
+ * @param {Object} req objeto de petición HTTP
+ * @param {Object} res objeto de respuesta HTTP
+ * @throws {Error} Error al actualizar el evento
+ */
 const updateEvent = async(req, res) => {
     try {
         const data = req.body;
@@ -38,14 +72,22 @@ const updateEvent = async(req, res) => {
     }
 };
 
+/**
+ * Descripción: Esta función llama desde la ruta http://localhost:3000/api/events al método deleteEvent
+ * Este espera recibir por body el nombre del evento a eliminar
+ * @memberof MongoDBFunctions 
+ * @method deleteEvent 
+ * @async 
+ * @param {Object} req objeto de petición HTTP
+ * @param {Object} res objeto de respuesta HTTP
+ * @throws {Error} Error al eliminar el evento
+ */
 const deleteEvent = async (req,res) => {
     try{
         const eventName = req.body;
         const answer = await eventService.deleteEvent(eventName.event_name);
-        console.log(answer);
         res.status(200).send({message: `Se ha borrado el evento ${eventName.event_name}`});
-
-    }catch (error) {
+    } catch (error) {
         console.log(`ERROR: ${error.stack}`);
         res.status(500).json({msj:`ERROR: ${error.stack}`});
     }

@@ -11,7 +11,8 @@ const queries = require('../queries/users.queries');
  * Descripción: Esta función crea un usuario en la tabla users
  * @memberof SQLQueries 
  * @method createUser 
- * @async 
+ * @async
+ * @param {JSON} entry - JSON con todos los campos para crear una fila de usuario
  * @return {Integer} Devuelve el número de rows creadas en la tabla
  * @throws {Error} Error de consulta a la BBDD
  */
@@ -34,11 +35,12 @@ const createUser = async (entry) => {
 };
 
 /**
- * Descripción: Esta función edita el rol de un usuario en la tabla users
+ * Descripción: Esta función edita el rol o el is_active de un usuario en la tabla users
  * @memberof SQLQueries 
  * @method editUser 
  * @async 
- * @return {Integer} Devuelve el número de rows modificadas en la tabla
+ * @param {JSON} entry - Un JSON con el nuevo valor de role_id o is_active a modificar, más el email del usuario a editar
+ * @return {Object} Devuelve un objeto con el número de filas modificadas y el email del usuario
  * @throws {Error} Error de consulta a la BBDD
  */
 const editUser = async (entry) => {
@@ -52,7 +54,7 @@ const editUser = async (entry) => {
                 result = { rowCount: data.rowCount, email };
                 return result
             }
-        } else {
+        } else if (entry.is_active) {
             const { is_active, email } = entry
             if (typeof is_active == "boolean") {
                 const data = await client.query(queries.editActiveByAdmin, [is_active, email]);
@@ -61,6 +63,8 @@ const editUser = async (entry) => {
             } else {
                 console.log('El valor introducido no es válido.')
             }
+        } else {
+            console.log('Los campos no son los correctos.')
         }
     } catch (err) {
         console.log(err);
@@ -75,8 +79,9 @@ const editUser = async (entry) => {
  * Descripción: Esta función edita la password de un usuario en la tabla users
  * @memberof SQLQueries 
  * @method editPasswordByUser 
- * @async 
- * @return {Integer} Devuelve el número de rows modificadas en la tabla
+ * @async
+ * @param {JSON} entry -Un JSON con el nuevo valor de password_hash a modificar, más el email del usuario a editar
+ * @return {Object} Devuelve un objeto con el número de filas modificadas y el email del usuario
  * @throws {Error} Error de consulta a la BBDD
  */
 const editPasswordByUser = async (entry) => {
@@ -99,8 +104,9 @@ const editPasswordByUser = async (entry) => {
  * Descripción: Esta función elimina un usuario de la tabla users
  * @memberof SQLQueries 
  * @method deleteUserByAdmin 
- * @async 
- * @return {Integer} Devuelve el número de rows creadas en la tabla
+ * @async
+ * @param {JSON} email - JSON con el email del usuario a eliminar
+ * @return {Integer} Devuelve el número de rows eliminadas en la tabla
  * @throws {Error} Error de consulta a la BBDD
  */
 const deleteUserByAdmin = async (email) => {
@@ -123,7 +129,7 @@ const deleteUserByAdmin = async (email) => {
  * @memberof SQLQueries 
  * @method getAllUsers 
  * @async 
- * @return {Array} Devuelve array con todos los usuarios de la tabla
+ * @return {Array} Devuelve array con todos los usuarios (objetos) de la tabla
  * @throws {Error} Error de consulta a la BBDD
  */
 const getAllUsers = async () => {
@@ -145,8 +151,9 @@ const getAllUsers = async () => {
  * Descripción: Esta función muestra un usuario de la tabla users en base a su email
  * @memberof SQLQueries 
  * @method getUsersByEmail 
- * @async 
- * @return {Array} Devuelve array con el usuario seleccionado de la tabla
+ * @async
+ * @param {JSON} email -JSON con el email del usuario a obtener
+ * @return {Array} Devuelve array con el usuario (objeto) seleccionado de la tabla
  * @throws {Error} Error de consulta a la BBDD
  */
 const getUsersByEmail = async (email) => {
@@ -183,10 +190,10 @@ module.exports = {
 
 //createUser(objUser).then(data=>console.log(data));
 /*PRUEBA 2 */
-const objUpdate = {
+/*const objUpdate = {
     newPass: "safafas9999",
     email: 'juan@hotmail.com'
-}
+}*/
 
 //editPasswordByUser(objUpdate).then(data=>console.log(data));
 

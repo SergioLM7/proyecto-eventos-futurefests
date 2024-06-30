@@ -1,5 +1,20 @@
+/**
+ * @author Luis Carlos, Stephani, Sergio <futurefest.com> 
+ * @exports services
+ * @memberof MongoDBFunctions 
+ */
+
 const Event = require('../models/events.models');
 
+/**
+ * Descripción: Esta función crea un evento
+ * @memberof MongoDBFunctions 
+ * @method createEvent 
+ * @async 
+ * @param {JSON} eventData -JSON con todos los campos para crear un evento
+ * @return {Object} -El objeto del evento creado con todos sus campos
+ * @throws {Error} Error al crear el evento
+ */
 const createEvent = async (eventData) => {
     try {
         const newEvent = new Event(eventData);
@@ -10,7 +25,13 @@ const createEvent = async (eventData) => {
     }
 };
 
-
+/**
+ * Descripción: Esta función obtiene todos los eventos existentes
+ * @memberof MongoDBFunctions 
+ * @method getAllEvents 
+ * @async 
+ * @throws {Error} Error al obtener todos los eventos
+ */
 const getAllEvents = async () => {
     try {
         return await Event.find();
@@ -19,7 +40,15 @@ const getAllEvents = async () => {
     }
 };
 
-
+/**
+ * Descripción: Esta función actualiza un evento
+ * @memberof MongoDBFunctions 
+ * @method updateEvent 
+ * @async 
+ * @param {JSON} eventData -JSON con todos los campos a editar de un evento
+ * @return {Object} -El objeto del evento actualizado con todos sus campos
+ * @throws {Error} Error al actualizar el evento
+ */
 const updateEvent = async (eventData) => {
     try {
         return await Event.findOneAndUpdate({ event_name: eventData.event_name }, eventData, { new: true });
@@ -28,6 +57,15 @@ const updateEvent = async (eventData) => {
     }
 };
 
+/**
+ * Descripción: Esta función elimina un evento
+ * @memberof MongoDBFunctions 
+ * @method deleteEvent 
+ * @async 
+ * @param {JSON} eventName -JSON con el nombre del evento a eliminar
+ * @return {Object} -Un objeto con el número de filas eliminadas y acknowledged: true
+ * @throws {Error} Error al eliminar el evento
+ */
 const deleteEvent = async (eventName) => {
     try {
         return await Event.deleteOne({event_name: eventName});
@@ -45,10 +83,10 @@ module.exports = {
 
 //PRUEBAS
 /*const objPrueba = {
-    event_name: "Devops Barcelona 2024",
+    event_name: "Devops Barcelona 2023",
     description: "Una feria única en una ciudad única",
-    date_start: "2024-11-14",
-    date_end: "2024-11-15",
+    date_start: "2023-11-14",
+    date_end: "2023-11-15",
     address: "Gran Via de les Corts Catalanes, 521, Barcelona",
     technologies: ["AI", "DevOps"],
     event_type: "Feria",
@@ -82,5 +120,5 @@ module.exports = {
 
 
 //createEvent(objPrueba).then(data=> console.log(data));
-//deleteEvent('Mobile World Congress').then(data => console.log(data));
+deleteEvent('Devops Barcelona 2023').then(data => console.log(data));
 //updateEvent(objUpdate).then(data=>console.log(data));
