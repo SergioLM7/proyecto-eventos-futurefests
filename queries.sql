@@ -21,7 +21,7 @@ CREATE TABLE users (
 /*Crear tabla user-favorites*/
 CREATE TABLE userfavorite (
     userfavorite_id SERIAL NOT NULL PRIMARY KEY UNIQUE,
-    favorite_id INT NOT NULL,
+    favorite_id VARCHAR(300) NOT NULL,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
     CONSTRAINT unique_favorite_user UNIQUE (favorite_id, user_id)

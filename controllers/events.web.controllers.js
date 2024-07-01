@@ -3,7 +3,7 @@ const Event = require('../services/events.services');
 // READ
 const getEventWeb = async (req, res) => {
         try {
-            const events = await Event.getAllEvents();
+            const events = await Event.getEvents();
             console.log(events);
             res.status(200).render("home.pug", {events, msj:"Tus eventos"});
         }

@@ -168,7 +168,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user_id\": 6,\n    \"favorite_id\": 5\n}",
+							"raw": "{\n    \"user_id\": 4,\n    \"favorite_id\": \"667ef9de0182c19732723e92\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -206,22 +206,27 @@
 			"item": [
 				{
 					"name": "http://localhost:3000/api/events",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
+						"url": {
+							"raw": "http://localhost:3000/api/events?_id=667ef9de0182c19732723e92",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"events"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "667ef9de0182c19732723e92"
 								}
-							}
+							]
 						},
-						"url": "http://localhost:3000/api/events",
 						"description": "POST to Create event in AtlasDB"
 					},
 					"response": []
