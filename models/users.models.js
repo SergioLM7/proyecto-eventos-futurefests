@@ -21,9 +21,13 @@ const createUser = async (entry) => {
     let client, result;
     let role_id = 2;
     let is_active = true;
+    let is_logged = false;
+    let dateNow = Date.now();
+    let last_time_logged = new Date(dateNow).toUTCString();
     try {
         client = await pool.connect();
-        const data = await client.query(queries.createUser, [email, password_hash, first_name, last_name, role_id, is_active])
+        const data = await client.query(queries.createUser, [email, password_hash, first_name, last_name, role_id, is_active, is_logged, last_time_logged])
+        console.log(data);
         result = data.rowCount;
     } catch (err) {
         console.log(err);
@@ -53,6 +57,8 @@ const editUser = async (entry) => {
                 const data = await client.query(queries.editRoleByAdmin, [role_id, email]);
                 result = { rowCount: data.rowCount, email };
                 return result
+            } else {
+                console.log('El valor introducido no es válido.')
             }
         } else if (entry.is_active) {
             const { is_active, email } = entry
@@ -63,6 +69,12 @@ const editUser = async (entry) => {
             } else {
                 console.log('El valor introducido no es válido.')
             }
+        } else if (typeof entry.is_logged == "boolean") {
+            const { is_logged, email } = entry
+            const data = await client.query(queries.editLogged, [is_logged, email]);
+            result = { rowCount: data.rowCount, email };
+            return result
+
         } else {
             console.log('Los campos no son los correctos.')
         }
@@ -101,7 +113,7 @@ const editPasswordByUser = async (entry) => {
 };
 
 /**
- * Descripción: Esta función elimina un usuario de la tabla users
+ * Descripción: Esta función elimina el usuario de la tabla users
  * @memberof SQLQueries 
  * @method deleteUserByAdmin 
  * @async
@@ -181,12 +193,12 @@ module.exports = {
 }
 
 //PRUEBAS
-/*const objUser = {
-    email: 'juan@hotmail.com',
-    password_hash: 'sasbñgmfd',
-    first_name: 'Juan',
+const objUser = {
+    email: 'ana@hotmail.com',
+    password_hash: 'asafasa567',
+    first_name: 'Ana',
     last_name: 'García'
-};*/
+};
 
 //createUser(objUser).then(data=>console.log(data));
 /*PRUEBA 2 */

@@ -12,27 +12,19 @@ CREATE TABLE users (
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
    	role_id INT NOT NULL,
-    is_active BOOLEAN DEFAULT TRUE,
+    is_active BOOLEAN DEFAULT TRUE NOT NULL,
+    is_logged BOOLEAN NOT NULL,
+    last_time_logged TIMESTAMP WITH TIME ZONE NOT NULL,
 	FOREIGN KEY (role_id) REFERENCES roles(role_id)
 );
 
-/*Crear tabla para los eventos favoritos*/
-CREATE TABLE favorites (
-    favorite_id SERIAL PRIMARY KEY,
-    favorite_name VARCHAR (100) NOT NULL UNIQUE,
-    favorite_image VARCHAR (255),
-    date_start date NOT NULL,
-    date_end date NOT NULL,
-    favorite_url VARCHAR(255),
-    favorite_type VARCHAR (100)
-);
-
 /*Crear tabla user-favorites*/
-CREATE TABLE userFavorite (
+CREATE TABLE userfavorite (
+    userfavorite_id SERIAL NOT NULL PRIMARY KEY UNIQUE,
     favorite_id INT NOT NULL,
     user_id INT NOT NULL,
-    FOREIGN KEY (favorite_id) REFERENCES favorites(favorite_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    CONSTRAINT unique_favorite_user UNIQUE (favorite_id, user_id)
 );
 
 /*Poblar tabla Roles*/
@@ -42,31 +34,11 @@ VALUES
 	('user');
 
 /*Poblar tabla Users*/
-INSERT INTO users (email, password_hash, first_name, last_name, role_id, is_active)
+INSERT INTO users (email, password_hash, first_name, last_name, role_id, is_active, is_logged, last_time_logged)
 VALUES 
-	('admin@admin.com', 'aasfsakfhashfkafhashfas', 'Luis', 'Acosta', 1, true);
-
-/*Poblar tabla Favoritos*/
-INSERT INTO favorites (favorite_name, favorite_image, date_start, date_end, favorite_url, favorite_type)
-VALUES 
-	('World Mobile Congress', 'https://www.lifecycle-software.com/hs-fs/hubfs/social%20backgrounds%20on%20launch-01.png?width=2385&height=1341&name=social%20backgrounds%20on%20launch-01.png', '1994-10-27', '1994-10-30', 'https://www.mwcbarcelona.com', 'Congreso');
+	('admin@admin.com', 'aasfsakfhashfkafhashfas', 'Luis', 'Acosta');
 
 /*Poblar tabla userFavorites*/
-INSERT INTO userFavorites (user_id, favorite_id)
-VALUES 
+INSERT INTO userfavorite (user_id, favorite_id)
+VALUES
 	(2, 4);
-
-/*Traer todos los campos de favoritos en base al usuario, menos el favorite_id*/
-SELECT
-        f.favorite_name,
-		f.favorite_image,
-		f.date_start,
-		f.date_end,
-		f.favorite_url,
-		f.favorite_type
-    FROM 
-        favorites as f
-    INNER JOIN 
-        userfavorite as uf ON uf.favorite_id = f.favorite_id
-    WHERE 
-        uf.user_id=6

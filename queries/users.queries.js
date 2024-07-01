@@ -1,8 +1,8 @@
 const queriesUsers = {
     createUser: `INSERT INTO
-        users (email, password_hash, first_name, last_name, role_id, is_active)
+        users (email, password_hash, first_name, last_name, role_id, is_active, is_logged, last_time_logged)
     VALUES
-        ($1,$2,$3,$4,$5,$6)`,
+        ($1,$2,$3,$4,$5,$6,$7,$8)`,
     editRoleByAdmin:`UPDATE
         users
     SET 
@@ -13,6 +13,12 @@ const queriesUsers = {
         users
     SET 
         is_active=$1
+    WHERE 
+        email=$2`,
+    editLogged: `UPDATE
+        users
+    SET 
+        is_logged=$1
     WHERE 
         email=$2`,
     editPasswordByUser: `UPDATE
@@ -31,7 +37,9 @@ const queriesUsers = {
         u.last_name,
         u.email,
         r.role_name,
-        u.is_active
+        u.is_active,
+        u.is_logged,
+        u.last_time_logged
     FROM users as u
     INNER JOIN roles as r ON r.role_id = u.role_id
     ORDER BY u.is_active DESC`,
@@ -41,7 +49,9 @@ const queriesUsers = {
         u.last_name,
         u.email,
         r.role_name,
-        u.is_active
+        u.is_active,
+        u.is_logged,
+        u.last_time_logged
     FROM users as u
     INNER JOIN roles as r ON r.role_id = u.role_id
     WHERE u.email=$1`

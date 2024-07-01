@@ -19,6 +19,9 @@ app.use(express.static('public'));
 
 app.use(cookieParser());
 
+app.use(express.urlencoded({extended:true}));
+app.use(express.json()); // Habilito recepción de JSON en servidor
+
 //Views
 app.set('view engine', 'pug');
 app.set('views','./views');
@@ -29,7 +32,6 @@ app.set('views','./views');
 const eventsApiRoutes = require("./routes/events.routes");
 const usersApiRoutes = require("./routes/users.routes");
 const userFavoriteApiRoutes = require("./routes/userFavorite.routes");
-const favoritesApiRoutes = require ("./routes/favorites.routes");
 
 //WEB
 const eventWebRoutes = require ("./routes/events.web.routes");
@@ -40,14 +42,16 @@ const authWebRoutes = require("./routes/auth.web.routes");
 app.use('/api',eventsApiRoutes);
 app.use('/api', usersApiRoutes);
 app.use('/api',userFavoriteApiRoutes);
-app.use('/api', favoritesApiRoutes);
 
 //WEB
 app.use('/', eventWebRoutes); //HOME
 app.use('/', authWebRoutes); //Log In
 
-app.use(express.urlencoded({extended:true}));
-app.use(express.json()); // Habilito recepción de JSON en servidor
+app.post("/api/login", authentication.login);
+app.post("/api/register", authentication.register);
+
+// Para rutas no existentes
+app.use('*',error404);
 
 // Conectar a MongoDB Atlas
 const uri = process.env.MONGODB_URI;
@@ -78,8 +82,6 @@ mongoose.connect(uri, {
 // app.get('/profile', (req, res) => {
 //     res.render('register.pug');
 // });
-app.post("/api/login", authentication.login);
-app.post("/api/register", authentication.register);
 
 // app.get("/dashboard", (req, res) => {
 //     res.render('dashboard.pug');
