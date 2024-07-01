@@ -1,0 +1,19 @@
+doctype html
+html(lang="es")
+   head
+      title Future Fests
+   body
+        include header.pug
+        p.greetings#people Hello Festers!
+        main
+            h1 Aqui tienes vista de los eventos
+            section
+                h3 Lista de eventos
+            section
+                each event in events
+                    article
+                        p Título: #{event.event_name}
+                        p Description: #{event.description}
+                        p Fecha inicio: #{event.date_start}
+                        img(src=event.poster, alt=event.event_name width="300")
+        include footer.pug

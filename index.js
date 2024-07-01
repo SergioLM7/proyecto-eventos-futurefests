@@ -11,12 +11,26 @@ const morgan = require('./middlewares/morgan');
 // Logger
 app.use(morgan(':method :host :status - :response-time ms :body'));
 
+//Habilitamos carpeta public
+app.use(express.static('public'));
+
+//Views
+app.set('view engine', 'pug');
+app.set('views','./views');
+
+
 // Rutas
+//API
 const eventsApiRoutes = require("./routes/events.routes");
 const usersApiRoutes = require("./routes/users.routes");
 const userFavoriteApiRoutes = require("./routes/userFavorite.routes");
 const favoritesApiRoutes = require ("./routes/favorites.routes");
 
+//WEB
+const eventWebRoutes = require ("./routes/events.web.routes");
+const authWebRoutes = require("./routes/auth.web.routes");
+
+app.use(express.urlencoded({extended:true}));
 app.use(express.json()); // Habilito recepción de JSON en servidor
 
 // Conectar a MongoDB Atlas
@@ -45,6 +59,9 @@ app.use('/api', usersApiRoutes);
 app.use('/api',userFavoriteApiRoutes);
 app.use('/api', favoritesApiRoutes);
 
+//WEB
+app.use('/', eventWebRoutes); //HOME
+app.use('/', authWebRoutes); //Log In
 
 // Para rutas no existentes
 app.use('*',error404);
