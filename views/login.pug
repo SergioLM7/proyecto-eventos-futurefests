@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title login
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    main
+      .form-container
+        h1 Iniciar sesión
+        form#login-form
+          label(for="email")
+          input#email(type="email", name="email", placeholder="Email de usuario")
+          label(for="password")
+          input#password(type="password", name="password", placeholder="Contraseña de usuario")
+          button(type="submit") Iniciar sesión
+          p.error.hidden Error al iniciar sesión
+        p ¿Aún no te regirstraste? - 
+          a(href="/register") Registrate
+    script(src="/js/login.js")

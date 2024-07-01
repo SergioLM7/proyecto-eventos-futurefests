@@ -10,3 +10,7 @@
     --orangePill: #FFA62B;
     /*BOTONES*/
 }
+
+.hidden {
+    display:none;
+}
