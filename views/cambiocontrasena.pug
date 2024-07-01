@@ -1,0 +1,14 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Document
+  body
+    main
+      form#form-cambiocontrasena(action="#", method="POST")
+        label(for="contrasenaAntigua")
+        input#contrasenaAntigua.contrasenaAntigua(type="text", name="contrasenaAntigua", placeholder="Ingresa tu nueva contraseña")
+        label(for="contrasenaNueva")
+        input#contrasenaNueva.contrasenaNueva(type="text", name="contrasnaNueva", placeholder="Repite tu contraseña")
+        button(type="submit") Cambiar contraseña

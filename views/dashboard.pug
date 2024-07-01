@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Dashboard
+    link(rel="stylesheet", href="/css/style.js")
+  body
+    main
+      form#form-dashboard(action="#", method="POST")
+        label(for="events-name")
+        input#events-name.events-name(type="text", name="events-name", placeholder="Nombre del evento")
+        label(for="events-date")
+        input#events-date.events-date(type="date", name="events-date", placeholder="Fecha del evento")
+        label(for="events-technologies")
+        input#events-technologies.events-technologies(type="text", name="events-technologies", placeholder="Tecnoologias")
+        label(for="events-localization")
+        input#events-localization.events-localization(type="text", name="events-localization", placeholder="Ubicación del evento")
+        label(for="events-description")
+        input#events-description.events-description(type="textarea", name="events-description", placeholder="Descripcion del evento")
+        label(for="events-poster")
+        input#events-poster.events-poster(type="text", name="events-poster", placeholder="URL del evento")
+        button(type="submit") Crear Eventos
+        input#buscador(type="text", list="eventos", placeholder="Ingresa el evento a buscar...")
+        datalist#eventos
+          option(value="evento1") Evento 1
+          option(value="evento2") Evento 2
+    script(src="/js/script.js")
