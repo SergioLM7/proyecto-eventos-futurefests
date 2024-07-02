@@ -34,11 +34,13 @@ const createEvent = async (eventData) => {
  */
 const getEvents = async (eventData) => {
     try {
+        let result;
         if (eventData._id) {
             const eventFind = await Event.findById(eventData._id, '-_id event_name description date_start url poster');
             return eventFind;
         } else {
-            return await Event.find();
+            result = await Event.find().limit(5);
+            return result;
         }
     } catch (error) {
         throw new Error('Error al obtener los eventos');
@@ -79,14 +81,36 @@ const deleteEvent = async (eventName) => {
     }
 };
 
+
+const searchByInput = async (input="brid") => {
+    if (!input) {
+        const result = await Event.find().limit(10);
+        return result;
+    }
+    try {
+        const regex = new RegExp(input, 'i');
+        const results = await Event.find({ event_name: regex }).limit(10);
+        return results;
+    } catch (err) {
+        throw new Error('Error al buscar:', err);
+    } 
+};
+
+
+
 module.exports = {
     createEvent,
     getEvents,
     updateEvent,
-    deleteEvent
+    deleteEvent,
+    searchByInput
 };
 
 //PRUEBAS
+//const input = "brid";
+//searchByInput(input).then(data=>console.log(data))
+
+
 /*const objPrueba = {
     event_name: "Devops Barcelona 2023",
     description: "Una feria única en una ciudad única",

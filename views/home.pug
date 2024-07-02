@@ -5,16 +5,19 @@ html(lang="es")
       link(rel="stylesheet", href="./css/style.css")
    body
         include header.pug
-        p.greetings#people Hello Festers!
         main
-            h1 Aqui tienes vista de los eventos
+            h1 Future Fests
             section
                 input#filterInput(type='text')
                 button#filterButton Filtrar/Restablecer
             section 
             section
-                h3 Lista de eventos
+                h3 Los últimos eventos tecnológicos
             section
+                input#filterInput(type='text')
+                button#filterButton Filtrar/Restablecer
+            section#searched_container
+            section#all_events_container
                 each event in events
                     article
                         p Evento: #{event.event_name}
