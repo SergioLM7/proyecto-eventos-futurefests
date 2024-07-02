@@ -6,6 +6,7 @@ html(lang="es")
     link(rel="stylesheet", href="/css/style.css")
     title Registro
   body
+    include header.pug
     main.form-container
       h1 Crea tu cuenta
       form#register-form(action="#", method="POST")
@@ -18,6 +19,8 @@ html(lang="es")
         label(for="password") Contraseña
         input#password(type="password", name="password", placeholder="Contraseña", required)
         button(type="submit") Registrarse
+        button.google-button
+          img(src='https://banner2.cleanpng.com/20180416/xlq/kisspng-g-suite-pearl-river-middle-school-google-software-sign-up-button-5ad4e1a9d11d62.1599053415239008418566.jpg', alt='Google logo')
         p.error.hidden Error al registrarse
       p ¿Ya estás registrado? - 
         a(href="/login") Iniciar sesión

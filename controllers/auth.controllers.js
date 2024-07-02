@@ -60,7 +60,7 @@ const login = async (req, res) => {
         };
 
         res.cookie("jwt", token, cookieOption);
-        res.send({ status: "ok", message: "Usuario loggeado", redirect: "/dashboard" });
+        res.send({ status: "ok", message: "Usuario loggeado", redirect: "/" });
 
     } catch (error) {
         console.error('Error during login:', error);

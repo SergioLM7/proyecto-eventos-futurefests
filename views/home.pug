@@ -2,11 +2,16 @@ doctype html
 html(lang="es")
    head
       title Future Fests
+      link(rel="stylesheet", href="./css/style.css")
    body
         include header.pug
         p.greetings#people Hello Festers!
         main
             h1 Aqui tienes vista de los eventos
+            section
+                input#filterInput(type='text')
+                button#filterButton Filtrar/Restablecer
+            section 
             section
                 h3 Lista de eventos
             section
@@ -18,3 +23,4 @@ html(lang="es")
                         p Enlace: #{event.url}
                         img(src=event.poster, alt=event.event_name width="300")
         include footer.pug
+        script(src="/js/script.js")
