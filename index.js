@@ -10,6 +10,8 @@ const cookieParser = require('cookie-parser');
 // Middlewares
 const error404 = require('./middlewares/error404');
 const morgan = require('./middlewares/morgan');
+//middleware, para que solo entren adm o public
+const authorization = require('./middlewares/authorization');
 
 // Logger
 app.use(morgan(':method :host :status - :response-time ms :body'));
@@ -17,7 +19,10 @@ app.use(morgan(':method :host :status - :response-time ms :body'));
 //Habilitamos carpeta public
 app.use(express.static('public'));
 
+app.use(express.urlencoded({extended:true}));
+app.use(express.json()); // Habilito recepción de JSON en servidor
 app.use(cookieParser());
+
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json()); // Habilito recepción de JSON en servidor
@@ -25,7 +30,6 @@ app.use(express.json()); // Habilito recepción de JSON en servidor
 //Views
 app.set('view engine', 'pug');
 app.set('views','./views');
-
 
 // Importar rutas
 //API
@@ -82,7 +86,9 @@ mongoose.connect(uri, {
 // app.get('/profile', (req, res) => {
 //     res.render('register.pug');
 // });
+app.post("/api/login", authentication.login);
+app.post("/api/register", authentication.register);
 
-// app.get("/dashboard", (req, res) => {
-//     res.render('dashboard.pug');
-// });
+ app.get("/dashboard", authorization.onlyLogin, (req, res) => {
+    res.render('dashboard.pug');
+}); 

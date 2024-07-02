@@ -1,3 +1,9 @@
+/**
+ * @author Luis Carlos, Stephani, Sergio <futurefest.com> 
+ * @exports controllers
+ * @namespace LoginRegisterFunction
+ */
+
 const bcryptjs = require('bcryptjs');
 const jsonwebtoken = require('jsonwebtoken');
 require('dotenv').config();
@@ -11,6 +17,16 @@ const usuarios = [
     }
 ];
 
+/**
+ * Descripción: Esta función llama desde la ruta http://localhost:3000/login a la funcion Login
+ * Este espera recibir por body un JSON con todos los campos del usuario.
+ * @memberof LoginRegisterFunction 
+ * @method login 
+ * @async 
+ * @param {Object} req objeto de petición HTTP
+ * @param {Object} res objeto de respuesta HTTP
+ * @throws {Error} Error durante login
+ */
 const login = async (req, res) => {
     try {
         console.log('Request body:', req.body);
@@ -21,6 +37,7 @@ const login = async (req, res) => {
         }
 
         const usuarioAResvisar = usuarios.find(usuario => usuario.email === email);
+        console.log(usuarioAResvisar);
         if (!usuarioAResvisar) {
             return res.status(400).send({ status: "Error", message: "Error durante login" });
         }
@@ -31,7 +48,8 @@ const login = async (req, res) => {
         }
 
         const token = jsonwebtoken.sign(
-            { email: usuarioAResvisar.email },
+            { 
+                email: usuarioAResvisar.email },
             process.env.JWT_SECRET,
             { expiresIn: process.env.JWT_EXPIRATION }
         );
@@ -42,7 +60,7 @@ const login = async (req, res) => {
         };
 
         res.cookie("jwt", token, cookieOption);
-        res.send({ status: "ok", message: "Usuario loggeado", redirect: "/" });
+        res.send({ status: "ok", message: "Usuario loggeado", redirect: "/dashboard" });
 
     } catch (error) {
         console.error('Error during login:', error);
@@ -50,6 +68,16 @@ const login = async (req, res) => {
     }
 };
 
+/**
+ * Descripción: Esta función llama desde la ruta http://localhost:3000/register a la funcion register
+ * Este espera recibir por body un JSON con todos los campos del usuario.
+ * @memberof LoginRegisterFunction 
+ * @method register 
+ * @async 
+ * @param {Object} req objeto de petición HTTP
+ * @param {Object} res objeto de respuesta HTTP
+ * @throws {Error} Error al crear el usuario
+ */
 const register = async (req, res) => {
     console.log(req.body);
     const { password, email, first_name, last_name } = req.body;
@@ -85,5 +113,6 @@ const register = async (req, res) => {
 
 module.exports = {
     login,
-    register
+    register,
+    usuarios
 };

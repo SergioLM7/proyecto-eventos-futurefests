@@ -36,7 +36,8 @@ const createEvent = async (req, res) => {
  */
 const getEvent = async (req, res) => {
     try {
-        const events = await eventService.getAllEvents();
+        const eventData = req.body._id ? { _id: req.body._id } : req.query;
+        const events = await eventService.getEvents(eventData);
         res.status(200).json(events);
     }
     catch (error) {
@@ -55,20 +56,20 @@ const getEvent = async (req, res) => {
  * @param {Object} res objeto de respuesta HTTP
  * @throws {Error} Error al actualizar el evento
  */
-const updateEvent = async(req, res) => {
+const updateEvent = async (req, res) => {
     try {
         const data = req.body;
         const answer = await eventService.updateEvent(data, { new: true });
 
-        if(answer) {
-            res.status(200).send({message: `Se ha actualizado el producto: ${answer.event_name}`, event:answer});
+        if (answer) {
+            res.status(200).send({ message: `Se ha actualizado el producto: ${answer.event_name}`, event: answer });
         } else {
-            res.status(404).send({message: "Evento no encontrado", event:answer});
+            res.status(404).send({ message: "Evento no encontrado", event: answer });
         }
     }
     catch (error) {
         console.log(`ERROR: ${error.stack}`);
-        res.status(500).json({msj:`ERROR: ${error.stack}`});
+        res.status(500).json({ msj: `ERROR: ${error.stack}` });
     }
 };
 
@@ -82,14 +83,14 @@ const updateEvent = async(req, res) => {
  * @param {Object} res objeto de respuesta HTTP
  * @throws {Error} Error al eliminar el evento
  */
-const deleteEvent = async (req,res) => {
-    try{
+const deleteEvent = async (req, res) => {
+    try {
         const eventName = req.body;
         const answer = await eventService.deleteEvent(eventName.event_name);
-        res.status(200).send({message: `Se ha borrado el evento ${eventName.event_name}`});
+        res.status(200).send({ message: `Se ha borrado el evento ${eventName.event_name}` });
     } catch (error) {
         console.log(`ERROR: ${error.stack}`);
-        res.status(500).json({msj:`ERROR: ${error.stack}`});
+        res.status(500).json({ msj: `ERROR: ${error.stack}` });
     }
 };
 
