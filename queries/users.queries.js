@@ -15,16 +15,16 @@ const queriesUsers = {
         is_active=$1
     WHERE 
         email=$2`,
-    editLogged: `UPDATE
-        users
-    SET 
-        is_logged=$1
-    WHERE 
-        email=$2`,
     editPasswordByUser: `UPDATE
         users
     SET
         password_hash=$1
+    WHERE 
+        email=$2`,
+    editLogged: `UPDATE
+        users
+    SET 
+        is_logged=$1
     WHERE 
         email=$2`,
     deleteUserByAdmin: `DELETE FROM 

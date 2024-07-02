@@ -60,21 +60,16 @@ const editUser = async (entry) => {
             } else {
                 console.log('El valor introducido no es válido.')
             }
-        } else if (entry.is_active) {
+        } else if (typeof is_active == "boolean") {
             const { is_active, email } = entry
-            if (typeof is_active == "boolean") {
                 const data = await client.query(queries.editActiveByAdmin, [is_active, email]);
                 result = { rowCount: data.rowCount, email };
                 return result
-            } else {
-                console.log('El valor introducido no es válido.')
-            }
         } else if (typeof entry.is_logged == "boolean") {
             const { is_logged, email } = entry
             const data = await client.query(queries.editLogged, [is_logged, email]);
             result = { rowCount: data.rowCount, email };
             return result
-
         } else {
             console.log('Los campos no son los correctos.')
         }
