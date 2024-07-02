@@ -4,12 +4,15 @@ html(lang="es")
       title Future Fests
    body
         include header.pug
-        p.greetings#people Hello Festers!
         main
-            h1 Aqui tienes vista de los eventos
+            h1 Future Fests
             section
-                h3 Lista de eventos
+                h3 Los últimos eventos tecnológicos
             section
+                input#filterInput(type='text')
+                button#filterButton Filtrar/Restablecer
+            section#searched_container
+            section#all_events_container
                 each event in events
                     article
                         p Evento: #{event.event_name}
@@ -18,3 +21,4 @@ html(lang="es")
                         p Enlace: #{event.url}
                         img(src=event.poster, alt=event.event_name width="300")
         include footer.pug
+        script(src="/js/script.js")
