@@ -3,24 +3,22 @@ html(lang="es")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Registro
     link(rel="stylesheet", href="/css/style.css")
+    title Registro
   body
-    include header.pug
-    main
+    main.form-container
       h1 Crea tu cuenta
       form#register-form(action="#", method="POST")
-        label(for="first_name")
-        input(type="text", name="first_name", id="first_name", placeholder="Nombre")
-        label(for="last_name")
-        input(type="text", name="last_name", id="last_name", placeholder="Apellido")
-        label(for="email")
-        input#email(type="email", name="email", placeholder="Email")
-        label(for="password")
-        input#password(type="password", name="password", placeholder="Contraseña")
-        button(type="submit") Iniciar sesión
+        label(for="first_name") Nombre
+        input(type="text", name="first_name", id="first_name", placeholder="Nombre", required)
+        label(for="last_name") Apellido
+        input(type="text", name="last_name", id="last_name", placeholder="Apellido", required)
+        label(for="email") Email
+        input#email(type="email", name="email", placeholder="Email", required)
+        label(for="password") Contraseña
+        input#password(type="password", name="password", placeholder="Contraseña", required)
+        button(type="submit") Registrarse
         p.error.hidden Error al registrarse
-      p ¿Ya estas registrado? -
+      p ¿Ya estás registrado? - 
         a(href="/login") Iniciar sesión
     script(src="/js/register.js")
-    include footer.pug

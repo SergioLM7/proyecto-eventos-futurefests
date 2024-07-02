@@ -1,0 +1,120 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    padding: 0;
+}
+.container {
+    text-align: center;
+}
+/*Boton de Google*/
+.google-button {
+    background-color: transparent;
+    border: 1px solid #dcdcdc;
+    padding: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+}
+.google-button:active {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.google-button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.google-button img {
+    width: 60px;
+    height: 60px;
+}
+
+/*Menu de Hamburguesa*/
+.navbar {
+    background-color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative;
+    border-radius: 10px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    padding-left: 0;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.nav-links li {
+    margin: 0 15px;
+    
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger-menu .bar {
+    width: 50px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 40px;
+        left: 0;
+        background-color: #333;
+        padding: 0;
+        
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hamburger-menu {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 0;
+        padding: 10px;
+        border-bottom: 1px solid #444;
+        text-align: center;
+        
+    }
+}
+
+/*Footer*/
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
