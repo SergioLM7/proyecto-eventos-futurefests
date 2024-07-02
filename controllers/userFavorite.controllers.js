@@ -40,7 +40,11 @@ const createUserFavorite = async (req, res) => {
 const deleteUserFavorite = async (req, res) => {
     try {
         const user = await userFavoriteEntry.deleteUserFavorite(req.body);
-        res.status(200).json({ message: `Se ha borrado la relación usuario-favorito.` });
+        if (user != 1) {
+            res.status(400).json({ error: "Este usuario no tiene guardado este favorito" });
+        } else {
+            res.status(200).json({ message: `Se ha borrado la relación usuario-favorito.` });
+        } 
     } catch (error) {
         res.status(500).json({ error: "Error en la BBD" });
     }

@@ -41,4 +41,4 @@ VALUES
 /*Poblar tabla userFavorites*/
 INSERT INTO userfavorite (user_id, favorite_id)
 VALUES
-	(2, 4);
+	(2, "asfgh987832");
