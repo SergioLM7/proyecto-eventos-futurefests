@@ -168,7 +168,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user_id\": 6,\n    \"favorite_id\": 5\n}",
+							"raw": "{\n    \"user_id\": 4,\n    \"favorite_id\": \"667ef9de0182c19732723e92\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -198,74 +198,6 @@
 						"description": "DELETE to delete user-favorite relationship by user_id and favorite_id"
 					},
 					"response": []
-				},
-				{
-					"name": "http://localhost:3000/api/favorites?user_id=6",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/api/favorites?user_id=6",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"favorites"
-							],
-							"query": [
-								{
-									"key": "user_id",
-									"value": "6"
-								}
-							]
-						},
-						"description": "GET favorites by user_id in param"
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:3000/api/favorites",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"user_id\": 6\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:3000/api/favorites",
-						"description": "GET favorites by user_id in body"
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:3000/api/favorites",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"favorite_name\": \"WWDC 2022\",\n    \"favorite_image\": \"https://wwwdc/imagen.png\",\n    \"date_start\": \"2022-03-20\", \n    \"date_end\": \"2022-03-30\", \n    \"favorite_url\": \"https://apple.com\", \n    \"favorite_type\": \"Feria\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:3000/api/favorites",
-						"description": "POST to create a favorite by body"
-					},
-					"response": []
 				}
 			]
 		},
@@ -274,22 +206,27 @@
 			"item": [
 				{
 					"name": "http://localhost:3000/api/events",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
+						"url": {
+							"raw": "http://localhost:3000/api/events?_id=667ef9de0182c19732723e92",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"events"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "667ef9de0182c19732723e92"
 								}
-							}
+							]
 						},
-						"url": "http://localhost:3000/api/events",
 						"description": "POST to Create event in AtlasDB"
 					},
 					"response": []

@@ -2,8 +2,7 @@ const eventsController = require('../controllers/events.controllers');
 const router = require('express').Router();
 
 // GET http://localhost:3000/api/events
-// GET http://localhost:3000/api/events/mobile+world+congress ?¿?¿?¿
-router.get("/events", eventsController.getEvent);
+router.get("/events/:_id?", eventsController.getEvent);
 
 // POST http://localhost:3000/api/events
 router.post("/events", eventsController.createEvent);

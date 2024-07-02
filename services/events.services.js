@@ -32,9 +32,17 @@ const createEvent = async (eventData) => {
  * @async 
  * @throws {Error} Error al obtener todos los eventos
  */
-const getAllEvents = async () => {
+const getEvents = async (eventData) => {
     try {
-        return await Event.find();
+        if (eventData.event_name) {
+            const eventFind = await Event.find({ event_name: eventData.event_name })
+            return eventFind[0];
+        } else if (eventData._id) {
+            const eventFind = await Event.findById(eventData._id, '-_id event_name description date_start url poster')
+            return eventFind;     
+    } else {
+            return await Event.find();
+        }
     } catch (error) {
         throw new Error('Error al obtener los eventos');
     }
@@ -68,7 +76,7 @@ const updateEvent = async (eventData) => {
  */
 const deleteEvent = async (eventName) => {
     try {
-        return await Event.deleteOne({event_name: eventName});
+        return await Event.deleteOne({ event_name: eventName });
     } catch (error) {
         throw new Error('Error al eliminar el evento');
     }
@@ -76,7 +84,7 @@ const deleteEvent = async (eventName) => {
 
 module.exports = {
     createEvent,
-    getAllEvents,
+    getEvents,
     updateEvent,
     deleteEvent
 };
@@ -120,5 +128,5 @@ module.exports = {
 
 
 //createEvent(objPrueba).then(data=> console.log(data));
-deleteEvent('Devops Barcelona 2023').then(data => console.log(data));
+//deleteEvent('Devops Barcelona 2023').then(data => console.log(data));
 //updateEvent(objUpdate).then(data=>console.log(data));

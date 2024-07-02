@@ -4,7 +4,6 @@
  * @memberof SQLQueries 
  */
 
-
 const userFavoriteEntry = require('../models/userFavorite.models');
 
 /**
@@ -41,13 +40,44 @@ const createUserFavorite = async (req, res) => {
 const deleteUserFavorite = async (req, res) => {
     try {
         const user = await userFavoriteEntry.deleteUserFavorite(req.body);
-        res.status(200).json({ message: `Se ha borrado la relación usuario-favorito.` });
+        if (user != 1) {
+            res.status(400).json({ error: "Este usuario no tiene guardado este favorito" });
+        } else {
+            res.status(200).json({ message: `Se ha borrado la relación usuario-favorito.` });
+        } 
     } catch (error) {
         res.status(500).json({ error: "Error en la BBD" });
     }
 };
 
+/**
+ * Descripción: Esta función llama desde la ruta http://localhost:3000/api/userfavorite o http://localhost:3000/api/userfavorite?user_id= al método getUserFavorites
+ * Este espera recibir por body o por query el id del usuario del que queremos obtener sus favoritos
+ * @memberof SQLQueries 
+ * @method getUserFavorites
+ * @async 
+ * @param {Object} req objeto de petición HTTP
+ * @param {Object} res objeto de respuesta HTTP
+ * @throws {Error} Error al encontrar el usuario-favorito
+ */
+const getUserFavorites = async (req, res) => {
+    let userFavorites;
+    try {
+        if (req.body.user_id) {
+            //Meter el validador del GET
+            userFavorites = await userFavoriteEntry.getUserFavorites(req.body.user_id);
+        } else if (req.query.user_id) {
+            //Meter el validador del GET
+            userFavorites = await userFavoriteEntry.getUserFavorites(req.query.user_id);
+        }
+        res.status(200).json(userFavorites);
+    } catch (error) {
+        res.status(500).json({ error: "Error en la BBDD" });
+    }
+};
+
 module.exports = {
     createUserFavorite,
-    deleteUserFavorite
+    deleteUserFavorite,
+    getUserFavorites
 };

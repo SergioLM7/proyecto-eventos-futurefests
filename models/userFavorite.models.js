@@ -42,11 +42,11 @@ const createUserFavorite = async (entry) => {
  * @throws {Error} Error de consulta a la BBDD
  */
 const deleteUserFavorite = async (entry) => {
-    const { user_id, favorite_id } = entry;
+    const { email, favorite_id } = entry;
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(queries.deleteUserFavorite, [user_id, favorite_id])
+        const data = await client.query(queries.deleteUserFavorite, [email, favorite_id])
         result = data.rowCount;
     } catch (err) {
         console.log(err);
@@ -54,6 +54,7 @@ const deleteUserFavorite = async (entry) => {
     } finally {
         client.release();
     }
+    console.log(result)
     return result
 };
 
@@ -65,7 +66,7 @@ module.exports = {
 //PRUEBAS
 const userFavorite = {
     user_id: 6,
-    favorite_id: 2
+    favorite_id: "asdafafa56"
 };
 
 //createUserFavorite(userFavorite).then(data=>console.log(data))

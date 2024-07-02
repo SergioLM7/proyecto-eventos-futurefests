@@ -12,8 +12,9 @@ html(lang="es")
             section
                 each event in events
                     article
-                        p Título: #{event.event_name}
-                        p Description: #{event.description}
+                        p Evento: #{event.event_name}
+                        p Descripción: #{event.description}
                         p Fecha inicio: #{event.date_start}
+                        p Enlace: #{event.url}
                         img(src=event.poster, alt=event.event_name width="300")
         include footer.pug

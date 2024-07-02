@@ -57,7 +57,7 @@ const getUsers = async (req, res) => {
 };
 
 /**
- * Descripción: Esta función llama desde la ruta http://localhost:3000/api/users/:email?  al método deleteUserByAdmin
+ * Descripción: Esta función llama desde la ruta http://localhost:3000/api/users/:email? al método deleteUserByAdmin
  * Este espera recibir por query o por body el email del usuario a eliminar. 
  * @memberof SQLQueries 
  * @method deleteUser
