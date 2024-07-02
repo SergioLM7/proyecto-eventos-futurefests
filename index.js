@@ -10,6 +10,8 @@ const cookieParser = require('cookie-parser');
 // Middlewares
 const error404 = require('./middlewares/error404');
 const morgan = require('./middlewares/morgan');
+//middleware, para que solo entren adm o public
+const authorization = require('./middlewares/authorization');
 
 // Logger
 app.use(morgan(':method :host :status - :response-time ms :body'));
@@ -17,12 +19,14 @@ app.use(morgan(':method :host :status - :response-time ms :body'));
 //Habilitamos carpeta public
 app.use(express.static('public'));
 
+app.use(express.urlencoded({extended:true}));
+app.use(express.json()); // Habilito recepción de JSON en servidor
 app.use(cookieParser());
+
 
 //Views
 app.set('view engine', 'pug');
 app.set('views','./views');
-
 
 // Importar rutas
 //API
@@ -45,9 +49,6 @@ app.use('/api', favoritesApiRoutes);
 //WEB
 app.use('/', eventWebRoutes); //HOME
 app.use('/', authWebRoutes); //Log In
-
-app.use(express.urlencoded({extended:true}));
-app.use(express.json()); // Habilito recepción de JSON en servidor
 
 // Conectar a MongoDB Atlas
 const uri = process.env.MONGODB_URI;
@@ -81,6 +82,6 @@ mongoose.connect(uri, {
 app.post("/api/login", authentication.login);
 app.post("/api/register", authentication.register);
 
-// app.get("/dashboard", (req, res) => {
-//     res.render('dashboard.pug');
-// });
+ app.get("/dashboard", authorization.onlyLogin, (req, res) => {
+    res.render('dashboard.pug');
+}); 
