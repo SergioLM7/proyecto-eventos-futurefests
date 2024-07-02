@@ -34,13 +34,10 @@ const createEvent = async (eventData) => {
  */
 const getEvents = async (eventData) => {
     try {
-        if (eventData.event_name) {
-            const eventFind = await Event.find({ event_name: eventData.event_name })
-            return eventFind[0];
-        } else if (eventData._id) {
-            const eventFind = await Event.findById(eventData._id, '-_id event_name description date_start url poster')
-            return eventFind;     
-    } else {
+        if (eventData._id) {
+            const eventFind = await Event.findById(eventData._id, '-_id event_name description date_start url poster');
+            return eventFind;
+        } else {
             return await Event.find();
         }
     } catch (error) {
