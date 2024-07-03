@@ -30,9 +30,6 @@
   
   }
   
-
-
-
   document.getElementById("filterButton").addEventListener("click", async () => {
     console.log('Botón pulsado')
     const input = document.getElementById("filterInput").value;
@@ -50,12 +47,15 @@
       console.error('Error:', error);
     }  });
 
-    document.querySelector(".btnCerrarSesion").addEventListener("click", ()=>{
-      const last_time_logged = new Date(Date.now());
-      console.log(last_time_logged)
-      document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'  
+    document.getElementById("createEvent").addEventListener("click", async (ev) => {
+      ev.preventDefault()
+      console.log('Botón pulsado')
+      });
+
+    document.querySelector(".btnCerrarSesion").addEventListener("click", ({target})=>{
+      document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'
       document.location.href = "/"
-});
+    }) 
 
 //   const hamburgerMenu = document.getElementById('hamburger-menu');
 //   const navLinks = document.getElementById('nav-links');

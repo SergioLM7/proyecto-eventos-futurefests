@@ -6,6 +6,8 @@ const port = 3000;
 const path = require('path');
 const authentication = require('./controllers/auth.controllers');
 const cookieParser = require('cookie-parser');
+const session = require("express-session");
+
 
 // Middlewares
 const error404 = require('./middlewares/error404');
@@ -15,6 +17,14 @@ const authorization = require('./middlewares/authorization');
 
 // Logger
 app.use(morgan(':method :host :status - :response-time ms :body'));
+
+
+app.use(cookieParser());
+app.use(session({
+  secret: 'your_secret_session_key',
+  resave: false,
+  saveUninitialized: false
+}));
 
 //Habilitamos carpeta public
 app.use(express.static('public'));
@@ -27,6 +37,11 @@ app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
 app.use(express.json()); // Habilito recepción de JSON en servidor
 
+app.use(session({ secret: 'SECRET', resave: false, saveUninitialized: false }));
+
+
+
+
 //Views
 app.set('view engine', 'pug');
 app.set('views','./views');
@@ -36,7 +51,6 @@ app.set('views','./views');
 const eventsApiRoutes = require("./routes/events.routes");
 const usersApiRoutes = require("./routes/users.routes");
 const userFavoriteApiRoutes = require("./routes/userFavorite.routes");
-const authApiRoutes = require('./routes/auth.routes')
 
 //Scraping
 const scrapingRoutes = require('./routes/scraper.routes'); 
@@ -45,6 +59,9 @@ const scrapingRoutes = require('./routes/scraper.routes');
 const eventWebRoutes = require ("./routes/events.web.routes");
 const authWebRoutes = require("./routes/auth.web.routes");
 const userfavoriteWebRoutes = require('./routes/userfavorite.web.routes')
+const dashboardWeb = require('./routes/dashboard.routes.js')
+
+
 
 
 // Rutas
@@ -52,7 +69,6 @@ const userfavoriteWebRoutes = require('./routes/userfavorite.web.routes')
 app.use('/api',eventsApiRoutes);
 app.use('/api', usersApiRoutes);
 app.use('/api', userFavoriteApiRoutes);
-app.use('/api', authApiRoutes);
 
 //Scraping
 app.use('/', scrapingRoutes);
@@ -61,9 +77,11 @@ app.use('/', scrapingRoutes);
 app.use('/', eventWebRoutes); //HOME
 app.use('/', authWebRoutes); //Log In
 app.use('/', userfavoriteWebRoutes); //Favorites
+app.use('/', dashboardWeb); //Favorites
 
 app.post("/api/login", authentication.login);
 app.post("/api/register", authentication.register);
+
 
 // Para rutas no existentes
 app.use('*',error404);

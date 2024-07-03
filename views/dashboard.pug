@@ -1,28 +1,32 @@
 doctype html
-html(lang="es")
+html
   head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
     title Dashboard
-    link(rel="stylesheet", href="/css/style.js")
+    link(rel="stylesheet", href="./css/style.css")
   body
-    main
-      form#form-dashboard(action="#", method="POST")
-        label(for="events-name")
-        input#events-name.events-name(type="text", name="events-name", placeholder="Nombre del evento")
-        label(for="events-date")
-        input#events-date.events-date(type="date", name="events-date", placeholder="Fecha del evento")
-        label(for="events-technologies")
-        input#events-technologies.events-technologies(type="text", name="events-technologies", placeholder="Tecnoologias")
-        label(for="events-localization")
-        input#events-localization.events-localization(type="text", name="events-localization", placeholder="Ubicación del evento")
-        label(for="events-description")
-        input#events-description.events-description(type="textarea", name="events-description", placeholder="Descripcion del evento")
-        label(for="events-poster")
-        input#events-poster.events-poster(type="text", name="events-poster", placeholder="URL del evento")
-        button(type="submit") Crear Eventos
-        input#buscador(type="text", list="eventos", placeholder="Ingresa el evento a buscar...")
-        datalist#eventos
-          option(value="evento1") Evento 1
-          option(value="evento2") Evento 2
+    include header.pug
+    main 
+      section
+        form#createEvent(action='/created', method='post')
+          input(type='text', name='event_name', placeholder='Nombre del Evento')
+          input(type='text', name='description', placeholder='Descripcion')
+          input(type='text', name='date_start', placeholder='Fecha de Inicio')
+          input(type='text', name='date_end', placeholder='Fecha de Fin')
+          input(type='text', name='poster', placeholder='Url Imagen')
+          input(type='url', name='url', placeholder='Url Web')
+          input(type='submit')
+
+      section#searched_container
+        section#all_events_container
+          each event in events
+            article
+              p Evento: #{event.event_name}
+              p Descripción: #{event.description}
+              p Fecha inicio: #{event.date_start}
+              a.button(href=event.url target="_blank") Enlace    
+              img(src=event.poster, alt=event.event_name width="300")
+    include footer.pug
     script(src="/js/script.js")
+    

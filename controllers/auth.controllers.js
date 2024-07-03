@@ -47,7 +47,6 @@ const login = async (req, res) => {
             return res.status(400).send({ status: "Error", message: "Error durante login" });
         }
 
-        console.log('Hola hola HOLA')
         const loginCorrecto = await bcryptjs.compare(password_hash, dataUser[0].password_hash);
         if (!loginCorrecto) {
             return res.status(400).send({ status: "Error", message: "Error durante login" });
