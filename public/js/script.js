@@ -3,6 +3,8 @@
   
   const pintarEncontrados = (encontrados) => {
     document.getElementById('all_events_container').innerHTML = '';
+    document.getElementById('searched_container').innerHTML = '';
+
     const sectionEncontrados = document.getElementById('searched_container');
     const articleEncontrados = document.createElement('ARTICLE');
     
@@ -17,7 +19,8 @@
   
       pEvento.innerText = element.event_name;
       pDescripcion.innerText = element.description;
-      pFecha.innerText = element.date_start;
+      const fecha =new Date (element.date_start);
+      pFecha.innerText = fecha.toDateString();
       pEnlace.innerHTML = `<a href=${element.url} target='_blank'>Más información</a>`;
       poster.src = element.poster;
       poster.alt = element.event_name;
@@ -30,6 +33,9 @@
   
   }
   
+
+
+
   document.getElementById("filterButton").addEventListener("click", async () => {
     console.log('Botón pulsado')
     const input = document.getElementById("filterInput").value;
@@ -47,15 +53,19 @@
       console.error('Error:', error);
     }  });
 
-    document.getElementById("createEvent").addEventListener("click", async (ev) => {
-      ev.preventDefault()
-      console.log('Botón pulsado')
-      });
+    document.querySelector(".btnCerrarSesion").addEventListener("click", ()=>{
+      const last_time_logged = new Date(Date.now());
+      console.log(last_time_logged);
+      /*await fetch ('http://localhost:3000/users?email=sergio@admin.com',
+        {
+          method: 'PUT',
 
-    document.querySelector(".btnCerrarSesion").addEventListener("click", ({target})=>{
-      document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+
+        }
+      )*/
+      document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'  
       document.location.href = "/"
-    }) 
+});
 
 //   const hamburgerMenu = document.getElementById('hamburger-menu');
 //   const navLinks = document.getElementById('nav-links');

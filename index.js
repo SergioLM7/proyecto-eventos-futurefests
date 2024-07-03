@@ -19,27 +19,20 @@ const authorization = require('./middlewares/authorization');
 app.use(morgan(':method :host :status - :response-time ms :body'));
 
 
-app.use(cookieParser());
+/*app.use(cookieParser());
 app.use(session({
   secret: 'your_secret_session_key',
   resave: false,
   saveUninitialized: false
-}));
+}));*/
 
 //Habilitamos carpeta public
 app.use(express.static('public'));
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json()); // Habilito recepción de JSON en servidor
-app.use(cookieParser());
 
-
-app.use(express.urlencoded({extended:true}));
-app.use(express.json()); // Habilito recepción de JSON en servidor
-
-app.use(session({ secret: 'SECRET', resave: false, saveUninitialized: false }));
-
-
+//app.use(session({ secret: 'SECRET', resave: false, saveUninitialized: false }));
 
 
 //Views
@@ -51,6 +44,8 @@ app.set('views','./views');
 const eventsApiRoutes = require("./routes/events.routes");
 const usersApiRoutes = require("./routes/users.routes");
 const userFavoriteApiRoutes = require("./routes/userFavorite.routes");
+const authApiRoutes = require('./routes/auth.routes')
+
 
 //Scraping
 const scrapingRoutes = require('./routes/scraper.routes'); 
@@ -59,8 +54,8 @@ const scrapingRoutes = require('./routes/scraper.routes');
 const eventWebRoutes = require ("./routes/events.web.routes");
 const authWebRoutes = require("./routes/auth.web.routes");
 const userfavoriteWebRoutes = require('./routes/userfavorite.web.routes')
-const dashboardWeb = require('./routes/dashboard.routes.js')
-
+const dashboardWebRoutes = require('./routes/dashboard.routes.js')
+const usersWebRoutes = require('./routes/users.web.routes.js')
 
 
 
@@ -69,6 +64,8 @@ const dashboardWeb = require('./routes/dashboard.routes.js')
 app.use('/api',eventsApiRoutes);
 app.use('/api', usersApiRoutes);
 app.use('/api', userFavoriteApiRoutes);
+app.use('/api', authApiRoutes);
+
 
 //Scraping
 app.use('/', scrapingRoutes);
@@ -77,7 +74,9 @@ app.use('/', scrapingRoutes);
 app.use('/', eventWebRoutes); //HOME
 app.use('/', authWebRoutes); //Log In
 app.use('/', userfavoriteWebRoutes); //Favorites
-app.use('/', dashboardWeb); //Favorites
+app.use('/', dashboardWebRoutes); //Dashboard
+app.use('/', usersWebRoutes); //Users
+
 
 app.post("/api/login", authentication.login);
 app.post("/api/register", authentication.register);
