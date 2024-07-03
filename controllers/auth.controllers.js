@@ -4,6 +4,8 @@
  * @namespace LoginRegisterFunction
  */
 
+const userModel = require('../models/users.models')
+
 const bcryptjs = require('bcryptjs');
 const jsonwebtoken = require('jsonwebtoken');
 require('dotenv').config();
@@ -30,29 +32,37 @@ const usuarios = [
 const login = async (req, res) => {
     try {
         console.log('Request body:', req.body);
-        const { email, password } = req.body;
+        const { email, password_hash } = req.body;
 
-        if (!email || !password) {
+        if (!email || !password_hash) {
             return res.status(400).send({ status: "Error", message: "Los campos están incompletos" });
         }
+        const response = await fetch(`http://localhost:3000/api/users?email=${req.body.email}`)
+        const dataUser = await response.json();
+        console.log(dataUser);
 
-        const usuarioAResvisar = usuarios.find(usuario => usuario.email === email);
-        console.log(usuarioAResvisar);
-        if (!usuarioAResvisar) {
+        //const usuarioAResvisar = usuarios.find(usuario => usuario.email === email);
+        //console.log(usuarioAResvisar);
+        if (dataUser == []) {
             return res.status(400).send({ status: "Error", message: "Error durante login" });
         }
 
-        const loginCorrecto = await bcryptjs.compare(password, usuarioAResvisar.password);
+        console.log('Hola hola HOLA')
+        const loginCorrecto = await bcryptjs.compare(password_hash, dataUser[0].password_hash);
         if (!loginCorrecto) {
             return res.status(400).send({ status: "Error", message: "Error durante login" });
         }
 
         const token = jsonwebtoken.sign(
             { 
-                email: usuarioAResvisar.email },
+                email: dataUser[0].email,
+                role_id: dataUser[0].role_id
+            },
             process.env.JWT_SECRET,
             { expiresIn: process.env.JWT_EXPIRATION }
         );
+
+        console.log(token);
 
         const cookieOption = {
             expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
@@ -60,7 +70,8 @@ const login = async (req, res) => {
         };
 
         res.cookie("jwt", token, cookieOption);
-        res.send({ status: "ok", message: "Usuario loggeado", redirect: "/" });
+        res.redirect('/')
+        //res.send({ status: "ok", message: "Usuario loggeado", redirect: "/" });
 
     } catch (error) {
         console.error('Error during login:', error);
@@ -97,13 +108,15 @@ const register = async (req, res) => {
     try {
         const salt = await bcryptjs.genSalt();
         const password_hash = await bcryptjs.hash(password, salt);
-        const nuevoUsuario = { first_name, last_name, email, password: password_hash };
+        const nuevoUsuario = { first_name, last_name, email, password_hash: password_hash };
 
-        console.log("Nuevo usuario creado:", nuevoUsuario);
-        usuarios.push(nuevoUsuario);
-        console.log("Lista de usuarios actualizada:", usuarios);
-
-        res.send({ status: "ok", message: "Usuario registrado", redirect: "/login" });
+        const usuarioRegistrado = userModel.createUser(nuevoUsuario);
+       
+        if (usuarioRegistrado) {
+            res.send({ status: "ok", message: "Usuario registrado", redirect: "/login" });
+        } else {
+            console.log('Error al guardar el usuario en BBDD')
+        }
 
     } catch (error) {
         console.error("Error al crear el usuario:", error);
