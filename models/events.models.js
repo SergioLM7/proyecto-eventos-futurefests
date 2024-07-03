@@ -12,28 +12,28 @@ const objSchema = {
         required: true,
     },
     date_start: {
-        type: Date, 
+        type: String, 
         required: true,
     }, 
     date_end: {
-        type: Date, 
+        type: String, 
         required: true,
     },
     address:{
         type: String, 
-        required: true,
+        required: false,
     },
     technologies:{
         type: Array, 
-        required: true,
+        required: false,
     },
     event_type:{
         type: String, 
-        required: true,
+        required: false,
     },
     price:{
         type: Number, 
-        required: true,
+        required: false,
     },
     url: { 
         type: String, 
@@ -52,11 +52,11 @@ const objSchema = {
     },
     speakers: {
         type: Array, 
-        required: true,
+        required: false,
     },
     participants: {
         type: Number,
-        required: true,
+        required: false,
     },
     poster: {
         type: String,

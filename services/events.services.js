@@ -47,6 +47,21 @@ const getEvents = async (eventData) => {
     }
 };
 
+
+const getFavorites = async (eventData) => {
+    try {
+        if (!eventData) {
+            throw new Error('El usuario no tiene favoritos');
+        } else {
+            const eventFind = await Event.findById(eventData, '-_id event_name description date_start url poster');
+            return eventFind;
+        }
+    } catch (error) {
+        throw new Error('Error al obtener los eventos');
+    }
+};
+
+
 /**
  * Descripción: Esta función actualiza un evento
  * @memberof MongoDBFunctions 
@@ -103,7 +118,8 @@ module.exports = {
     getEvents,
     updateEvent,
     deleteEvent,
-    searchByInput
+    searchByInput,
+    getFavorites
 };
 
 //PRUEBAS
