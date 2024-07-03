@@ -24,9 +24,10 @@ const queriesUsers = {
     editLogged: `UPDATE
         users
     SET 
-        is_logged=$1
+        is_logged=$1,
+        last_time_logged=$2
     WHERE 
-        email=$2`,
+        email=$3`,
     deleteUserByAdmin: `DELETE FROM 
         users
     WHERE 
@@ -47,8 +48,9 @@ const queriesUsers = {
         u.user_id,
         u.first_name,
         u.last_name,
+        u.password_hash,
         u.email,
-        r.role_name,
+        r.role_id,
         u.is_active,
         u.is_logged,
         u.last_time_logged

@@ -9,7 +9,7 @@ html(lang="es")
     include header.pug
     main.form-container
       h1 Crea tu cuenta
-      form#register-form(action="#", method="POST")
+      form#register-form(action="/api/users", method="POST")
         label(for="first_name") Nombre
         input(type="text", name="first_name", id="first_name", placeholder="Nombre", required)
         label(for="last_name") Apellido
@@ -17,7 +17,7 @@ html(lang="es")
         label(for="email") Email
         input#email(type="email", name="email", placeholder="Email", required)
         label(for="password") Contraseña
-        input#password(type="password", name="password", placeholder="Contraseña", required)
+        input#password(type="password", name="password_hash", placeholder="Contraseña", required)
         button(type="submit") Registrarse
         p.error.hidden Error al registrarse
       p ¿Ya estás registrado? - 

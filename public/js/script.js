@@ -1,8 +1,5 @@
 
-/*document.querySelector(".btnCerrarSesion").addEventListener("click", ({target})=>{
-  document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'
-  document.location.href = "/"
-}) */
+
   
   const pintarEncontrados = (encontrados) => {
     document.getElementById('all_events_container').innerHTML = '';
@@ -33,6 +30,9 @@
   
   }
   
+
+
+
   document.getElementById("filterButton").addEventListener("click", async () => {
     console.log('Botón pulsado')
     const input = document.getElementById("filterInput").value;
@@ -50,6 +50,12 @@
       console.error('Error:', error);
     }  });
 
+    document.querySelector(".btnCerrarSesion").addEventListener("click", ()=>{
+      const last_time_logged = new Date(Date.now());
+      console.log(last_time_logged)
+      document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'  
+      document.location.href = "/"
+});
 
 //   const hamburgerMenu = document.getElementById('hamburger-menu');
 //   const navLinks = document.getElementById('nav-links');

@@ -66,8 +66,8 @@ const editUser = async (entry) => {
                 result = { rowCount: data.rowCount, email };
                 return result
         } else if (typeof entry.is_logged == "boolean") {
-            const { is_logged, email } = entry
-            const data = await client.query(queries.editLogged, [is_logged, email]);
+            const { is_logged, last_time_logged, email } = entry
+            const data = await client.query(queries.editLogged, [is_logged, last_time_logged, email]);
             result = { rowCount: data.rowCount, email };
             return result
         } else {

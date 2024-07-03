@@ -36,6 +36,7 @@ app.set('views','./views');
 const eventsApiRoutes = require("./routes/events.routes");
 const usersApiRoutes = require("./routes/users.routes");
 const userFavoriteApiRoutes = require("./routes/userFavorite.routes");
+const authApiRoutes = require('./routes/auth.routes')
 
 //Scraping
 const scrapingRoutes = require('./routes/scraper.routes'); 
@@ -51,6 +52,7 @@ const userfavoriteWebRoutes = require('./routes/userfavorite.web.routes')
 app.use('/api',eventsApiRoutes);
 app.use('/api', usersApiRoutes);
 app.use('/api', userFavoriteApiRoutes);
+app.use('/api', authApiRoutes);
 
 //Scraping
 app.use('/', scrapingRoutes);
