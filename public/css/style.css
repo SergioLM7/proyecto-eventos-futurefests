@@ -10,21 +10,22 @@
     --orangePill: #FFA62B;
     /*BOTONES*/
 }
-body {
+ /* body {
     font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     margin: 0;
+    padding: 0;
     background: linear-gradient(to right, #6a11cb, #2575fc);
-}
-
+} */
+/* 
 .hidden {
     display:none;
-}
+} */
 
-.form-container {
+ .form-container {
     background-color: white;
     padding: 2rem;
     border-radius: 10px;
@@ -34,7 +35,7 @@ body {
     text-align: center;
 }
 
-.form-container h1 {
+ .form-container h1 {
     margin-bottom: 1rem;
     color: #333;
 }
@@ -104,20 +105,12 @@ body {
     text-decoration: underline;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    padding: 0;
-}
+
 .container {
     text-align: center;
-}
+}  
 /*Boton de Google*/
-.google-button {
+ .google-button {
     background-color: transparent;
     border: 1px solid #dcdcdc;
     padding: 20px;
@@ -138,10 +131,10 @@ body {
 .google-button img {
     width: 60px;
     height: 60px;
-}
+} 
 
 /*Menu de Hamburguesa*/
-.navbar {
+ /* .navbar {
     background-color: #333;
     display: flex;
     justify-content: space-between;
@@ -212,10 +205,10 @@ body {
         text-align: center;
         
     }
-}
+} */
 
 /*Footer*/
-footer {
+ /* footer {
     background-color: #333;
     color: white;
     text-align: center;
@@ -224,4 +217,191 @@ footer {
     bottom: 0;
     width: 100%;
     height: 30px;
-}
+}    */
+
+/*Seccion Card*/
+/* Estilos generales */
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+  }
+  
+  header {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 1rem;
+  }
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  nav ul li a:hover {
+    background-color: #555;
+  }
+  
+  main {
+    padding: 2rem;
+  }
+  
+  main h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  section {
+    margin-bottom: 2rem;
+  }
+  
+  #filterInput {
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    width: 60%;
+    max-width: 300px;
+  }
+  
+  #filterButton {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 0.5rem;
+  }
+  
+  #filterButton:hover {
+    background-color: #0056b3;
+  }
+  
+  #all_events_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .card {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 300px;
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card p {
+    margin-bottom: 1rem;
+  }
+  
+  .card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 1rem;
+  }
+  
+  .card a.button {
+    display: inline-block;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .card a.button:hover {
+    background-color: #0056b3;
+  }
+  
+  footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+  }
+  
+  footer h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  footer p {
+    margin: 0.5rem 0 0;
+    font-size: 0.875rem;
+  }
+  
+  @media (max-width: 600px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    nav ul {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    nav ul li {
+      margin-left: 0;
+      width: 100%;
+    }
+  
+    nav ul li a {
+      display: block;
+      width: 100%;
+      text-align: left;
+    }
+  
+    #filterInput {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 1rem;
+    }
+  
+    #filterButton {
+      width: 100%;
+      margin-left: 0;
+    }
+  
+    #all_events_container {
+      justify-content: center;
+    }
+  }

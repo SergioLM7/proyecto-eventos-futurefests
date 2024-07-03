@@ -2,15 +2,11 @@ doctype html
 html(lang="es")
    head
       title Future Fests
-      link(rel="stylesheet", href="./css/style.css")
+      link(rel="stylesheet", href="/css/style.css")
    body
         include header.pug
         main
             h1 Future Fests
-            section
-                input#filterInput(type='text')
-                button#filterButton Filtrar/Restablecer
-            section 
             section
                 h3 Los últimos eventos tecnológicos
             section
@@ -23,7 +19,7 @@ html(lang="es")
                         p Evento: #{event.event_name}
                         p Descripción: #{event.description}
                         p Fecha inicio: #{event.date_start}
-                        p Enlace: #{event.url}
+                        a.button(href=event.url target="_blank") Enlace    
                         img(src=event.poster, alt=event.event_name width="300")
         include footer.pug
         script(src="/js/script.js")
