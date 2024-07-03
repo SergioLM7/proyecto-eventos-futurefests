@@ -23,7 +23,7 @@ const pintarEncontrados = (encontrados) => {
     pEvento.innerText = element.event_name;
     pDescripcion.innerText = element.description;
     pFecha.innerText = element.date_start;
-    pEnlace.innerHTML = `<a href=${element.url}>Más información</a>`;
+    pEnlace.innerHTML = `<a href=${element.url} target='_blank'>Más información</a>`;
     poster.src = element.poster;
     poster.alt = element.event_name;
     poster.width = "300";
