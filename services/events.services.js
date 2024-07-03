@@ -39,7 +39,7 @@ const getEvents = async (eventData) => {
             const eventFind = await Event.findById(eventData._id, '-_id event_name description date_start url poster');
             return eventFind;
         } else {
-            result = await Event.find().limit(5);
+            result = await Event.find().limit(10);
             return result;
         }
     } catch (error) {

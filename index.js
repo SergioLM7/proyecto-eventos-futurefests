@@ -37,6 +37,9 @@ const eventsApiRoutes = require("./routes/events.routes");
 const usersApiRoutes = require("./routes/users.routes");
 const userFavoriteApiRoutes = require("./routes/userFavorite.routes");
 
+//Scraping
+const scrapingRoutes = require('./routes/scraper.routes'); 
+
 //WEB
 const eventWebRoutes = require ("./routes/events.web.routes");
 const authWebRoutes = require("./routes/auth.web.routes");
@@ -46,6 +49,9 @@ const authWebRoutes = require("./routes/auth.web.routes");
 app.use('/api',eventsApiRoutes);
 app.use('/api', usersApiRoutes);
 app.use('/api',userFavoriteApiRoutes);
+
+//Scraping
+app.use('/', scrapingRoutes);
 
 //WEB
 app.use('/', eventWebRoutes); //HOME

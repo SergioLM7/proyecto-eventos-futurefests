@@ -14,7 +14,7 @@ CREATE TABLE users (
    	role_id INT NOT NULL,
     is_active BOOLEAN DEFAULT TRUE NOT NULL,
     is_logged BOOLEAN NOT NULL,
-    last_time_logged TIMESTAMP WITH TIME ZONE NOT NULL,
+    last_time_logged TIMESTAMP NOT NULL,
 	FOREIGN KEY (role_id) REFERENCES roles(role_id)
 );
 
@@ -41,4 +41,4 @@ VALUES
 /*Poblar tabla userFavorites*/
 INSERT INTO userfavorite (user_id, favorite_id)
 VALUES
-	(2, "asfgh987832");
+	(2, 'asfgh987832');
