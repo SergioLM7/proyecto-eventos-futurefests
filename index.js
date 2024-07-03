@@ -43,12 +43,14 @@ const scrapingRoutes = require('./routes/scraper.routes');
 //WEB
 const eventWebRoutes = require ("./routes/events.web.routes");
 const authWebRoutes = require("./routes/auth.web.routes");
+const userfavoriteWebRoutes = require('./routes/userfavorite.web.routes')
+
 
 // Rutas
 //API
 app.use('/api',eventsApiRoutes);
 app.use('/api', usersApiRoutes);
-app.use('/api',userFavoriteApiRoutes);
+app.use('/api', userFavoriteApiRoutes);
 
 //Scraping
 app.use('/', scrapingRoutes);
@@ -56,6 +58,7 @@ app.use('/', scrapingRoutes);
 //WEB
 app.use('/', eventWebRoutes); //HOME
 app.use('/', authWebRoutes); //Log In
+app.use('/', userfavoriteWebRoutes); //Favorites
 
 app.post("/api/login", authentication.login);
 app.post("/api/register", authentication.register);

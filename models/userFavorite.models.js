@@ -17,11 +17,11 @@ const queries = require('../queries/userFavorite.queries');
  * @throws {Error} Error de consulta a la BBDD
  */
 const createUserFavorite = async (entry) => {
-    const { user_id, favorite_id } = entry;
+    const { email, favorite_id } = entry;
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(queries.createUserFavorite, [user_id, favorite_id])
+        const data = await client.query(queries.createUserFavorite, [email, favorite_id])
         result = data.rowCount;
     } catch (err) {
         console.log(err);
@@ -58,9 +58,25 @@ const deleteUserFavorite = async (entry) => {
     return result
 };
 
+const getUserFavoriteByEmail = async (email) => {
+    let client, result;
+    try {
+        client = await pool.connect();
+        const data = await client.query(queries.getUserFavoritesByEmail, [email])
+        result = data.rows;
+    } catch (err) {
+        console.log(err);
+        throw err;
+    } finally {
+        client.release();
+    }
+    return result
+};
+
 module.exports = {
     createUserFavorite,
-    deleteUserFavorite
+    deleteUserFavorite,
+    getUserFavoriteByEmail
 }
 
 //PRUEBAS
@@ -70,3 +86,4 @@ const userFavorite = {
 };
 
 //createUserFavorite(userFavorite).then(data=>console.log(data))
+//getUserFavoriteByEmail('sergio@admin.com').then(data=>console.log(data))

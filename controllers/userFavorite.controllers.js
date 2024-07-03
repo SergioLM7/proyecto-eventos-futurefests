@@ -63,12 +63,12 @@ const deleteUserFavorite = async (req, res) => {
 const getUserFavorites = async (req, res) => {
     let userFavorites;
     try {
-        if (req.body.user_id) {
+        if (req.body.email) {
             //Meter el validador del GET
-            userFavorites = await userFavoriteEntry.getUserFavorites(req.body.user_id);
-        } else if (req.query.user_id) {
+            userFavorites = await userFavoriteEntry.getUserFavoriteByEmail(req.body.email);
+        } else if (req.query.email) {
             //Meter el validador del GET
-            userFavorites = await userFavoriteEntry.getUserFavorites(req.query.user_id);
+            userFavorites = await userFavoriteEntry.getUserFavoriteByEmail(req.query.email);
         }
         res.status(200).json(userFavorites);
     } catch (error) {
