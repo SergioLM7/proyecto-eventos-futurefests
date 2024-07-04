@@ -65,7 +65,7 @@ document.querySelector(".btnCerrarSesion").addEventListener("click", ()=>{
 
         }
       )*/
-      document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'  
+      document.cookie = 'access-token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'  
       document.location.href = "/"
 });
 
@@ -100,7 +100,7 @@ const getCookie = (name)  => {
 
 //Función para extraer el email del token
 const getEmailFromToken = () => {
-  const token = getCookie("jwt");
+  const token = getCookie("access-token");
 
   if (!token) {
     console.log("No token found.");
@@ -127,7 +127,7 @@ const botonesFavoritos = document.querySelectorAll(".buttonFavorite");
 botonesFavoritos.forEach(button => {
   button.addEventListener("click", async ({target}) => {
 
-    const token = getCookie('jwt');
+    const token = getCookie('access-token');
     if (!token) {
       console.log("No user is logged in.");
       window.location.href = '/login';

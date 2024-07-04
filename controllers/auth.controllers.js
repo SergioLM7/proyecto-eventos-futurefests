@@ -44,7 +44,7 @@ const login = async (req, res) => {
         }
 
         const token = jsonwebtoken.sign(
-            { 
+            {
                 email: dataUser[0].email,
                 role_id: dataUser[0].role_id
             },
@@ -59,7 +59,7 @@ const login = async (req, res) => {
             path: "/",
         };
 
-        res.cookie("jwt", token, cookieOption);
+        res.cookie("access-token", token, cookieOption);
         res.redirect('/')
         //res.send({ status: "ok", message: "Usuario loggeado", redirect: "/" });
 
@@ -83,7 +83,7 @@ const register = async (req, res) => {
     console.log(req.body);
     const { password, email, first_name, last_name } = req.body;
 
-    
+
     if (!password || !email || !first_name || !last_name) {
         console.log("Campos incompletos");
         return res.status(400).send({ status: "Error", message: "Los campos están incompletos" });
@@ -101,7 +101,7 @@ const register = async (req, res) => {
         const nuevoUsuario = { first_name, last_name, email, password_hash: password_hash };
 
         const usuarioRegistrado = userModel.createUser(nuevoUsuario);
-       
+
         if (usuarioRegistrado) {
             res.send({ status: "ok", message: "Usuario registrado", redirect: "/login" });
         } else {
@@ -114,7 +114,83 @@ const register = async (req, res) => {
     }
 };
 
+/* const googleAuth = (req, res) => {
+    res.send('<a href="/auth/google">Authenticate with google </a>');
+};
+ */
+
+/**
+ * Descripción: Esta función llama desde la ruta http://localhost:3000/register a la funcion register
+ * Este espera recibir por body un JSON con todos los campos del usuario.
+ * @memberof LoginRegisterFunction 
+ * @method googleCallback 
+ * @async 
+ * @param {Object} req objeto de petición HTTP
+ * @param {Object} res objeto de respuesta HTTP
+ * @throws {Error} Error al inicio sesion
+ */
+const googleCallback = async (req, res) => {
+    const payload = {
+        email: req.user.emails[0].value,
+        role_id: 2
+    };
+    console.log(req.user.emails[0].value)
+    console.log(payload)
+    const token = jsonwebtoken.sign(payload, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRATION });
+
+    console.log(token);
+    res.cookie("access-token", token, {
+        /* httpOnly: true,
+        sameSite: "strict", */
+        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
+        path: "/",
+    }).redirect("/");
+};
+
+/* const dashboard = (req, res) => {
+    res.send("Welcome to your dashboard! You are now authenticated with google! <br><br> <a href='/logout'>Click here to logout!</a>");
+}; */
+
+
+/**
+ * Descripción: Esta función llama desde la ruta http://localhost:3000/register a la funcion register
+ * Este espera recibir por body un JSON con todos los campos del usuario.
+ * @memberof LoginRegisterFunction 
+ * @method authFailure 
+ * @async 
+ * @param {Object} req objeto de petición HTTP
+ * @param {Object} res objeto de respuesta HTTP
+ */
+const authFailure = (req, res) => {
+    res.redirect("/login");
+};
+
+
+/**
+ * Cierra la sesión del usuario, destruye la sesión y limpia la cookie de 'access-token'.
+ * Luego envía una respuesta al usuario indicando que se ha desconectado exitosamente y proporciona un enlace para autenticarse nuevamente con Google.
+ * @memberof LoginRegisterFunction 
+ * @function logout
+ * @async
+ * @param {Object} req - Objeto de petición HTTP
+ * @param {Object} res - Objeto de respuesta HTTP
+ * @param {Function} next - Función para pasar el control al siguiente middleware
+ */
+const logout = (req, res, next) => {
+    req.logout(function (err) {
+        if (err) { return next(err); }
+        req.session.destroy();
+        res.clearCookie("access-token").send('Goodbye! <br><br> <a href="/auth/google">Authenticate again</a>');
+    });
+};
+
+
 module.exports = {
+    /* googleAuth, */
+    googleCallback,
+    /* dashboard, */
+    authFailure,
+    logout,
     login,
     register
 };
