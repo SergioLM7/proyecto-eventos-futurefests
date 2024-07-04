@@ -65,16 +65,6 @@ document.querySelector(".btnCerrarSesion").addEventListener("click", ()=>{
       document.location.href = "/"
 });
 
-
-/*const getCookie = (email) => {
-  let matches = document.cookie.match(new RegExp(
-    "(?:^|; )" + email.replace(/([.$?*|{}()[]\/+^])/g, '\\$1') + "=([^;]*)"
-  ));
-  return matches ? decodeURIComponent(matches[1]) : undefined;
-}
-
-getCookie();*/
-
 //Función para extraer el token de las cookies
 const getCookie = (name)  => {
   let matches = document.cookie.match(new RegExp(
@@ -108,54 +98,77 @@ const getEmailFromToken = () => {
 
 console.log(getEmailFromToken());
 
-//Evento para escuchar el botón favorito y guardar el evento en SQL
-const botonesFavoritos = document.querySelectorAll(".buttonFavorite")
+const botonesFavoritos = document.querySelectorAll(".buttonFavorite");
 botonesFavoritos.forEach(button => {
-  button.addEventListener("click", async ({target})=> {
-   
-    const token = getCookie('jwt')
+  button.addEventListener("click", async ({target}) => {
+
+    const token = getCookie('jwt');
     if (!token) {
       console.log("No user is logged in.");
-      window.relocate.href = '/';
+      window.location.href = '/login';
       return;
     }
 
     const email = getEmailFromToken(token);
 
-      if (target.classList.contains('liked')) {
-        target.classList.remove('liked');
-      } else {
-        target.classList.add('liked');
+    if (target.classList.contains('liked')) {
+      target.classList.remove('liked');
+    } else {
+      target.classList.add('liked');
+    }
+    console.log(target.id);
+
+    const encodedId = encodeURIComponent(target.id);
+    console.log(encodedId);
+
+    let searchResult;
+    try {
+      const searchResponse = await fetch(`http://localhost:3000/search?input=${encodedId}`, {
+        method: 'GET', // Asumiendo que estás buscando eventos, debería ser 'GET'
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+
+      if (!searchResponse.ok) {
+        throw new Error('Search request failed');
       }
-      //await fetch ('http://localhost:3000/api/search' y le pasamos el target.id para que lo busque----- revisar si crear nuevo modelo searchBy o se puede reutilizar el que ya tenemos para el buscador)
-      const payload = {
-        email: email,
-        favorite_id: target.id
-      };
 
-      try {
-        const response = await fetch('http://localhost:3000/api/userfavorite', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(payload)
-        });
+      searchResult = await searchResponse.json();
+      console.log(searchResult);
+    } catch (error) {
+      console.error('Error during search:', error);
+      return;
+    }
 
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+    const payload = {
+      email: email,
+      favorite_id: searchResult[0]._id // Asumiendo que searchResult es un objeto y necesitas el id del evento
+    };
 
-        const data = await response.json();
-        console.log('Success:', data);
-      } catch (error) {
-        console.error('Error:', error);
+    try {
+      const response = await fetch('http://localhost:3000/api/userfavorite', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
-  
-      console.log(target.id);
-    
-  })
-})
+
+      const data = await response.json();
+      console.log('Success:', data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+
+    console.log(target.id);
+  });
+});
+
 
 //   const hamburgerMenu = document.getElementById('hamburger-menu');
 //   const navLinks = document.getElementById('nav-links');

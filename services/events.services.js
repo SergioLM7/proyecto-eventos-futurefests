@@ -47,7 +47,6 @@ const getEvents = async (eventData) => {
     }
 };
 
-
 const getFavorites = async (eventData) => {
     try {
         if (!eventData) {
@@ -61,6 +60,21 @@ const getFavorites = async (eventData) => {
     }
 };
 
+/*const getFavoriteID = async (name) => {
+    try {
+        if (!name) {
+            throw new Error('El usuario no tiene favoritos');
+        } else {
+            console.log(name)
+            const nameToFind = await Event.find({event_name:name}, '_id');
+            console.log(nameToFind)
+            return nameToFind;
+        }
+    } catch (error) {
+        throw new Error('Error al obtener los eventos');
+    }
+};*/
+//getFavoriteID('Mobile World Congress 2025').then(data=>console.log(data));
 
 /**
  * Descripción: Esta función actualiza un evento
@@ -97,7 +111,7 @@ const deleteEvent = async (eventName) => {
 };
 
 
-const searchByInput = async (input="brid") => {
+const searchByInput = async (input) => {
     if (!input) {
         const result = await Event.find().limit(10);
         return result;
