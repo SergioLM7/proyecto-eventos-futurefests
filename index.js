@@ -25,8 +25,8 @@ const authorization = require('./middlewares/authorization');
 app.use(morgan(':method :host :status - :response-time ms :body'));
 
 
-/*app.use(cookieParser());
-app.use(session({
+app.use(cookieParser());
+/*app.use(session({
   secret: 'your_secret_session_key',
   resave: false,
   saveUninitialized: false
@@ -105,6 +105,6 @@ app.use('*',error404);
 app.post("/api/login", authentication.login);
 app.post("/api/register", authentication.register);
 
- app.get("/dashboard", authorization.onlyLogin, (req, res) => {
+/* app.get("/dashboard", authorization.onlyLogin, (req, res) => {
     res.render('dashboard.pug');
-}); 
+}); */
