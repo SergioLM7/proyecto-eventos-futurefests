@@ -123,8 +123,44 @@ const register = async (req, res) => {
     }
 };
 
+const googleAuth = (req, res) => {
+    res.send('<a href="/auth/google">Authenticate with google </a>');
+};
+
+const googleCallback = (req, res) => {
+    const payload = { check: true };
+    const token = jsonwebtoken.sign(payload, 'secret_key', { expiresIn: "20m" });
+
+    console.log(token);
+    res.cookie("access-token", token, {
+        httpOnly: true,
+        sameSite: "strict",
+    }).redirect("/");
+};
+
+const dashboard = (req, res) => {
+    res.send("Welcome to your dashboard! You are now authenticated with google! <br><br> <a href='/logout'>Click here to logout!</a>");
+};
+
+const authFailure = (req, res) => {
+    res.redirect("/login");
+};
+
+const logout = (req, res, next) => {
+    req.logout(function (err) {
+        if (err) { return next(err); }
+        req.session.destroy();
+        res.clearCookie("access-token").send('Goodbye! <br><br> <a href="/auth/google">Authenticate again</a>');
+    });
+};
+
+
 module.exports = {
+    googleAuth,
+    googleCallback,
+    dashboard,
+    authFailure,
+    logout,
     login,
     register,
-    usuarios
-};
+}
