@@ -28,8 +28,6 @@ Madrid se está posicionando como un hub tecnológico en Europa, y nosotros quer
 
 Únete a FutureFest hoy y descubre cómo puedes ser parte del futuro tecnológico de Madrid. ¡Explora, conecta y crece con nosotros!
 
-[TOC]
-
 ## Informacion tecnica
 
 ### Tecnologias usadas
@@ -92,49 +90,49 @@ Puesto que en la actualidad es tan importante, el uso de los aplicativos en móv
 
 ### Organización
 
-##### Manejo de ramas GitHub
+#### Manejo de ramas GitHub
 
 ![Manejo de ramas](./public/assets/Manejo_de_ramas.png "Manejo de ramas")
 
-##### Manejo de Trello
+#### Manejo de Trello
 
 ![Manejo de Trello](./public/assets/Manejo_trello.png "Manejo de trello")
 
 ### Diseño de Producto
 
-##### Vista panel  de administrador
+#### Vista panel  de administrador
 
 ![panel  de administrador](./public/assets/Vista_dashboard_admin.png "Vista panel  de administrador")
 
-##### Vista favoritos
+#### Vista favoritos
 
 ![favoritos](./public/assets/Vista_favoritos.png "Vista favoritos")
 
-##### Vista home administrador
+#### Vista home administrador
 
 ![home administrador](./public/assets/Vista_home_admin.png "Vista home administrador")
 
-##### Vista home usuarios
+#### Vista home usuarios
 
 ![ home usuarios](./public/assets/Vista_home_usuarios.png "Vista home usuarios")
 
-##### Vista iniciar sesion
+#### Vista iniciar sesion
 
 ![iniciar sesion](./public/assets/Vista_login.png "Vista iniciar sesion")
 
-##### Vista perfil
+#### Vista perfil
 
 ![perfil](./public/assets/Vista_profile.png "Vista perfil")
 
-##### Vista recuperar contraseña
+#### Vista recuperar contraseña
 
 ![recuperar contraseña](./public/assets/Vista_recuperar_contrasena.png "Vista recuperar contraseña")
 
-##### Vista registro
+#### Vista registro
 
 ![registro](./public/assets/Vista_registro.png "Vista registro")
 
-##### Vista de usuarios por administrador
+#### Vista de usuarios por administrador
 
 ![usuarios por administrador](./public/assets/Vista_usuarios_admin.png "Vista usuarios por administrador")
 
