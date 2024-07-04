@@ -29,7 +29,7 @@ const getCookie = (name)  => {
   
   //Función para extraer el email del token
   const getEmailFromToken = () => {
-    const token = getCookie("jwt");
+    const token = getCookie("access-token");
   
     if (!token) {
       console.log("No token found.");
@@ -55,7 +55,7 @@ botonesDelete.forEach(button => {
   button.addEventListener("click", async ({target}) => {
     console.log('HOLA HOLA ')
 
-    const token = getCookie('jwt');
+    const token = getCookie('access-token');
     if (!token) {
       console.log("No user is logged in.");
       window.location.href = '/login';

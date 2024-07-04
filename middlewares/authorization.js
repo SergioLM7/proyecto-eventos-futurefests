@@ -10,7 +10,7 @@ const jsonwebtoken = require('jsonwebtoken');
 const verifyToken = (req, res, next) => {
     console.log('JAJAJAJAJAJA')
 
-    const token = req.cookies['jwt'];
+    const token = req.cookies['access-token'];
 
     console.log(token)
 
@@ -29,7 +29,7 @@ const verifyToken = (req, res, next) => {
 };
 
 const verifyAdmin = (req, res, next) => {
-        const cookieJWT = req.headers.cookie.split("; ").find(cookie => cookie.startsWith("jwt=")).slice(4)
+        const cookieJWT = req.headers.cookie.split("; ").find(cookie => cookie.startsWith("access-token=")).slice(13)
         console.log(cookieJWT)
         const decodificada = jsonwebtoken.verify(cookieJWT, process.env.JWT_SECRET)
         console.log(decodificada)

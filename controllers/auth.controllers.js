@@ -44,7 +44,7 @@ const login = async (req, res) => {
         }
 
         const token = jsonwebtoken.sign(
-            { 
+            {
                 email: dataUser[0].email,
                 role_id: dataUser[0].role_id
             },
@@ -59,7 +59,7 @@ const login = async (req, res) => {
             path: "/",
         };
 
-        res.cookie("jwt", token, cookieOption);
+        res.cookie("access-token", token, cookieOption);
         res.redirect('/')
         //res.send({ status: "ok", message: "Usuario loggeado", redirect: "/" });
 
@@ -83,7 +83,7 @@ const register = async (req, res) => {
     console.log(req.body);
     const { password, email, first_name, last_name } = req.body;
 
-    
+
     if (!password || !email || !first_name || !last_name) {
         console.log("Campos incompletos");
         return res.status(400).send({ status: "Error", message: "Los campos están incompletos" });
@@ -101,7 +101,7 @@ const register = async (req, res) => {
         const nuevoUsuario = { first_name, last_name, email, password_hash: password_hash };
 
         const usuarioRegistrado = userModel.createUser(nuevoUsuario);
-       
+
         if (usuarioRegistrado) {
             res.send({ status: "ok", message: "Usuario registrado", redirect: "/login" });
         } else {
@@ -129,20 +129,21 @@ const register = async (req, res) => {
  * @param {Object} res objeto de respuesta HTTP
  * @throws {Error} Error al inicio sesion
  */
-const googleCallback = (req, res) => {
+const googleCallback = async (req, res) => {
     const payload = {
-        email: req.user.email,
-        firstName: req.user.firstName,
-        lastName: req.user.lastName,
-        check: true
+        email: req.user.emails[0].value,
+        role_id: 2
     };
+    console.log(req.user.emails[0].value)
     console.log(payload)
-    const token = jsonwebtoken.sign(payload, process.env.JWT_SECRET, { expiresIn: "20m" });
+    const token = jsonwebtoken.sign(payload, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRATION });
 
     console.log(token);
     res.cookie("access-token", token, {
-        httpOnly: true,
-        sameSite: "strict",
+        /* httpOnly: true,
+        sameSite: "strict", */
+        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
+        path: "/",
     }).redirect("/");
 };
 

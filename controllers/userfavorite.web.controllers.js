@@ -23,7 +23,7 @@ const getUserFavoritesWeb = async (req, res) => {
     if (!req.headers.cookie) {
         return res.redirect('/')
     }
-    const cookieJWT = req.headers.cookie.split("; ").find(cookie => cookie.startsWith("jwt=")).slice(4)
+    const cookieJWT = req.headers.cookie.split("; ").find(cookie => cookie.startsWith("access-token=")).slice(13)
     const decodificada = jwt.verify(cookieJWT, process.env.JWT_SECRET)
 
     if (!cookieJWT) {
