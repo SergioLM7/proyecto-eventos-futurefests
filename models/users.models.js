@@ -1,7 +1,7 @@
 /**
  * @author Luis Carlos, Stephani, Sergio <futurefest.com> 
  * @exports models
- * @memberof SQLQueries 
+ * @namespace UserFunctions 
  */
 
 const pool = require('../config/db_pgsql');
@@ -9,7 +9,7 @@ const queries = require('../queries/users.queries');
 
 /**
  * Descripción: Esta función crea un usuario en la tabla users
- * @memberof SQLQueries 
+ * @memberof UserFunctions 
  * @method createUser 
  * @async
  * @param {JSON} entry - JSON con todos los campos para crear una fila de usuario
@@ -40,7 +40,7 @@ const createUser = async (entry) => {
 
 /**
  * Descripción: Esta función edita el rol o el is_active de un usuario en la tabla users
- * @memberof SQLQueries 
+ * @memberof UserFunctions 
  * @method editUser 
  * @async 
  * @param {JSON} entry - Un JSON con el nuevo valor de role_id o is_active a modificar, más el email del usuario a editar
@@ -84,7 +84,7 @@ const editUser = async (entry) => {
 
 /**
  * Descripción: Esta función edita la password de un usuario en la tabla users
- * @memberof SQLQueries 
+ * @memberof UserFunctions 
  * @method editPasswordByUser 
  * @async
  * @param {JSON} entry -Un JSON con el nuevo valor de password_hash a modificar, más el email del usuario a editar
@@ -109,7 +109,7 @@ const editPasswordByUser = async (entry) => {
 
 /**
  * Descripción: Esta función elimina el usuario de la tabla users
- * @memberof SQLQueries 
+ * @memberof UserFunctions 
  * @method deleteUserByAdmin 
  * @async
  * @param {JSON} email - JSON con el email del usuario a eliminar
@@ -133,7 +133,7 @@ const deleteUserByAdmin = async (email) => {
 
 /**
  * Descripción: Esta función muestra a todos los usuarios de la tabla users
- * @memberof SQLQueries 
+ * @memberof UserFunctions 
  * @method getAllUsers 
  * @async 
  * @return {Array} Devuelve array con todos los usuarios (objetos) de la tabla
@@ -156,7 +156,7 @@ const getAllUsers = async () => {
 
 /**
  * Descripción: Esta función muestra un usuario de la tabla users en base a su email
- * @memberof SQLQueries 
+ * @memberof UserFunctions 
  * @method getUsersByEmail 
  * @async
  * @param {JSON} email -JSON con el email del usuario a obtener

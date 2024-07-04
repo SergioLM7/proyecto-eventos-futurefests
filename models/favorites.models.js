@@ -1,7 +1,7 @@
 /**
  * @author Luis Carlos, Stephani, Sergio <futurefest.com> 
  * @exports models
- * @memberof SQLQueries 
+ * @namespace FavoritesFunctions
  */
 
 const pool = require('../config/db_pgsql');
@@ -10,7 +10,7 @@ const queries = require('../queries/favorites.queries');
 
 /**
  * Descripción: Esta función crea un favorito en la tabla Favorites
- * @memberof SQLQueries 
+ * @memberof FavoritesFunctions 
  * @method createFavorite 
  * @async 
  * @param {JSON} entry - JSON con todos los valores de cada favorito
@@ -35,7 +35,7 @@ const createFavorite = async (entry) => {
 
 /**
  * Descripción: Esta función elimina un favorito de la tabla Favorites por su nombre
- * @memberof SQLQueries 
+ * @memberof FavoritesFunctions 
  * @method deleteFavorite 
  * @async 
  * @param {JSON} name - JSON con el nombre del favorito a elimiar
@@ -59,7 +59,7 @@ const deleteFavorite = async (name) => {
 
 /**
  * Descripción: Esta función selecciona un favorito de la tabla Favorites por su nombre
- * @memberof SQLQueries 
+ * @memberof FavoritesFunctions 
  * @method getFavoriteByName 
  * @async 
  * @param {JSON} name - JSON con el nombre del favorito a mostrar
@@ -83,7 +83,7 @@ const getFavoriteByName = async(name) => {
 
 /**
  * Descripción: Esta función selecciona un favorito de la tabla Favorites por el ID del ususario con el que se relaciona
- * @memberof SQLQueries 
+ * @memberof FavoritesFunctions 
  * @method getFavoriteByUserId 
  * @async 
  * @param {JSON} id - JSON con el ID del usuario.
