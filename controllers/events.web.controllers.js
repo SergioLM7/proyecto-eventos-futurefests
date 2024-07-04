@@ -31,6 +31,7 @@ const Event = require('../services/events.services');
  */
 const getEventWeb = async (req, res) => {
     
+    //FETCH NO - REFACTORIZAR
   await fetch("http://localhost:3000/api/events", {
     method: "GET",
   })

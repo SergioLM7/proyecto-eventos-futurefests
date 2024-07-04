@@ -4,20 +4,11 @@
  * @namespace LoginRegisterFunction
  */
 
-const userModel = require('../models/users.models')
+const userModel = require('../models/users.models');
 
 const bcryptjs = require('bcryptjs');
 const jsonwebtoken = require('jsonwebtoken');
 require('dotenv').config();
-
-const usuarios = [
-    {
-        email: "prueba_1@prueba.com",
-        password: "prueba",
-        first_name: "Prueba",
-        last_name: "Prueba P"
-    }
-];
 
 /**
  * Descripción: Esta función llama desde la ruta http://localhost:3000/login a la funcion Login
@@ -37,6 +28,8 @@ const login = async (req, res) => {
         if (!email || !password_hash) {
             return res.status(400).send({ status: "Error", message: "Los campos están incompletos" });
         }
+
+        //llamar al modelo NO fetch
         const response = await fetch(`http://localhost:3000/api/users?email=${req.body.email}`)
         const dataUser = await response.json();
         console.log(dataUser);
@@ -63,7 +56,7 @@ const login = async (req, res) => {
 
         const cookieOption = {
             expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
-            path: "/"
+            path: "/",
         };
 
         res.cookie("jwt", token, cookieOption);
@@ -198,5 +191,16 @@ module.exports = {
     authFailure,
     logout,
     login,
-    register,
-}
+    register
+};
+
+
+/*PRUEBA
+const usuarios = [
+    {
+        email: "prueba_1@prueba.com",
+        password: "prueba",
+        first_name: "Prueba",
+        last_name: "Prueba P"
+    }
+];*/

@@ -30,6 +30,9 @@ app.use(session({ secret: 'SECRET', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+app.use(cookieParser());
+/*app.use(session({
 app.use(authRoutes);
 /*app.use(cookieParser());
 app.use(session({
@@ -89,7 +92,7 @@ app.use('*',error404);
 // });
 app.post("/api/login", authentication.login);
 app.post("/api/register", authentication.register);
- app.get("/dashboard", authorization.onlyLogin, (req, res) => {
+
+/* app.get("/dashboard", authorization.onlyLogin, (req, res) => {
     res.render('dashboard.pug');
-    res.render('dashboard.pug');
-});
+}); */
