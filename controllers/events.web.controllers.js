@@ -6,22 +6,8 @@
 
 const Event = require('../services/events.services');
 
-// READ
-/*const getEventWeb = async (req, res) => {
-        try {
-            const eventData = req.body._id ? { _id: req.body._id } : req.query;
-            const events = await Event.getEvents(eventData);
-            console.log(events);
-            res.status(200).render("home.pug", {events, msj:"Tus eventos"});
-        }
-        catch (error) {
-            console.log(`ERROR: ${error.stack}`);
-            res.status(500).render("home.pug", {msj:`Error al recuperar los eventos: ${error.stack}`});
-        }
-};*/
-
 /**
- * Descripción: Esta función realiza una solicitud GET a la API de eventos y renderiza la página de inicio con los eventos obtenidos.
+ * Descripción: Esta función llama al modelo getEvents para obtener todos los eventos de la BBDD y renderiza la página de inicio con los eventos obtenidos.
  * @memberof MongoDBWebFunctions 
  * @method getEventWeb 
  * @async 
@@ -30,16 +16,22 @@ const Event = require('../services/events.services');
  * @throws {Error} Error al realizar la solicitud o al renderizar la página.
  */
 const getEventWeb = async (req, res) => {
-    
-    //FETCH NO - REFACTORIZAR
-  await fetch("http://localhost:3000/api/events", {
-    method: "GET",
-  })
-    .then((res) => res.json())
-    .then((events) => {
-      console.log(events);
-      res.render("home.pug", {events, msj:`Eventos creados`}); //es una redirección a otra ruta
+    const { isAuthenticated, role } = req;
+
+    try {
+        const events = await Event.getEvents2();
+        res.render('header.pug', { isAuthenticated, role }, (err, header) => {
+            if (err) {
+                console.error('Error rendering header:', err);
+                return res.status(500).send('Error rendering header');
+            }
+            res.render('home.pug', { header, events });
     });
+    }
+    catch (error) {
+        console.log(`ERROR: ${error.stack}`);
+        res.status(500).render("home.pug", {msj:`Error al recuperar los eventos: ${error.stack}`});
+    }
 };
 
 /**

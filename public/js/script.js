@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", () => {
 //Función para renderizar eventos encontrados en MongoDB Atlas  
 const pintarEncontrados = (encontrados) => {
     document.getElementById('all_events_container').innerHTML = '';
@@ -33,7 +34,7 @@ const pintarEncontrados = (encontrados) => {
       sectionEncontrados.append(articleEncontrados)
     });
   
-  }
+  };
   
 
 //Evento para filtrar eventos por su nombre
@@ -69,31 +70,13 @@ document.querySelector(".btnCerrarSesion").addEventListener("click", ()=>{
       document.location.href = "/"
 });
 
-//Función para ver los botones del menú
-const viewbutton = () => {
-  const buttons = document.querySelectorAll('.viewButton');
-  buttons.forEach(button => {
-    button.style.display = 'none';
-  });
-};
 
-//Función para ocultar los botones del menú
-const hideButtons = () => {
-  const buttons = document.querySelectorAll('.hide-buttons');
-  buttons.forEach(button => {
-    button.style.display = 'inline';
-  });
-};
 //Función para extraer el token de las cookies
 const getCookie = (name)  => {
   let matches = document.cookie.match(new RegExp(
     "(?:^|; )" + name.replace(/([.$?*|{}()[]\/+^])/g, '\\$1') + "=([^;]*)"
   ));
   const cookieValue = matches ? decodeURIComponent(matches[1]) : undefined;
-  if(cookieValue){
-    viewbutton()
-    hideButtons() 
-  }
   return cookieValue;
 };
 
@@ -194,6 +177,37 @@ botonesFavoritos.forEach(button => {
 });
 
 
+//Evento para cerrar sesión
+document.querySelector(".btnCerrarSesion").addEventListener("click", ()=>{
+  const last_time_logged = new Date(Date.now());
+  console.log(last_time_logged);
+  /*await fetch ('http://localhost:3000/users?email=sergio@admin.com',
+    {
+      method: 'PUT',
+
+
+    }
+  )*/
+  document.cookie = 'access-token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'  
+  document.location.href = "/"
+});
+
+
+//Función para ver los botones del menú
+/*const viewbutton = () => {
+  const buttons = document.querySelectorAll('.viewButton');
+  buttons.forEach(button => {
+    button.style.display = 'none';
+  });
+};*/
+
+//Función para ocultar los botones del menú
+/*const hideButtons = () => {
+  const buttons = document.querySelectorAll('.hide-buttons');
+  buttons.forEach(button => {
+    button.style.display = 'inline';
+  });
+};*/
 
 //   const hamburgerMenu = document.getElementById('hamburger-menu');
 //   const navLinks = document.getElementById('nav-links');
@@ -213,3 +227,5 @@ botonesFavoritos.forEach(button => {
 //   footer.innerHTML = footerOptions[random];
 // }
 // paintDinamicFooter();
+
+});

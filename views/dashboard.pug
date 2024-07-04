@@ -6,28 +6,28 @@ html
     title Dashboard
     link(rel="stylesheet", href="./css/style.css")
   body
-    include header.pug
-    main 
-      section
-        form#createEvent(action="api/events", method="POST")
-          input(type='text', name='event_name', placeholder='Nombre del Evento')
-          input(type='text', name='description', placeholder='Descripcion')
-          input(type='text', name='date_start', placeholder='Fecha de Inicio')
-          input(type='text', name='date_end', placeholder='Fecha de Fin')
-          input(type='text', name='url', placeholder='Url Web')
-          input(type='text', name='poster', placeholder='Url Imagen')
-          input(type='submit')
+      != header
+      main 
+        section
+          form#createEvent(action="api/events", method="POST")
+            input(type='text', name='event_name', placeholder='Nombre del Evento')
+            input(type='text', name='description', placeholder='Descripcion')
+            input(type='text', name='date_start', placeholder='Fecha de Inicio')
+            input(type='text', name='date_end', placeholder='Fecha de Fin')
+            input(type='text', name='url', placeholder='Url Web')
+            input(type='text', name='poster', placeholder='Url Imagen')
+            input(type='submit')
 
-      section#searched_container
-        section#all_events_container
-          each event in events
-            article
-              p Evento: #{event.event_name}
-              p Descripción: #{event.description}
-              p Fecha inicio: #{event.date_start}
-              a.button(href=event.url target="_blank") Enlace    
-              img(src=event.poster, alt=event.event_name, width="300")
-    include footer.pug
-    script(src="/js/dashboard.js")
-    script(src="/js/script.js")
-    
+        section#searched_container
+          section#all_events_container
+            each event in events
+              article
+                p Evento: #{event.event_name}
+                p Descripción: #{event.description}
+                p Fecha inicio: #{event.date_start}
+                a.button(href=event.url target="_blank") Enlace    
+                img(src=event.poster, alt=event.event_name, width="300")
+      include footer.pug
+      script(src="/js/dashboard.js")
+      script(src="/js/script.js")
+      

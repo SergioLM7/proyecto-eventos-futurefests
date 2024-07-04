@@ -47,6 +47,15 @@ const getEvents = async (eventData) => {
     }
 };
 
+const getEvents2 = async () => {
+    try {
+        const result = await Event.find().limit(10);
+            return result;
+    } catch (error) {
+        throw new Error('Error al obtener los eventos');
+    }
+};
+
 const getFavorites = async (eventData) => {
     try {
         if (!eventData) {
@@ -133,7 +142,8 @@ module.exports = {
     updateEvent,
     deleteEvent,
     searchByInput,
-    getFavorites
+    getFavorites,
+    getEvents2
 };
 
 //PRUEBAS

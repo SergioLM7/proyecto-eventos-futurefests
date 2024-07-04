@@ -13,7 +13,7 @@ const viewbutton = () => {
       button.style.display = 'inline';
     });
   };
-  
+
 //Función para extraer el token de las cookies
 const getCookie = (name)  => {
     let matches = document.cookie.match(new RegExp(
@@ -53,7 +53,6 @@ const getCookie = (name)  => {
 const botonesDelete = document.querySelectorAll(".buttonDeleteFavorite");
 botonesDelete.forEach(button => {
   button.addEventListener("click", async ({target}) => {
-    console.log('HOLA HOLA ')
 
     const token = getCookie('access-token');
     if (!token) {

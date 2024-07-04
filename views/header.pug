@@ -1,17 +1,30 @@
 header
     nav
-        ul
-            li
-                a(href="/") Home
-            li
-                a(href="/login" class="viewButton") Log In
-            li
-                a(href="/register" class="viewButton") Register
-            li  
-                a(href="/" class="btnCerrarSesion hide-buttons ") Log Out
-            li  
-                a(href="/favorites" class="hide-buttons") Favorites
-            li  
-                a(href="/dashboard" class="hide-buttons") DashBoard
-            li  
-                a(href="/users" class="hide-buttons") Users
+        if !isAuthenticated
+            ul
+                li
+                    a(href="/") Home
+                li
+                    a(href="/login") Login
+                li
+                    a(href="/register") Register
+
+        else if isAuthenticated && role === 1
+            ul
+                li
+                    a(href="/") Home
+                li
+                    a(href="/dashboard") Dashboard
+                li
+                    a(href="/users") Users
+                li
+                    a(href="/" class='btnCerrarSesion') Logout
+
+        else if isAuthenticated && role === 2
+            ul
+                li
+                    a(href="/") Home
+                li
+                    a(href="/favorites") Favoritos
+                li
+                    a(href="/" class='btnCerrarSesion') Logout

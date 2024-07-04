@@ -20,6 +20,8 @@ const jwt = require('jsonwebtoken');
  */
 const getUserFavoritesWeb = async (req, res) => {
     console.log(req.headers.cookie)
+    const { isAuthenticated, role } = req;
+
     if (!req.headers.cookie) {
         return res.redirect('/')
     }
@@ -39,8 +41,14 @@ const getUserFavoritesWeb = async (req, res) => {
             const results = await Promise.all(
                 favorites.map(  favorite =>  eventsService.getFavorites(favorite.favorite_id))
             );
-            res.render("favorites.pug", { results, msj: `Favoritos creados` }); //es una redirección a otra ruta
+            res.render('header.pug', { isAuthenticated, role }, (err, header) => {
+                if (err) {
+                    console.error('Error rendering header:', err);
+                    return res.status(500).send('Error rendering header');
+                }
+                res.render('favorites.pug', { header, results }); //es una redirección a otra ruta
         })
+    });
 };
 
 /**

@@ -4,6 +4,8 @@
  * @namespace SQLUserWebQueries 
  */
 
+const usersModel = require('../models/users.models')
+
 /**
  * Descripción: Esta función llama desde la ruta http://localhost:3000/api/users al método createUser
  * Este espera recibir por body todos los campos para crear el user
@@ -15,11 +17,22 @@
  * @throws {Error} Error al obtener los usuarios.
  */
 const getUsersAdmin = async (req, res) => {
-    await fetch(`http://localhost:3000/api/users`)
-        .then((res) => res.json())
-        .then(users => {
-            res.render("users.pug", { users, msj: `Usuarios volcados` }); //es una redirección a otra ruta
-        })
+    const { isAuthenticated, role } = req;
+
+    try {
+        const users = await usersModel.getAllUsers();
+        res.render('header.pug', { isAuthenticated, role }, (err, header) => {
+            if (err) {
+                console.error('Error rendering header:', err);
+                return res.status(500).send('Error rendering header');
+            }
+            res.render('users.pug', { header, users });
+    });
+    }
+    catch (error) {
+        console.log(`ERROR: ${error.stack}`);
+        res.status(500).render("home.pug", {msj:`Error al recuperar los eventos: ${error.stack}`});
+    }
 };
 
 module.exports = {

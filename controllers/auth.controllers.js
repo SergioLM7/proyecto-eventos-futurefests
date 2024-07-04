@@ -30,23 +30,22 @@ const login = async (req, res) => {
         }
 
         //llamar al modelo NO fetch
-        const response = await fetch(`http://localhost:3000/api/users?email=${req.body.email}`)
-        const dataUser = await response.json();
-        console.log(dataUser);
+        const response = await userModel.getUsersByEmail(email);
+        console.log(response)
 
-        if (dataUser == []) {
+        if (response == []) {
             return res.status(400).send({ status: "Error", message: "Error durante login" });
         }
 
-        const loginCorrecto = await bcryptjs.compare(password_hash, dataUser[0].password_hash);
+        const loginCorrecto = await bcryptjs.compare(password_hash, response[0].password_hash);
         if (!loginCorrecto) {
             return res.status(400).send({ status: "Error", message: "Error durante login" });
         }
 
         const token = jsonwebtoken.sign(
             {
-                email: dataUser[0].email,
-                role_id: dataUser[0].role_id
+                email: response[0].email,
+                role_id: response[0].role_id
             },
             process.env.JWT_SECRET,
             { expiresIn: process.env.JWT_EXPIRATION }
@@ -114,10 +113,6 @@ const register = async (req, res) => {
     }
 };
 
-/* const googleAuth = (req, res) => {
-    res.send('<a href="/auth/google">Authenticate with google </a>');
-};
- */
 
 /**
  * Descripción: Esta función llama desde la ruta http://localhost:3000/register a la funcion register
@@ -186,9 +181,7 @@ const logout = (req, res, next) => {
 
 
 module.exports = {
-    /* googleAuth, */
     googleCallback,
-    /* dashboard, */
     authFailure,
     logout,
     login,

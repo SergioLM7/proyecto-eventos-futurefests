@@ -16,14 +16,22 @@ const Event = require('../services/events.services');
  * @throws {Error} Error al realizar la solicitud o al renderizar la página.
  */
 const getEvents = async(req, res) => {
-    await fetch("http://localhost:3000/api/events", {
-        method: "GET",
-      })
-        .then((res) => res.json())
-        .then((events) => {
-          console.log(events);
-          res.render("dashboard.pug", {events, msj:`Eventos creados`}); //es una redirección a otra ruta
-        });
+  const { isAuthenticated, role } = req;
+
+    try {
+        const events = await Event.getEvents2();
+        res.render('header.pug', { isAuthenticated, role }, (err, header) => {
+            if (err) {
+                console.error('Error rendering header:', err);
+                return res.status(500).send('Error rendering header');
+            }
+            res.render('dashboard.pug', { header, events });
+    });
+    }
+    catch (error) {
+        console.log(`ERROR: ${error.stack}`);
+        res.status(500).render("dahsboard.pug", {msj:`Error al recuperar los eventos: ${error.stack}`});
+    }
   };
   
 // const addEvent = (req, res) => {
