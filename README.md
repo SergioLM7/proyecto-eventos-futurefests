@@ -28,7 +28,8 @@ Madrid se está posicionando como un hub tecnológico en Europa, y nosotros quer
 
 Únete a FutureFest hoy y descubre cómo puedes ser parte del futuro tecnológico de Madrid. ¡Explora, conecta y crece con nosotros!
 
-[TOCM]
+[TOC]
+
 ## Informacion tecnica
 
 ### Tecnologias usadas
@@ -115,7 +116,7 @@ Puesto que en la actualidad es tan importante, el uso de los aplicativos en móv
 
 ##### Vista home usuarios
 
-![ home usuarios](./public/assets/Vista_home_user.png "Vista home usuarios")
+![ home usuarios](./public/assets/Vista_home_usuarios.png "Vista home usuarios")
 
 ##### Vista iniciar sesion
 
