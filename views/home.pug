@@ -16,11 +16,13 @@ html(lang="es")
             section#all_events_container
                 each event in events
                     article
+                        button.buttonFavorite(id=`${event.event_name}`) Favorito 
                         p Evento: #{event.event_name}
                         p Descripción: #{event.description}
                         -const fecha = new Date (event.date_start)
                         p Fecha inicio: #{fecha.toDateString()}
-                        a.button(href=event.url target="_blank") Enlace    
+                        a(href=event.url target="_blank")
+                            button.button + info    
                         img(src=event.poster, alt=event.event_name width="300")
         include footer.pug
         script(src="/js/script.js")

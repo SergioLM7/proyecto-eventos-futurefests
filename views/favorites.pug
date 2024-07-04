@@ -14,7 +14,8 @@ html(lang="es")
                     article
                         p Evento: #{result.event_name}
                         p Descripción: #{result.description}
-                        p Fecha inicio: #{result.date_start}
+                        -const fecha = new Date (result.date_start)
+                        p Fecha inicio: #{fecha.toDateString()}
                         a.button(href=result.url target="_blank") Enlace    
                         img(src=result.poster, alt=result.event_name width="300")
         include footer.pug
