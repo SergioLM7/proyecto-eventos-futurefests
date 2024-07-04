@@ -1,7 +1,5 @@
-
-
-  
-  const pintarEncontrados = (encontrados) => {
+//Función para renderizar eventos encontrados en MongoDB Atlas  
+const pintarEncontrados = (encontrados) => {
     document.getElementById('all_events_container').innerHTML = '';
     document.getElementById('searched_container').innerHTML = '';
 
@@ -34,8 +32,7 @@
   }
   
 
-
-
+//Evento para filtrar eventos por su nombre
   document.getElementById("filterButton").addEventListener("click", async () => {
     console.log('Botón pulsado')
     const input = document.getElementById("filterInput").value;
@@ -53,7 +50,8 @@
       console.error('Error:', error);
     }  });
 
-    document.querySelector(".btnCerrarSesion").addEventListener("click", ()=>{
+//Evento para cerrar sesión
+document.querySelector(".btnCerrarSesion").addEventListener("click", ()=>{
       const last_time_logged = new Date(Date.now());
       console.log(last_time_logged);
       /*await fetch ('http://localhost:3000/users?email=sergio@admin.com',
@@ -66,6 +64,98 @@
       document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'  
       document.location.href = "/"
 });
+
+
+/*const getCookie = (email) => {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + email.replace(/([.$?*|{}()[]\/+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+getCookie();*/
+
+//Función para extraer el token de las cookies
+const getCookie = (name)  => {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([.$?*|{}()[]\/+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+};
+
+//Función para extraer el email del token
+const getEmailFromToken = () => {
+  const token = getCookie("jwt");
+
+  if (!token) {
+    console.log("No token found.");
+    return null;
+  }
+
+  try {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload).email;
+  } catch (error) {
+    console.error('Error decoding JWT:', error);
+    return null;
+  }
+};
+
+console.log(getEmailFromToken());
+
+//Evento para escuchar el botón favorito y guardar el evento en SQL
+const botonesFavoritos = document.querySelectorAll(".buttonFavorite")
+botonesFavoritos.forEach(button => {
+  button.addEventListener("click", async ({target})=> {
+   
+    const token = getCookie('jwt')
+    if (!token) {
+      console.log("No user is logged in.");
+      window.relocate.href = '/';
+      return;
+    }
+
+    const email = getEmailFromToken(token);
+
+      if (target.classList.contains('liked')) {
+        target.classList.remove('liked');
+      } else {
+        target.classList.add('liked');
+      }
+      //await fetch ('http://localhost:3000/api/search' y le pasamos el target.id para que lo busque----- revisar si crear nuevo modelo searchBy o se puede reutilizar el que ya tenemos para el buscador)
+      const payload = {
+        email: email,
+        favorite_id: target.id
+      };
+
+      try {
+        const response = await fetch('http://localhost:3000/api/userfavorite', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        console.log('Success:', data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+  
+      console.log(target.id);
+    
+  })
+})
 
 //   const hamburgerMenu = document.getElementById('hamburger-menu');
 //   const navLinks = document.getElementById('nav-links');

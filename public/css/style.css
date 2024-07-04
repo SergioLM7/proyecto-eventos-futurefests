@@ -405,3 +405,15 @@ body {
       justify-content: center;
     }
   }
+
+
+  /*Botones*/
+  .buttonFavorite {
+    background-color: white;
+    border-radius: 20px;
+  }
+
+  .liked {
+    background-color: red;
+    border-radius: 20px;
+  }
