@@ -128,6 +128,23 @@ const googleAuth = (req, res) => {
 };
 
 const googleCallback = (req, res) => {
+    const payload = {
+        email: req.user.email,
+        firstName: req.user.firstName,
+        lastName: req.user.lastName,
+        check: true
+    };
+    console.log(payload)
+    const token = jsonwebtoken.sign(payload, process.env.JWT_SECRET, { expiresIn: "20m" });
+
+    console.log(token);
+    res.cookie("access-token", token, {
+        httpOnly: true,
+        sameSite: "strict",
+    }).redirect("/");
+};
+
+/* const googleCallback = (req, res) => {
     const payload = { check: true };
     const token = jsonwebtoken.sign(payload, 'secret_key', { expiresIn: "20m" });
 
@@ -136,7 +153,7 @@ const googleCallback = (req, res) => {
         httpOnly: true,
         sameSite: "strict",
     }).redirect("/");
-};
+};  */
 
 const dashboard = (req, res) => {
     res.send("Welcome to your dashboard! You are now authenticated with google! <br><br> <a href='/logout'>Click here to logout!</a>");
