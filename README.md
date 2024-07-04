@@ -4,24 +4,24 @@
 
 Bienvenido a FutureFest, tu portal de referencia para descubrir los eventos tecnológicos más importantes que tienen lugar en Madrid. Nuestro objetivo es conectar a entusiastas, profesionales y empresas del sector tecnológico con eventos que abordan las últimas tendencias y avances en tecnología, desde conferencias y seminarios hasta talleres y ferias.
 
-##¿Que Ofrecemos?
+## ¿Que Ofrecemos?
 
-#####1. Amplia variedad de Eventos.
+##### 1. Amplia variedad de Eventos.
 En FutureFest, encontrarás una extensa lista de eventos tecnológicos que se realizan en Madrid. 
-#####2. Interfaz ntuitiva.
+##### 2. Interfaz ntuitiva.
 Nuestra plataforma está diseñada para ser intuitiva y fácil de usar. Podrás buscar eventos por nombre y palabra clave, lo que te permitirá encontrar rápidamente los eventos que más te interesan.
-#####3. Detalles completos de los eventos.
+##### 3. Detalles completos de los eventos.
 Cada evento listado en FutureFest viene con una descripción detallada, información sobre los ponentes, horarios, ubicación, y cómo registrarse. Esto te asegura tener toda la información necesaria para decidir a qué eventos asistir.
-#####4. Alternativa de elegir tus eventos favoritos.
+##### 4. Alternativa de elegir tus eventos favoritos.
 Crea una lista de tus eventos favoritos. Nunca te perderás un evento importante nuevamente.
 
-##¿Por Qué FutureFest?
+## ¿Por Qué FutureFest?
 Madrid se está posicionando como un hub tecnológico en Europa, y nosotros queremos ser tu guía en este emocionante ecosistema. FutureFest está aquí para ayudarte a aprovechar al máximo todas las oportunidades que la ciudad ofrece, conectándote con la comunidad tecnológica local e internacional.
 
 Únete a FutureFest hoy y descubre cómo puedes ser parte del futuro tecnológico de Madrid. ¡Explora, conecta y crece con nosotros!
 
 [TOCM]
-##Informacion tecnica
+## Informacion tecnica
 
 ### Tecnologias usadas
 
