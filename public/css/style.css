@@ -417,3 +417,10 @@ body {
     background-color: red;
     border-radius: 20px;
   }
+
+.hide-buttons{
+  display: none;
+}
+.viewButton{
+  display: inline;
+}

@@ -74,13 +74,30 @@ document.querySelector(".btnCerrarSesion").addEventListener("click", ()=>{
 }
 
 getCookie();*/
+const viewbutton = () => {
+  const buttons = document.querySelectorAll('.viewButton');
+  buttons.forEach(button => {
+    button.style.display = 'none';
+  });
+};
+const hideButtons = () => {
+  const buttons = document.querySelectorAll('.hide-buttons');
+  buttons.forEach(button => {
+    button.style.display = 'inline';
+  });
+};
 
 //Función para extraer el token de las cookies
 const getCookie = (name)  => {
   let matches = document.cookie.match(new RegExp(
     "(?:^|; )" + name.replace(/([.$?*|{}()[]\/+^])/g, '\\$1') + "=([^;]*)"
   ));
-  return matches ? decodeURIComponent(matches[1]) : undefined;
+  const cookieValue = matches ? decodeURIComponent(matches[1]) : undefined;
+  if(cookieValue){
+    viewbutton()
+    hideButtons() 
+  }
+  return cookieValue;
 };
 
 //Función para extraer el email del token
