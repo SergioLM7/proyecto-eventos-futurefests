@@ -12,6 +12,7 @@ html(lang="es")
             section#all_events_container
                 each result in results
                     article
+                        button.buttonDeleteFavorite(id=`${result.event_name}`) Eliminar
                         p Evento: #{result.event_name}
                         p Descripción: #{result.description}
                         -const fecha = new Date (result.date_start)
@@ -19,4 +20,4 @@ html(lang="es")
                         a.button(href=result.url target="_blank") Enlace    
                         img(src=result.poster, alt=result.event_name width="300")
         include footer.pug
-        script(src="/js/script.js")
+        script(src="/js/favorites.js")

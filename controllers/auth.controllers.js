@@ -41,8 +41,6 @@ const login = async (req, res) => {
         const dataUser = await response.json();
         console.log(dataUser);
 
-        //const usuarioAResvisar = usuarios.find(usuario => usuario.email === email);
-        //console.log(usuarioAResvisar);
         if (dataUser == []) {
             return res.status(400).send({ status: "Error", message: "Error durante login" });
         }
