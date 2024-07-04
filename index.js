@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const connectToDatabase = require('./config/db_mongo.js')
-const connectToDatabase = require('./config/db_mongo.js')
 const app = express();
 const port = 3000;
 const path = require('path');

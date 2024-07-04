@@ -5,7 +5,7 @@ const router = require('express').Router();
 
 router.post('/login/user', authControllers.login)
 
-router.get("/signin", authControllers.googleAuth);
+//router.get("/signin", authControllers.googleAuth);
 
 router.get("/auth/google", passport.authenticate("google", { scope: ['email', 'profile'], prompt: "select_account" }));
 
