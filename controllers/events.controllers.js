@@ -46,6 +46,20 @@ const getEvent = async (req, res) => {
     }
 };
 
+
+const getEventID = async (req, res) => {
+    try {
+        const eventData = req.query;
+        const events = await eventService.searchByInput(eventData);
+        res.status(200).json(events);
+    }
+    catch (error) {
+        console.log(`ERROR: ${error.stack}`);
+        res.status(500).json({ msj: `Error al buscar los eventos: ${error.stack}` });
+    }
+};
+
+
 /**
  * Descripción: Esta función llama desde la ruta http://localhost:3000/api/events al método updateEvent
  * Este espera recibir por body los campos a modificar del evento
@@ -99,5 +113,6 @@ module.exports = {
     createEvent,
     getEvent,
     updateEvent,
-    deleteEvent
+    deleteEvent,
+    getEventID
 };

@@ -33,7 +33,6 @@ const searchByInput = async (req, res, next) => {
     try {
         const events = await Event.searchByInput(input);
         res.json(events);
-        //redirect('/search')
     } catch (err) {
         next(err);
     }
