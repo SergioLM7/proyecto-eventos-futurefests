@@ -7,15 +7,23 @@ Bienvenido a FutureFest, tu portal de referencia para descubrir los eventos tecn
 ## ¿Que Ofrecemos?
 
 ##### 1. Amplia variedad de Eventos.
+
 En FutureFest, encontrarás una extensa lista de eventos tecnológicos que se realizan en Madrid. 
+
 ##### 2. Interfaz ntuitiva.
+
 Nuestra plataforma está diseñada para ser intuitiva y fácil de usar. Podrás buscar eventos por nombre y palabra clave, lo que te permitirá encontrar rápidamente los eventos que más te interesan.
+
 ##### 3. Detalles completos de los eventos.
+
 Cada evento listado en FutureFest viene con una descripción detallada, información sobre los ponentes, horarios, ubicación, y cómo registrarse. Esto te asegura tener toda la información necesaria para decidir a qué eventos asistir.
+
 ##### 4. Alternativa de elegir tus eventos favoritos.
+
 Crea una lista de tus eventos favoritos. Nunca te perderás un evento importante nuevamente.
 
 ## ¿Por Qué FutureFest?
+
 Madrid se está posicionando como un hub tecnológico en Europa, y nosotros queremos ser tu guía en este emocionante ecosistema. FutureFest está aquí para ayudarte a aprovechar al máximo todas las oportunidades que la ciudad ofrece, conectándote con la comunidad tecnológica local e internacional.
 
 Únete a FutureFest hoy y descubre cómo puedes ser parte del futuro tecnológico de Madrid. ¡Explora, conecta y crece con nosotros!
@@ -61,44 +69,74 @@ Puesto que en la actualidad es tan importante, el uso de los aplicativos en móv
 ### Objetivos
 
 ✔️ Se logró un trabajo ordenado gracias al uso de Trello. 
-✔️ Se trabajó de manera correcta por el uso de ramas en GitHub.  
+
+✔️ Se trabajó de manera correcta por el uso de ramas en GitHub. 
+
 ✔️ Se logró una vista mobile First. 
-✔️ Se trabajo con las rutas 
+
+✔️ Se trabajo con las rutas.
+
 ✔️ Se implementaron Middlewares como morgan. 
+
 ✔️ Se implementó el uso de JSDOC para la la documentación. 
+
 ✔️ Proyecto desplegado en render y MongoDB Atlas.
+
 ✔️ Se realizó correctamente el scraping. 
+
 ✔️ Se implementó la autenticacion con correo y password.
+
 ✔️ Se implementó la autenticación con Google.
+
 
 ### Organización
 
-#####Manejo de ramas GitHub
-![Manejo de ramas](/assets/Manejo_de_ramas.png "Manejo de ramas")
+##### Manejo de ramas GitHub
 
-#####Manejo de Trello
-![Manejo de Trello](/assets/Manejo_trello.png "Manejo de trello")
+![Manejo de ramas](./public/assets/Manejo_de_ramas.png "Manejo de ramas")
 
-###Diseño de Producto
+##### Manejo de Trello
 
-#####Vista panel  de administrador
-![panel  de administrador](/assets/Vista_dashboard_admin.png "Vista panel  de administrador")
-#####Vista favoritos
-![favoritos](/assets/Vista_favoritos.png "Vista favoritos")
-#####Vista home administrador
-![home administrador](/assets/Vista_home_admin.png "Vista home administrador")
-#####Vista home usuarios
-![ home usuarios](/assets/Vista_home_user.png "Vista home usuarios")
-#####Vista iniciar sesion
-![iniciar sesion](/assets/Vista_login.png "Vista iniciar sesion")
-#####Vista perfil
-![perfil](/assets/Vista_profile.png "Vista perfil")
-#####Vista recuperar contraseña
-![recuperar contraseña](/assets/Vista_recuperar_contrasena.png "Vista recuperar contraseña")
-#####Vista registro
-![registro](/assets/Vista_registro.png "Vista registro")
-#####Vista de usuarios por administrador
-![usuarios por administrador](/assets/Vista_usuarios_admin.png "Vista usuarios por administrador")
+![Manejo de Trello](./public/assets/Manejo_trello.png "Manejo de trello")
+
+### Diseño de Producto
+
+##### Vista panel  de administrador
+
+![panel  de administrador](./public/assets/Vista_dashboard_admin.png "Vista panel  de administrador")
+
+##### Vista favoritos
+
+![favoritos](./public/assets/Vista_favoritos.png "Vista favoritos")
+
+##### Vista home administrador
+
+![home administrador](./public/assets/Vista_home_admin.png "Vista home administrador")
+
+##### Vista home usuarios
+
+![ home usuarios](./public/assets/Vista_home_user.png "Vista home usuarios")
+
+##### Vista iniciar sesion
+
+![iniciar sesion](./public/assets/Vista_login.png "Vista iniciar sesion")
+
+##### Vista perfil
+
+![perfil](./public/assets/Vista_profile.png "Vista perfil")
+
+##### Vista recuperar contraseña
+
+![recuperar contraseña](./public/assets/Vista_recuperar_contrasena.png "Vista recuperar contraseña")
+
+##### Vista registro
+
+![registro](./public/assets/Vista_registro.png "Vista registro")
+
+##### Vista de usuarios por administrador
+
+![usuarios por administrador](./public/assets/Vista_usuarios_admin.png "Vista usuarios por administrador")
+
 
 ### Uso
 
