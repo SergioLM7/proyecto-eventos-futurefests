@@ -123,10 +123,21 @@ const register = async (req, res) => {
     }
 };
 
-const googleAuth = (req, res) => {
+/* const googleAuth = (req, res) => {
     res.send('<a href="/auth/google">Authenticate with google </a>');
 };
+ */
 
+/**
+ * Descripción: Esta función llama desde la ruta http://localhost:3000/register a la funcion register
+ * Este espera recibir por body un JSON con todos los campos del usuario.
+ * @memberof LoginRegisterFunction 
+ * @method googleCallback 
+ * @async 
+ * @param {Object} req objeto de petición HTTP
+ * @param {Object} res objeto de respuesta HTTP
+ * @throws {Error} Error al inicio sesion
+ */
 const googleCallback = (req, res) => {
     const payload = {
         email: req.user.email,
@@ -144,25 +155,35 @@ const googleCallback = (req, res) => {
     }).redirect("/");
 };
 
-/* const googleCallback = (req, res) => {
-    const payload = { check: true };
-    const token = jsonwebtoken.sign(payload, 'secret_key', { expiresIn: "20m" });
-
-    console.log(token);
-    res.cookie("access-token", token, {
-        httpOnly: true,
-        sameSite: "strict",
-    }).redirect("/");
-};  */
-
-const dashboard = (req, res) => {
+/* const dashboard = (req, res) => {
     res.send("Welcome to your dashboard! You are now authenticated with google! <br><br> <a href='/logout'>Click here to logout!</a>");
-};
+}; */
 
+
+/**
+ * Descripción: Esta función llama desde la ruta http://localhost:3000/register a la funcion register
+ * Este espera recibir por body un JSON con todos los campos del usuario.
+ * @memberof LoginRegisterFunction 
+ * @method authFailure 
+ * @async 
+ * @param {Object} req objeto de petición HTTP
+ * @param {Object} res objeto de respuesta HTTP
+ */
 const authFailure = (req, res) => {
     res.redirect("/login");
 };
 
+
+/**
+ * Cierra la sesión del usuario, destruye la sesión y limpia la cookie de 'access-token'.
+ * Luego envía una respuesta al usuario indicando que se ha desconectado exitosamente y proporciona un enlace para autenticarse nuevamente con Google.
+ * @memberof LoginRegisterFunction 
+ * @function logout
+ * @async
+ * @param {Object} req - Objeto de petición HTTP
+ * @param {Object} res - Objeto de respuesta HTTP
+ * @param {Function} next - Función para pasar el control al siguiente middleware
+ */
 const logout = (req, res, next) => {
     req.logout(function (err) {
         if (err) { return next(err); }
@@ -173,9 +194,9 @@ const logout = (req, res, next) => {
 
 
 module.exports = {
-    googleAuth,
+    /* googleAuth, */
     googleCallback,
-    dashboard,
+    /* dashboard, */
     authFailure,
     logout,
     login,
