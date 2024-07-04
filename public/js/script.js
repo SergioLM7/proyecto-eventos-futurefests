@@ -1,6 +1,4 @@
 
-
-  
   const pintarEncontrados = (encontrados) => {
     document.getElementById('all_events_container').innerHTML = '';
     document.getElementById('searched_container').innerHTML = '';
@@ -33,9 +31,6 @@
   
   }
   
-
-
-
   document.getElementById("filterButton").addEventListener("click", async () => {
     console.log('Botón pulsado')
     const input = document.getElementById("filterInput").value;
