@@ -9,7 +9,7 @@ html
     include header.pug
     main 
       section
-        form#createEvent(action='/created', method='post')
+        form#createEvent
           input(type='text', name='event_name', placeholder='Nombre del Evento')
           input(type='text', name='description', placeholder='Descripcion')
           input(type='text', name='date_start', placeholder='Fecha de Inicio')
@@ -26,7 +26,7 @@ html
               p Descripción: #{event.description}
               p Fecha inicio: #{event.date_start}
               a.button(href=event.url target="_blank") Enlace    
-              img(src=event.poster, alt=event.event_name width="300")
+              img(src=event.poster, alt=event.event_name, width="300")
     include footer.pug
     script(src="/js/script.js")
     
