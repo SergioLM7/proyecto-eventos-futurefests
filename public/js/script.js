@@ -64,6 +64,9 @@ document.querySelector(".btnCerrarSesion").addEventListener("click", ()=>{
       document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'  
       document.location.href = "/"
 });
+
+
+
 const viewbutton = () => {
   const buttons = document.querySelectorAll('.viewButton');
   buttons.forEach(button => {
@@ -76,7 +79,6 @@ const hideButtons = () => {
     button.style.display = 'inline';
   });
 };
-
 //Función para extraer el token de las cookies
 const getCookie = (name)  => {
   let matches = document.cookie.match(new RegExp(

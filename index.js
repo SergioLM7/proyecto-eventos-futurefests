@@ -35,6 +35,10 @@ app.use(session({
 //Habilitamos carpeta public
 app.use(express.static('public'));
 
+//AuthRoutes
+// const authRoutes = require('../routes/authRoutes');
+// const dataRoutes = require('../routes/dataRoutes');
+
 app.use(express.urlencoded({extended:true}));
 app.use(express.json()); // Habilito recepción de JSON en servidor
 
@@ -51,6 +55,7 @@ const eventsApiRoutes = require("./routes/events.routes");
 const usersApiRoutes = require("./routes/users.routes");
 const userFavoriteApiRoutes = require("./routes/userFavorite.routes");
 const authApiRoutes = require('./routes/auth.routes')
+
 
 
 //Scraping
@@ -71,6 +76,10 @@ app.use('/api',eventsApiRoutes);
 app.use('/api', usersApiRoutes);
 app.use('/api', userFavoriteApiRoutes);
 app.use('/api', authApiRoutes);
+
+// //Auth
+// app.use('/api/auth', authRoutes);
+// app.use('/api', dataRoutes);
 
 
 //Scraping
