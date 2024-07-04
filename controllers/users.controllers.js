@@ -1,7 +1,7 @@
 /**
  * @author Luis Carlos, Stephani, Sergio <futurefest.com> 
  * @exports controllers
- * @memberof SQLQueries 
+ * @namespace SQLUserQueries 
  */
 
 const usersEntry = require('../models/users.models');
@@ -9,11 +9,11 @@ const usersEntry = require('../models/users.models');
 /**
  * Descripción: Esta función llama desde la ruta http://localhost:3000/api/users al método createUser
  * Este espera recibir por body todos los campos para crear el user
- * @memberof SQLQueries 
+ * @memberof SQLUserQueries 
  * @method createUser
  * @async 
- * @param {Object} req objeto de petición HTTP
- * @param {Object} res objeto de respuesta HTTP
+ * @param {Object} req objeto de petición HTTP de Express.
+ * @param {Object} res objeto de respuesta HTTP de Express.
  * @throws {Error} Error al crear el usuario
  */
 const createUser = async (req, res) => {
@@ -30,11 +30,11 @@ const createUser = async (req, res) => {
 /**
  * Descripción: Esta función llama desde la ruta http://localhost:3000/api/users:email? al método getUsers
  * Este espera recibir por query o por body el email del usuario a buscar. Si no, mostrará todos los usuarios
- * @memberof SQLQueries 
+ * @memberof SQLUserQueries 
  * @method getUsers
  * @async 
- * @param {Object} req objeto de petición HTTP
- * @param {Object} res objeto de respuesta HTTP
+ * @param {Object} req objeto de petición HTTP de Express.
+ * @param {Object} res objeto de respuesta HTTP de Express.
  * @throws {Error} Error al buscar los/el usuario/s
  */
 const getUsers = async (req, res) => {
@@ -59,11 +59,11 @@ const getUsers = async (req, res) => {
 /**
  * Descripción: Esta función llama desde la ruta http://localhost:3000/api/users/:email? al método deleteUserByAdmin
  * Este espera recibir por query o por body el email del usuario a eliminar. 
- * @memberof SQLQueries 
+ * @memberof SQLUserQueries 
  * @method deleteUser
  * @async 
- * @param {Object} req objeto de petición HTTP
- * @param {Object} res objeto de respuesta HTTP
+ * @param {Object} req objeto de petición HTTP de Express.
+ * @param {Object} res objeto de respuesta HTTP de Express.
  * @throws {Error} Error al eliminar el usuario
  */
 const deleteUser = async (req, res) => {
@@ -85,11 +85,11 @@ const deleteUser = async (req, res) => {
 /**
  * Descripción: Esta función llama desde la ruta http://localhost:3000/api/users al método editUser
  * Este espera recibir por body uno de los dos campos editables (role_id / is_active) y el email del usuario a editar.
- * @memberof SQLQueries 
+ * @memberof SQLUserQueries 
  * @method updateUsers
  * @async 
- * @param {Object} req objeto de petición HTTP
- * @param {Object} res objeto de respuesta HTTP
+ * @param {Object} req objeto de petición HTTP de Express.
+ * @param {Object} res objeto de respuesta HTTP de Express.
  * @throws {Error} Error al editar el usuario
  */
 const updateUsers = async (req, res) => {
@@ -110,11 +110,11 @@ const updateUsers = async (req, res) => {
 /**
  * Descripción: Esta función llama desde la ruta http://localhost:3000/api/users/pass al método editPasswordByUser
  * Este espera recibir por body un nuevo valor de password_hash y el email del usuario a editar.
- * @memberof SQLQueries 
+ * @memberof SQLUserQueries 
  * @method updatePassword
  * @async 
- * @param {Object} req objeto de petición HTTP
- * @param {Object} res objeto de respuesta HTTP
+ * @param {Object} req objeto de petición HTTP de Express.
+ * @param {Object} res objeto de respuesta HTTP de Express.
  * @throws {Error} Error al editar la contraseña del usuario
  */
 const updatePassword = async (req, res) => {

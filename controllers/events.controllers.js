@@ -46,7 +46,15 @@ const getEvent = async (req, res) => {
     }
 };
 
-
+/**
+ * Descripción: Esta función llama desde la ruta http://localhost:3000/api/events al método searchByInput
+ * @memberof MongoDBFunctions 
+ * @method getEventID 
+ * @async 
+ * @param {Object} req  Objeto de petición HTTP de Express que contiene los parámetros de búsqueda en `req.query`.
+ * @param {Object} res objeto de respuesta HTTP de Express.
+ * @throws {Error} Error al buscar los eventos
+ */
 const getEventID = async (req, res) => {
     try {
         const eventData = req.query;
@@ -66,9 +74,9 @@ const getEventID = async (req, res) => {
  * @memberof MongoDBFunctions 
  * @method updateEvent 
  * @async 
- * @param {Object} req objeto de petición HTTP
- * @param {Object} res objeto de respuesta HTTP
- * @throws {Error} Error al actualizar el evento
+ * @param {Object} req objeto de petición HTTP de Express
+ * @param {Object} res objeto de respuesta HTTP de Express
+ * @throws {Error} Error al actualizar el evento.
  */
 const updateEvent = async (req, res) => {
     try {
@@ -89,13 +97,13 @@ const updateEvent = async (req, res) => {
 
 /**
  * Descripción: Esta función llama desde la ruta http://localhost:3000/api/events al método deleteEvent
- * Este espera recibir por body el nombre del evento a eliminar
+ * Este espera recibir por body el nombre del evento a eliminar.
  * @memberof MongoDBFunctions 
  * @method deleteEvent 
  * @async 
- * @param {Object} req objeto de petición HTTP
- * @param {Object} res objeto de respuesta HTTP
- * @throws {Error} Error al eliminar el evento
+ * @param {Object} req objeto de petición HTTP de Express.
+ * @param {Object} res objeto de respuesta HTTP de Express.
+ * @throws {Error} Error al eliminar el evento.
  */
 const deleteEvent = async (req, res) => {
     try {

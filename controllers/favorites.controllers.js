@@ -1,18 +1,18 @@
 /**
  * @author Luis Carlos, Stephani, Sergio <futurefest.com> 
  * @exports controllers
- * @memberof SQLQueries 
+ * @namespace SQLFavoritesQueries 
  */
 
 const favoriteEntry = require('../models/favorites.models');
 
 /**
  * Descripción: Esta función llama desde la ruta http://localhost:3000/api/favorites al método createFavorite
- * @memberof SQLQueries 
+ * @memberof SQLFavoritesQueries 
  * @method createFavorite 
  * @async 
- * @param {Object} req objeto de petición HTTP
- * @param {Object} res objeto de respuesta HTTP
+ * @param {Object} req objeto de petición HTTP de Express
+ * @param {Object} res objeto de respuesta HTTP de Express
  * @throws {Error} Error al crear el favorito
  */
 const createFavorite = async (req, res) => {
@@ -29,11 +29,11 @@ const createFavorite = async (req, res) => {
 /**
  * Descripción: Esta función llama desde la ruta http://localhost:3000/api/favorites al método deleteFavorite
  * Y espera recibir un JSON por body con favorite_name
- * @memberof SQLQueries 
+ * @memberof SQLFavoritesQueries 
  * @method deleteFavorite 
  * @async 
- * @param {Object} req objeto de petición HTTP
- * @param {Object} res objeto de respuesta HTTP
+ * @param {Object} req objeto de petición HTTP de Express
+ * @param {Object} res objeto de respuesta HTTP de Express
  * @throws {Error} Error al eliminar el favorito
  */
 const deleteFavorite = async (req, res) => {
@@ -51,12 +51,12 @@ const deleteFavorite = async (req, res) => {
 /**
  * Descripción: Esta función llama desde la ruta http://localhost:3000/api/favorites a getFavoriteByUserID, en el caso de recibir por body un JSON con user_id o un valor de user_id por query
  * En el caso de recibir por body un JSON con favorite_name, llamará a la función getFavoriteByName. En todos los casos arrojará un status 200
- * @memberof SQLQueries 
+ * @memberof SQLFavoritesQueries 
  * @method getFavorite 
  * @async 
- * @param {Object} req objeto de petición HTTP
- * @param {Object} res objeto de respuesta HTTP
- * @throws {Error} Error al obtener el favorito
+ * @param {Object} req objeto de petición HTTP de Express.
+ * @param {Object} res objeto de respuesta HTTP de Express.
+ * @throws {Error} Error al obtener el favorito.
  */
 const getFavorite = async (req,res) => {
     let favorites;

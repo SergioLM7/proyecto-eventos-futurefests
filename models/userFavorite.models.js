@@ -1,7 +1,7 @@
 /**
  * @author Luis Carlos, Stephani, Sergio <futurefest.com> 
  * @exports models
- * @memberof SQLQueries 
+ * @namespace UserFavoritesFunctions
  */
 
 const pool = require('../config/db_pgsql');
@@ -9,7 +9,7 @@ const queries = require('../queries/userFavorite.queries');
 
 /**
  * Descripción: Esta función crea un userFavorite en la tabla intermedia userFavorite
- * @memberof SQLQueries 
+ * @memberof UserFavoritesFunctions 
  * @method createUserFavorite 
  * @async 
  * @param {JSON} entry - Un JSON con el ID del user y el ID del favorite.
@@ -34,7 +34,7 @@ const createUserFavorite = async (entry) => {
 
 /**
  * Descripción: Esta función elimina un userFavorite de la tabla userFavorite
- * @memberof SQLQueries 
+ * @memberof UserFavoritesFunctions 
  * @method deleteUserFavorite 
  * @async 
  * @param {JSON} entry - Un JSON con los dos valores (ID) de la fila a eliminar de la tabla
