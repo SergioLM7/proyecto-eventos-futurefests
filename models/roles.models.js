@@ -1,7 +1,7 @@
 /**
  * @author Luis Carlos, Stephani, Sergio <futurefest.com> 
  * @exports models
- * @namespace SQLQueries 
+ * @namespace RolesFunctions
  */
 
 const pool = require('../config/db_pgsql');
@@ -10,7 +10,7 @@ const queries = require('../queries/roles.queries');
 
 /**
  * Descripción: Esta función crea un rol en la tabla Roles
- * @memberof SQLQueries 
+ * @memberof RolesFunctions 
  * @method createRole 
  * @async 
  * @param {String} role - Una cadena de texto con el nombre del rol a crear
@@ -34,7 +34,7 @@ const createRole = async (role) => {
 
 /**
  * Descripción: Esta función edita el campo role_name de la tabla Roles
- * @memberof SQLQueries 
+ * @memberof RolesFunctions 
  * @method editRole 
  * @async
  * @param {JSON} entry - Un JSON con el nuevo nombre del rol y con el nombre antiguo.

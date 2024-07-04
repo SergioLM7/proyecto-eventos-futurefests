@@ -14,7 +14,11 @@ const pintarEncontrados = (encontrados) => {
       const pFecha = document.createElement('P');
       const pEnlace = document.createElement('P');
       const poster = document.createElement('IMG');
-  
+      const botonFavorito = document.createElement('BUTTON');
+
+      botonFavorito.className = 'buttonFavorite'
+      botonFavorito.id = `${element.event_name}`;
+      botonFavorito.innerText = 'Favorito';
       pEvento.innerText = element.event_name;
       pDescripcion.innerText = element.description;
       const fecha =new Date (element.date_start);
@@ -24,7 +28,7 @@ const pintarEncontrados = (encontrados) => {
       poster.alt = element.event_name;
       poster.width = "300";
   
-      fragment.append(pEvento, pDescripcion, pFecha, pEnlace, poster);
+      fragment.append(botonFavorito, pEvento, pDescripcion, pFecha, pEnlace, poster);
       articleEncontrados.append(fragment);
       sectionEncontrados.append(articleEncontrados)
     });
@@ -61,18 +65,19 @@ document.querySelector(".btnCerrarSesion").addEventListener("click", ()=>{
 
         }
       )*/
-      document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'  
+      document.cookie = 'access-token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'  
       document.location.href = "/"
 });
 
-
-
+//Función para ver los botones del menú
 const viewbutton = () => {
   const buttons = document.querySelectorAll('.viewButton');
   buttons.forEach(button => {
     button.style.display = 'none';
   });
 };
+
+//Función para ocultar los botones del menú
 const hideButtons = () => {
   const buttons = document.querySelectorAll('.hide-buttons');
   buttons.forEach(button => {
@@ -94,7 +99,7 @@ const getCookie = (name)  => {
 
 //Función para extraer el email del token
 const getEmailFromToken = () => {
-  const token = getCookie("jwt");
+  const token = getCookie("access-token");
 
   if (!token) {
     console.log("No token found.");
@@ -121,7 +126,7 @@ const botonesFavoritos = document.querySelectorAll(".buttonFavorite");
 botonesFavoritos.forEach(button => {
   button.addEventListener("click", async ({target}) => {
 
-    const token = getCookie('jwt');
+    const token = getCookie('access-token');
     if (!token) {
       console.log("No user is logged in.");
       window.location.href = '/login';
@@ -143,7 +148,7 @@ botonesFavoritos.forEach(button => {
     let searchResult;
     try {
       const searchResponse = await fetch(`http://localhost:3000/search?input=${encodedId}`, {
-        method: 'GET', // Asumiendo que estás buscando eventos, debería ser 'GET'
+        method: 'GET', 
         headers: {
           'Content-Type': 'application/json'
         },
@@ -162,7 +167,7 @@ botonesFavoritos.forEach(button => {
 
     const payload = {
       email: email,
-      favorite_id: searchResult[0]._id // Asumiendo que searchResult es un objeto y necesitas el id del evento
+      favorite_id: searchResult[0]._id
     };
 
     try {
@@ -187,6 +192,7 @@ botonesFavoritos.forEach(button => {
     console.log(target.id);
   });
 });
+
 
 
 //   const hamburgerMenu = document.getElementById('hamburger-menu');

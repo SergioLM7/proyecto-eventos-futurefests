@@ -1,7 +1,7 @@
 /**
  * @author Luis Carlos, Stephani, Sergio <futurefest.com> 
  * @exports controllers
- * @memberof SQLQueries 
+ * @namespace SQLUserFavQueries 
  */
 
 const userFavoriteEntry = require('../models/userFavorite.models');
@@ -9,12 +9,12 @@ const userFavoriteEntry = require('../models/userFavorite.models');
 /**
  * Descripción: Esta función llama desde la ruta http://localhost:3000/api/userfavorite al método createUserFavorite
  * Este espera recibir por body los dos campos para crear el userFavorite
- * @memberof SQLQueries 
+ * @memberof SQLUserFavQueries 
  * @method createUserFavorite
  * @async 
- * @param {Object} req objeto de petición HTTP
- * @param {Object} res objeto de respuesta HTTP
- * @throws {Error} Error al crear el usuario-favorito
+ * @param {Object} req Objeto de petición HTTP de Express.
+ * @param {Object} res Objeto de respuesta HTTP de Express.
+ * @throws {Error} Error al crear relación usuario-favorito
  */
 const createUserFavorite = async (req, res) => {
     try {
@@ -30,12 +30,12 @@ const createUserFavorite = async (req, res) => {
 /**
  * Descripción: Esta función llama desde la ruta http://localhost:3000/api/userfavorite al método deleteUserFavorite
  * Este espera recibir por body los dos campos para eliminar el userFavorite
- * @memberof SQLQueries 
+ * @memberof SQLUserFavQueries 
  * @method deleteUserFavorite
  * @async 
- * @param {Object} req objeto de petición HTTP
- * @param {Object} res objeto de respuesta HTTP
- * @throws {Error} Error al eliminar el usuario-favorito
+ * @param {Object} req Objeto de petición HTTP de Express.
+ * @param {Object} res Objeto de respuesta HTTP de Express.
+ * @throws {Error} Error al eliminar la relación usuario-favorito
  */
 const deleteUserFavorite = async (req, res) => {
     try {
@@ -53,12 +53,12 @@ const deleteUserFavorite = async (req, res) => {
 /**
  * Descripción: Esta función llama desde la ruta http://localhost:3000/api/userfavorite o http://localhost:3000/api/userfavorite?user_id= al método getUserFavorites
  * Este espera recibir por body o por query el id del usuario del que queremos obtener sus favoritos
- * @memberof SQLQueries 
+ * @memberof SQLUserFavQueries 
  * @method getUserFavorites
  * @async 
- * @param {Object} req objeto de petición HTTP
- * @param {Object} res objeto de respuesta HTTP
- * @throws {Error} Error al encontrar el usuario-favorito
+ * @param {Object} req Objeto de petición HTTP de Express.
+ * @param {Object} res Objeto de respuesta HTTP de Express.
+ * @throws {Error} Error al obtener las relaciones usuario-favorito.
  */
 const getUserFavorites = async (req, res) => {
     let userFavorites;

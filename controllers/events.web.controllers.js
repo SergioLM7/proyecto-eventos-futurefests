@@ -1,3 +1,9 @@
+/**
+ * @author Luis Carlos, Stephani, Sergio <futurefest.com> 
+ * @exports controllers
+ * @namespace MongoDBWebFunctions 
+ */
+
 const Event = require('../services/events.services');
 
 // READ
@@ -14,9 +20,18 @@ const Event = require('../services/events.services');
         }
 };*/
 
-
+/**
+ * Descripción: Esta función realiza una solicitud GET a la API de eventos y renderiza la página de inicio con los eventos obtenidos.
+ * @memberof MongoDBWebFunctions 
+ * @method getEventWeb 
+ * @async 
+ * @param {Object} req Objeto de petición HTTP de Express.
+ * @param {Object} res Objeto de respuesta HTTP de Express.
+ * @throws {Error} Error al realizar la solicitud o al renderizar la página.
+ */
 const getEventWeb = async (req, res) => {
     
+    //FETCH NO - REFACTORIZAR
   await fetch("http://localhost:3000/api/events", {
     method: "GET",
   })
@@ -27,6 +42,15 @@ const getEventWeb = async (req, res) => {
     });
 };
 
+/**
+ * Descripción: Esta función busca eventos utilizando el parámetro de entrada proporcionado en la consulta HTTP.
+ * 
+ * @memberof MongoDBWebFunctions 
+ * @method searchByInput 
+ * @async 
+ * @param {Object} req Objeto de petición HTTP de Express que contiene el parámetro de búsqueda en `req.query.input`.
+ * @param {Object} res Objeto de respuesta HTTP de Express.
+ */
 const searchByInput = async (req, res, next) => {
     const { input } = req.query;
 

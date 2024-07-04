@@ -1,7 +1,7 @@
 /**
  * @author Luis Carlos, Stephani, Sergio <futurefest.com> 
  * @exports services
- * @memberof MongoDBFunctions 
+ * @namespace MongoDBFunctions 
  */
 
 const Event = require('../models/events.models');

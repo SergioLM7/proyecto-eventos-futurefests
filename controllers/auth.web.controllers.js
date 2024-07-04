@@ -1,3 +1,18 @@
+/**
+ * @author Luis Carlos, Stephani, Sergio <futurefest.com> 
+ * @exports controllers
+ * @namespace LoginRegisterWebFunction
+ */
+
+/**
+ * Descripción: Esta función renderiza la pagina de login.
+ * @memberof LoginRegisterWebFunction 
+ * @function showLogIn 
+ * @async 
+ * @param {Object} req objeto de petición HTTP de Express.
+ * @param {Object} res objeto de respuesta HTTP de Express.
+ * @throws {Error} Error al renderizar la página de login.
+ */
 const showLogIn = async (req, res) => {
     try {
         res.status(200).render("login.pug", {msj:"Log In OK"});
@@ -8,6 +23,15 @@ const showLogIn = async (req, res) => {
     }
 };
 
+/**
+ * Descripción: Esta función renderiza la pagina de login.
+ * @memberof LoginRegisterWebFunction 
+ * @function showRegister 
+ * @async 
+ * @param {Object} req objeto de petición HTTP de Express.
+ * @param {Object} res objeto de respuesta HTTP de Express.
+ * @throws {Error} Error al renderizar la página de registro.
+ */
 const showRegister = async (req, res) => {
     try {
         res.status(200).render("register.pug", {msj:"Register OK"});

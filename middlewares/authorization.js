@@ -1,25 +1,53 @@
+/**
+ * @author Luis Carlos, Stephani, Sergio <futurefest.com> 
+ * @exports middleware
+ * @namespace AuthMiddlewareFunctions 
+ */
+
 require('dotenv').config();
 const jsonwebtoken = require('jsonwebtoken');
-//
-const { usuarios } = require('../controllers/auth.controllers.js')
 
-const onlyLogin = (req, res, next) => {
-    const logueado = revisarCookie(req)
-    console.log("estas en zona reservvada para logueados")
-    if(logueado) return next;
-    return res.redirect("/");
-}
+const verifyToken = (req, res, next) => {
+    console.log('JAJAJAJAJAJA')
 
-const onlyPublic = (req, res, next) => {
-    const logueado = revisarCookie(req)
-    if(!logueado) return next;
-    return res.redirect("/");
-}
+    const token = req.cookies['access-token'];
 
-const onlyAdmin = (req, res, next) => {
+    console.log(token)
 
-}
+    if (token) {
+        jsonwebtoken.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+            if (err) {
+                return res.status(401).json({ message: 'Token inválido' });
+            } else {
+                req.user = decoded;
+                next();
+            }
+        });
+    } else {
+        res.status(403).json({ message: 'No existe ningún token' });
+    }
+};
 
+const verifyAdmin = (req, res, next) => {
+        const cookieJWT = req.headers.cookie.split("; ").find(cookie => cookie.startsWith("access-token=")).slice(13)
+        console.log(cookieJWT)
+        const decodificada = jsonwebtoken.verify(cookieJWT, process.env.JWT_SECRET)
+        console.log(decodificada)
+
+        if (decodificada.role_id == 1) {
+            next();
+        } else {
+            res.status(403).json({ message: 'Acceso denegado: zona restringida para administradores' }); 
+        }
+};
+
+
+module.exports = {
+    verifyToken,
+    verifyAdmin
+};
+
+/*
 const revisarCookie = () => {
 try{
     const cookieJWT = req.headers.cookie.split("; ").find(cookie => cookie.startsWith("jwt=")).slice(4)
@@ -32,10 +60,4 @@ try{
 catch{
     return false;
 }
-}
-
-module.exports = {
-    onlyLogin,
-    onlyAdmin,
-    onlyPublic
-};
+}*/
