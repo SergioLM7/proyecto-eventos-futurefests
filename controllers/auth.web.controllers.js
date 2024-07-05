@@ -15,7 +15,7 @@
  */
 const showLogIn = async (req, res) => {
     try {
-        res.status(200).render("login.pug", {msj:"Log In OK"});
+        res.status(200).render("login.pug");
     }
     catch (error) {
         console.log(`ERROR: ${error.stack}`);

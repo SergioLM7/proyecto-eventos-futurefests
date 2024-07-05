@@ -11,13 +11,13 @@ html(lang="es")
                 h3 Todos los usuarios
             section#all_users_container
                 each user in users
-                    article
+                    article.event-card
                         p Email: #{user.email}
                         p Nombre: #{user.first_name}
                         p Apellido: #{user.last_name}
                         p Role: #{user.role_name}
                         p Active: #{user.is_active}
-                        a.button(href='/' target="_blank") Editar 
+                        a.button(href='/') Editar 
                         br
         include footer.pug
         script(src="/js/script.js")

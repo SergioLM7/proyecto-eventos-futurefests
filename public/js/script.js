@@ -2,14 +2,14 @@ document.addEventListener("DOMContentLoaded", () => {
 //Función para renderizar eventos encontrados en MongoDB Atlas  
 const pintarEncontrados = (encontrados) => {
     document.getElementById('all_events_container').innerHTML = '';
-    document.getElementById('searched_container').innerHTML = '';
 
-    const sectionEncontrados = document.getElementById('searched_container');
-    const articleEncontrados = document.createElement('ARTICLE');
+    const sectionEvents = document.getElementById('all_events_container');
     
     const fragment = document.createDocumentFragment();
   
     encontrados.forEach(element => {
+      const articleEncontrados = document.createElement('ARTICLE');
+      articleEncontrados.classList.add('event-card');
       const pEvento = document.createElement('P');
       const pDescripcion = document.createElement('P');
       const pFecha = document.createElement('P');
@@ -30,7 +30,7 @@ const pintarEncontrados = (encontrados) => {
   
       fragment.append(botonFavorito, pEvento, pDescripcion, pFecha, pEnlace, poster);
       articleEncontrados.append(fragment);
-      sectionEncontrados.append(articleEncontrados)
+      sectionEvents.append(articleEncontrados)
     });
   
   };
