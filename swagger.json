@@ -1,0 +1,393 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Proyecto JobEvents App",
+    "description": "API documentation for Proyecto JobEvents App",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://proyecto-eventos-futurefests.onrender.com"
+    }
+  ],
+  "paths": {
+    "/api/users": {
+      "get": {
+        "summary": "GET all users saved in SQL",
+        "description": "GET all users saved in SQL",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST to create a user in SQL Data Base",
+        "description": "POST to create a user in SQL Data Base",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password_hash": {
+                    "type": "string"
+                  },
+                  "first_name": {
+                    "type": "string"
+                  },
+                  "last_name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully"
+          }
+        }
+      },
+      "delete": {
+        "summary": "DELETE a user by his/her email",
+        "description": "DELETE a user by his/her email",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "User deleted successfully"
+          }
+        }
+      },
+      "put": {
+        "summary": "PUT to edit user's role_id or is_active",
+        "description": "PUT to edit user's role_id or is_active",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "role_id": {
+                    "type": "integer"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User updated successfully"
+          }
+        }
+      }
+    },
+    "/api/users/email": {
+      "get": {
+        "summary": "GET a user by his/her email",
+        "description": "GET a user by his/her email",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "email",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "delete": {
+        "summary": "DELETE a user by his/her email by QUERY",
+        "description": "DELETE a user by his/her email by QUERY",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "email",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "User deleted successfully"
+          }
+        }
+      }
+    },
+    "/api/users/pass": {
+      "put": {
+        "summary": "PUT to change user password",
+        "description": "PUT to change user password",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password_hash": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password updated successfully"
+          }
+        }
+      }
+    },
+    "/api/userfavorite": {
+      "get": {
+        "summary": "GET user favorites by email",
+        "description": "GET user favorites by email",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "email",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/userFavorite": {
+      "post": {
+        "summary": "POST to create user-favorite relationship by user_id and favorite_id",
+        "description": "POST to create user-favorite relationship by user_id and favorite_id",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "favorite_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Relationship created successfully"
+          }
+        }
+      },
+      "delete": {
+        "summary": "DELETE to delete user-favorite relationship by user_id and favorite_id",
+        "description": "DELETE to delete user-favorite relationship by user_id and favorite_id",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "favorite_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Relationship deleted successfully"
+          }
+        }
+      }
+    },
+    "/api/events": {
+      "get": {
+        "summary": "GET event by ID",
+        "description": "GET event by ID",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "_id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST to create event in AtlasDB",
+        "description": "POST to create event in AtlasDB",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "event_name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "date_start": {
+                    "type": "string"
+                  },
+                  "date_end": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "technologies": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "event_type": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "number"
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "speakers": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "bio": {
+                          "type": "string"
+                        },
+                        "company": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "participants": {
+                    "type": "integer"
+                  },
+                  "poster": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Event created successfully"
+          }
+        }
+      },
+      "put": {
+        "summary": "PUT to update any field of an event document by its event_name",
+        "description": "PUT to update any field of an event document by its event_name",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "event_name": {
+                    "type": "string"
+                  },
+                  "poster": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Event updated successfully"
+          }
+        }
+      },
+      "delete": {
+        "summary": "DELETE to delete an event from its event_name",
+        "description": "DELETE to delete an event from its event_name",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "event_name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Event deleted successfully"
+          }
+        }
+      }
+    }
+  }
+}

@@ -11,6 +11,9 @@ const session = require("express-session");
 const passport = require("passport");
 require("./config/passport");
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
 //Conexion a MongoDB Atlas
 connectToDatabase();
 app.listen(port, () => {
@@ -79,6 +82,8 @@ app.post("/api/register", authentication.register);
 
 // /api-docs
 app.use('/api-jsdoc', express.static(path.join(__dirname, '/jsondocs')));
+//api Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Para rutas no existentes
 app.use('*',error404);
