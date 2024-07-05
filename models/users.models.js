@@ -168,7 +168,7 @@ const getUsersByEmail = async (email) => {
     try {
         client = await pool.connect();
         const data = await client.query(queries.getUsersByEmail, [email])
-        result = data.rows;
+        result = data.rows[0];
     } catch (err) {
         console.log(err);
         throw err;

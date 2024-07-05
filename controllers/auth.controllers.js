@@ -33,19 +33,19 @@ const login = async (req, res) => {
         const response = await userModel.getUsersByEmail(email);
         console.log(response)
 
-        if (response == []) {
+        if (response === 0) {
             return res.status(400).send({ status: "Error", message: "Error durante login" });
         }
 
-        const loginCorrecto = await bcryptjs.compare(password_hash, response[0].password_hash);
+        const loginCorrecto = await bcryptjs.compare(password_hash, response.password_hash);
         if (!loginCorrecto) {
             return res.status(400).send({ status: "Error", message: "Error durante login" });
         }
 
         const token = jsonwebtoken.sign(
             {
-                email: response[0].email,
-                role_id: response[0].role_id
+                email: response.email,
+                role_id: response.role_id
             },
             process.env.JWT_SECRET,
             { expiresIn: process.env.JWT_EXPIRATION }
@@ -80,37 +80,38 @@ const login = async (req, res) => {
  */
 const register = async (req, res) => {
     console.log(req.body);
-    const { password, email, first_name, last_name } = req.body;
+    const { password_hash, email, first_name, last_name } = req.body;
 
-
-    if (!password || !email || !first_name || !last_name) {
+    if (!password_hash || !email || !first_name || !last_name) {
         console.log("Campos incompletos");
         return res.status(400).send({ status: "Error", message: "Los campos están incompletos" });
     }
 
-    const usuarioARevisar = usuarios.find(usuario => usuario.email === email);
-    if (usuarioARevisar) {
-        console.log("Usuario o email ya existe");
-        return res.status(400).send({ status: "Error", message: "Este usuario o email ya existe" });
-    }
-
     try {
-        const salt = await bcryptjs.genSalt();
-        const password_hash = await bcryptjs.hash(password, salt);
-        const nuevoUsuario = { first_name, last_name, email, password_hash: password_hash };
+        const usuarioARevisar = await userModel.getUsersByEmail(email);
 
-        const usuarioRegistrado = userModel.createUser(nuevoUsuario);
-
-        if (usuarioRegistrado) {
-            res.send({ status: "ok", message: "Usuario registrado", redirect: "/login" });
-        } else {
-            console.log('Error al guardar el usuario en BBDD')
+        if (usuarioARevisar === 0) {
+            console.log("Usuario o email ya existe");
+            return res.status(400).send({ status: "Error", message: "Este usuario o email ya existe" });
         }
 
+        const salt = await bcryptjs.genSalt();
+        const hashedPassword = await bcryptjs.hash(password_hash, salt);
+        const nuevoUsuario = { first_name, last_name, email, password_hash: hashedPassword };
+
+        const usuarioRegistrado = await userModel.createUser(nuevoUsuario);
+
+        if (usuarioRegistrado) {
+            res.redirect("/login" );
+        } else {
+            console.log('Error al guardar el usuario en BBDD');
+            return res.status(500).send({ status: "Error", message: "Error al guardar el usuario en la base de datos" });
+        }
     } catch (error) {
         console.error("Error al crear el usuario:", error);
         return res.status(500).send({ status: "Error", message: "Error en el servidor" });
     }
+
 };
 
 

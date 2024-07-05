@@ -27,7 +27,6 @@ const pintarEncontrados = (encontrados) => {
       pEnlace.innerHTML = `<a href=${element.url} target='_blank'>Más información</a>`;
       poster.src = element.poster;
       poster.alt = element.event_name;
-      poster.width = "300";
   
       fragment.append(botonFavorito, pEvento, pDescripcion, pFecha, pEnlace, poster);
       articleEncontrados.append(fragment);
