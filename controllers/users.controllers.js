@@ -7,7 +7,7 @@
 const usersEntry = require('../models/users.models');
 
 /**
- * Descripción: Esta función llama desde la ruta http://localhost:3000/api/users al método createUser
+ * Descripción: Esta función llama desde la ruta /api/users al modelo createUser
  * Este espera recibir por body todos los campos para crear el user
  * @memberof SQLUserQueries 
  * @method createUser
@@ -28,7 +28,7 @@ const createUser = async (req, res) => {
 };
 
 /**
- * Descripción: Esta función llama desde la ruta http://localhost:3000/api/users:email? al método getUsers
+ * Descripción: Esta función llama desde la ruta /api/users:email? al modelo getUsersByEmail
  * Este espera recibir por query o por body el email del usuario a buscar. Si no, mostrará todos los usuarios
  * @memberof SQLUserQueries 
  * @method getUsers
@@ -57,7 +57,7 @@ const getUsers = async (req, res) => {
 };
 
 /**
- * Descripción: Esta función llama desde la ruta http://localhost:3000/api/users/:email? al método deleteUserByAdmin
+ * Descripción: Esta función llama desde la ruta /api/users/:email? al modelo deleteUserByAdmin
  * Este espera recibir por query o por body el email del usuario a eliminar. 
  * @memberof SQLUserQueries 
  * @method deleteUser
@@ -83,7 +83,7 @@ const deleteUser = async (req, res) => {
 
 
 /**
- * Descripción: Esta función llama desde la ruta http://localhost:3000/api/users al método editUser
+ * Descripción: Esta función llama desde la ruta /api/users al modelo editUser
  * Este espera recibir por body uno de los dos campos editables (role_id / is_active) y el email del usuario a editar.
  * @memberof SQLUserQueries 
  * @method updateUsers
@@ -108,7 +108,7 @@ const updateUsers = async (req, res) => {
 };
 
 /**
- * Descripción: Esta función llama desde la ruta http://localhost:3000/api/users/pass al método editPasswordByUser
+ * Descripción: Esta función llama desde la ruta /api/users/pass al modelo editPasswordByUser
  * Este espera recibir por body un nuevo valor de password_hash y el email del usuario a editar.
  * @memberof SQLUserQueries 
  * @method updatePassword

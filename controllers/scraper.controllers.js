@@ -27,7 +27,7 @@ const getEventsEventBrite = async (req, res) => {
 /**
  * Descripción: Esta función Obtiene eventos de la página Nferias utilizando un scraper para extraer datos de una URL específica.
  * @memberof ScraperFunctions 
- * @method getEventsEventBrite 
+ * @method getEventsNFerias 
  * @async 
  * @param {Object} req objeto de petición HTTP de Express.
  * @param {Object} res objeto de respuesta HTTP de Express.
@@ -42,7 +42,21 @@ const getEventsNFerias = async (req, res) => {
     }
 };
 
+const addEventScrap = async (req , res)=>{
+    try {
+        const url = req.body.url;
+        const data = await scraperNferias.scrap(url);
+        
+        await Event.insertMany(data);
+
+        res.status(200).json({ message: 'Datos extraídos y almacenados con éxito', data });
+    } catch (err) {
+        res.status(500).json({ message: 'Error al extraer y almacenar los datos', error: err.message });
+    }
+}
+
 module.exports = {
     getEventsEventBrite,
-    getEventsNFerias
+    getEventsNFerias,
+    addEventScrap
 }

@@ -11,13 +11,14 @@ html(lang="es")
                 h3 Los favoritos del usuario
             section#all_events_container
                 each result in results
-                    article
-                        button.buttonDeleteFavorite(id=`${result.event_name}`) Eliminar
-                        p Evento: #{result.event_name}
-                        p Descripción: #{result.description}
+                    article.event-card
+                        p.event-name Evento: #{result.event_name}
+                        p.event-description Descripción: #{result.description}
                         -const fecha = new Date (result.date_start)
-                        p Fecha inicio: #{fecha.toDateString()}
+                        p.event-date Fecha inicio: #{fecha.toDateString()}
                         a.button(href=result.url target="_blank") Enlace
-                        img(src=result.poster, alt=result.event_name width="200")
+                        button.buttonDeleteFavorite(id=`${result.event_name}`) Eliminar
+                        div.event-card
+                            img(src=result.poster, alt=result.event_name)
         include footer.pug
         script(src="/js/favorites.js")

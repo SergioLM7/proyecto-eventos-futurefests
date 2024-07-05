@@ -1,7 +1,7 @@
 /**
  * @author Luis Carlos, Stephani, Sergio <futurefest.com> 
  * @exports models
- * @namespace UserFavoritesFunctions
+ * @namespace UserFavoriteFunctions
  */
 
 const pool = require('../config/db_pgsql');
@@ -9,7 +9,7 @@ const queries = require('../queries/userFavorite.queries');
 
 /**
  * Descripción: Esta función crea un userFavorite en la tabla intermedia userFavorite
- * @memberof UserFavoritesFunctions 
+ * @memberof UserFavoriteFunctions 
  * @method createUserFavorite 
  * @async 
  * @param {JSON} entry - Un JSON con el ID del user y el ID del favorite.
@@ -33,11 +33,12 @@ const createUserFavorite = async (entry) => {
 };
 
 /**
- * Descripción: Esta función elimina un userFavorite de la tabla userFavorite
- * @memberof UserFavoritesFunctions 
+ * Descripción: Esta función elimina un userFavorite de la tabla userFavorite en base al email
+ * y el favorite_id que recibe como argumentos.
+ * @memberof UserFavoriteFunctions 
  * @method deleteUserFavorite 
  * @async 
- * @param {JSON} entry - Un JSON con los dos valores (ID) de la fila a eliminar de la tabla
+ * @param {JSON} entry - Un JSON con el email y el favorite_id de la fila a eliminar de la tabla
  * @return {Integer} Devuelve el número de rows eliminadas en la tabla
  * @throws {Error} Error de consulta a la BBDD
  */
@@ -58,6 +59,15 @@ const deleteUserFavorite = async (entry) => {
     return result
 };
 
+/**
+ * Descripción: Obtiene los favoritos de un usuario en base a su correo electrónico.
+ * @memberof UserFavoriteFunctions 
+ * @method getUserFavoriteByEmail 
+ * @async 
+ * @param {string} email - El correo electrónico del usuario.
+ * @return {Promise<Array>} - Una promesa que resuelve con una matriz de los favoritos del usuario.
+ * @throws {Error} Si ocurre un error al obtener los datos.
+ */
 const getUserFavoriteByEmail = async (email) => {
     let client, result;
     try {

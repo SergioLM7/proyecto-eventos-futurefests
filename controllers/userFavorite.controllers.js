@@ -7,7 +7,7 @@
 const userFavoriteEntry = require('../models/userFavorite.models');
 
 /**
- * Descripción: Esta función llama desde la ruta http://localhost:3000/api/userfavorite al método createUserFavorite
+ * Descripción: Esta función llama desde la ruta /api/userfavorite al modelo createUserFavorite
  * Este espera recibir por body los dos campos para crear el userFavorite
  * @memberof SQLUserFavQueries 
  * @method createUserFavorite
@@ -28,7 +28,7 @@ const createUserFavorite = async (req, res) => {
 };
 
 /**
- * Descripción: Esta función llama desde la ruta http://localhost:3000/api/userfavorite al método deleteUserFavorite
+ * Descripción: Esta función llama desde la ruta /api/userfavorite al modelo deleteUserFavorite
  * Este espera recibir por body los dos campos para eliminar el userFavorite
  * @memberof SQLUserFavQueries 
  * @method deleteUserFavorite
@@ -51,8 +51,8 @@ const deleteUserFavorite = async (req, res) => {
 };
 
 /**
- * Descripción: Esta función llama desde la ruta http://localhost:3000/api/userfavorite o http://localhost:3000/api/userfavorite?user_id= al método getUserFavorites
- * Este espera recibir por body o por query el id del usuario del que queremos obtener sus favoritos
+ * Descripción: Esta función llama desde la ruta /api/userfavorite o /api/userfavorite?user_id= al modelo getUserFavoriteByEmail
+ * Este espera recibir por body o por query el email del usuario del que queremos obtener sus favoritos
  * @memberof SQLUserFavQueries 
  * @method getUserFavorites
  * @async 
@@ -64,10 +64,8 @@ const getUserFavorites = async (req, res) => {
     let userFavorites;
     try {
         if (req.body.email) {
-            //Meter el validador del GET
             userFavorites = await userFavoriteEntry.getUserFavoriteByEmail(req.body.email);
         } else if (req.query.email) {
-            //Meter el validador del GET
             userFavorites = await userFavoriteEntry.getUserFavoriteByEmail(req.query.email);
         }
         res.status(200).json(userFavorites);

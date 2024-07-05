@@ -12,9 +12,9 @@ html(lang="es")
             section#all_users_container
                 each user in users
                     article.event-card
-                        p Email: #{user.email}
-                        p Nombre: #{user.first_name}
-                        p Apellido: #{user.last_name}
+                        p.event-name Email: #{user.email}
+                        p.event-name Nombre: #{user.first_name}
+                        p.event-name Apellido: #{user.last_name}
                         p Role: #{user.role_name}
                         p Active: #{user.is_active}
                         a.button(href='/') Editar 

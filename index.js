@@ -77,8 +77,12 @@ app.use('/', usersWebRoutes); //Users
 app.post("/api/login", authentication.login);
 app.post("/api/register", authentication.register);
 
+// /api-docs
+app.use('/api-jsdoc', express.static(path.join(__dirname, '/jsondocs')));
+
 // Para rutas no existentes
 app.use('*',error404);
 
 app.post("/api/login", authentication.login);
 app.post("/api/register", authentication.register);
+

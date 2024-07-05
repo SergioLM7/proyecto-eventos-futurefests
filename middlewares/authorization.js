@@ -7,6 +7,15 @@
 require('dotenv').config();
 const jsonwebtoken = require('jsonwebtoken');
 
+/**
+ * Descripción:  Middleware que verifica JWT token para cookies.
+ * @memberof AuthMiddlewareFunctions 
+ * @method verifyToken
+ * @async 
+ * @param {Object} req Objeto de solicitud de Express.
+ * @param {Object} res Objeto de respuesta de Express.
+ * @param {Function} next - Función de middleware siguiente de Express.
+ */
 const verifyToken = (req, res, next) => {
     const token = req.cookies['access-token'];
 
@@ -26,6 +35,15 @@ const verifyToken = (req, res, next) => {
     }
 };
 
+/**
+ * Descripción:  Middleware para verificar si el usuario es un administrador basado en el token JWT.
+ * @memberof AuthMiddlewareFunctions 
+ * @method verifyAdmin
+ * @async 
+ * @param {Object} req Objeto de solicitud de Express.
+ * @param {Object} res Objeto de respuesta de Express.
+ * @param {Function} next - Función de middleware siguiente de Express.
+ */
 const verifyAdmin = (req, res, next) => {
     const cookieJWT = req.headers.cookie.split("; ").find(cookie => cookie.startsWith("access-token=")).slice(13)
     console.log(cookieJWT)
@@ -52,6 +70,15 @@ if (isAuthenticated) {
 // Renderizar la vista con las variables locales
 res.render('header', { isAuthenticated, role });*/
 
+/**
+ * Descripción:  Middleware para verificar el rol del usuario y enviar datos del header en función del mismo.
+ * @memberof AuthMiddlewareFunctions 
+ * @method verifyHeader
+ * @async 
+ * @param {Object} req Objeto de solicitud de Express.
+ * @param {Object} res Objeto de respuesta de Express.
+ * @param {Function} next - Función de middleware siguiente de Express.
+ */
 const verifyHeader = (req, res, next) => {
     if (!req.cookies['access-token']) {
         req.isAuthenticated = false;

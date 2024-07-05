@@ -7,7 +7,7 @@
 const Event = require('../services/events.services');
 
 /**
- * Descripción: Esta función llama al modelo getEvents para obtener todos los eventos de la BBDD y renderiza la página de inicio con los eventos obtenidos.
+ * Descripción: Esta función llama al modelo getEvents2 para obtener todos los eventos de la BBDD y renderiza la página de inicio con los eventos obtenidos.
  * @memberof MongoDBWebFunctions 
  * @method getEventWeb 
  * @async 
@@ -36,7 +36,6 @@ const getEventWeb = async (req, res) => {
 
 /**
  * Descripción: Esta función busca eventos utilizando el parámetro de entrada proporcionado en la consulta HTTP.
- * 
  * @memberof MongoDBWebFunctions 
  * @method searchByInput 
  * @async 

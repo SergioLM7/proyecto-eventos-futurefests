@@ -1,27 +1,31 @@
 doctype html
 html(lang="es")
-   head
-      title Future Fests
-      link(rel="stylesheet", href="/css/style.css")
-   body
-        != header
-        main
-            h1 Future Fests
-            section
-                h3 Los últimos eventos tecnológicos
-            section
-                input#filterInput(type='text')
-                button#filterButton Filtrar/Restablecer
-            section#all_events_container
-                each event in events
-                    article
-                        button.buttonFavorite(id=`${event.event_name}`) Favorito 
-                        p Evento: #{event.event_name}
-                        p Descripción: #{event.description}
-                        -const fecha = new Date (event.date_start)
-                        p Fecha inicio: #{fecha.toDateString()}
-                        a(href=event.url target="_blank")
-                            button.button + info    
-                        img(src=event.poster, alt=event.event_name width="300")
-        include footer.pug
-        script(src="/js/script.js")
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Future Fests
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css')
+    link(rel='stylesheet', href='/css/style.css')
+  body
+    != header
+    main
+      h1 Future Fests
+      section
+        h3 Los últimos eventos tecnológicos
+      section#filterButtonContainer
+        input#filterInput(type='text')
+        button#filterButton Filtrar/Restablecer
+      section#searched_container
+      section#all_events_container
+        each event in events
+          article.event-card
+            p.event-name Evento: #{event.event_name}
+            p.event-description Descripción: #{event.description}
+            - const fecha = new Date(event.date_start)
+            p.event-date Fecha inicio: #{fecha.toDateString()}
+            a.button(href=event.url target="_blank") Más info
+            button.buttonFavorite(id=`${event.event_name}`) Favorito
+            div.event-image
+              img(src=event.poster, alt=event.event_name)
+    include footer.pug
+    script(src="/js/script.js")

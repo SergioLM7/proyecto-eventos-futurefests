@@ -1,4 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
+  //Menú hamburguesa
+  const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('nav ul');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('change');
+        navLinks.classList.toggle('active');
+    });
+
 //Función para renderizar eventos encontrados en MongoDB Atlas  
 const pintarEncontrados = (encontrados) => {
     document.getElementById('all_events_container').innerHTML = '';

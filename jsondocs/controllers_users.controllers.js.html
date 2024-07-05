@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/users.controllers.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/users.controllers.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @author Luis Carlos, Stephani, Sergio &lt;futurefest.com> 
+ * @exports controllers
+ * @namespace SQLUserQueries 
+ */
+
+const usersEntry = require('../models/users.models');
+
+/**
+ * Descripción: Esta función llama desde la ruta /api/users al modelo createUser
+ * Este espera recibir por body todos los campos para crear el user
+ * @memberof SQLUserQueries 
+ * @method createUser
+ * @async 
+ * @param {Object} req objeto de petición HTTP de Express.
+ * @param {Object} res objeto de respuesta HTTP de Express.
+ * @throws {Error} Error al crear el usuario
+ */
+const createUser = async (req, res) => {
+    try {
+        const response = await usersEntry.createUser(req.body);
+        res.status(201).json({
+            message: `usuario creado: ${req.body.email}`
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Error al crear el usuario', error });
+    }
+};
+
+/**
+ * Descripción: Esta función llama desde la ruta /api/users:email? al modelo getUsersByEmail
+ * Este espera recibir por query o por body el email del usuario a buscar. Si no, mostrará todos los usuarios
+ * @memberof SQLUserQueries 
+ * @method getUsers
+ * @async 
+ * @param {Object} req objeto de petición HTTP de Express.
+ * @param {Object} res objeto de respuesta HTTP de Express.
+ * @throws {Error} Error al buscar los/el usuario/s
+ */
+const getUsers = async (req, res) => {
+    let users;
+    try {
+        if (req.body.email) {
+            //Meter el validador del GET
+            users = await usersEntry.getUsersByEmail(req.body.email);
+        } else if (req.query.email) {
+            //Meter el validador del GET
+            users = await usersEntry.getUsersByEmail(req.query.email);
+        } else {
+            //Meter el validador del GET
+            users = await usersEntry.getAllUsers();
+        }
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(500).json({ error: "Error en la BBDD" });
+    }
+};
+
+/**
+ * Descripción: Esta función llama desde la ruta /api/users/:email? al modelo deleteUserByAdmin
+ * Este espera recibir por query o por body el email del usuario a eliminar. 
+ * @memberof SQLUserQueries 
+ * @method deleteUser
+ * @async 
+ * @param {Object} req objeto de petición HTTP de Express.
+ * @param {Object} res objeto de respuesta HTTP de Express.
+ * @throws {Error} Error al eliminar el usuario
+ */
+const deleteUser = async (req, res) => {
+    let user;
+    try {
+        if (req.body.email) {
+            user = await usersEntry.deleteUserByAdmin(req.body.email);
+            res.status(200).json({ message: `Se ha borrado el usuario ${req.body.email}.` });
+        } else if (req.query.email) {
+            user = await usersEntry.deleteUserByAdmin(req.query.email);
+            res.status(200).json({ message: `Se ha borrado el usuario ${req.query.email}.` });
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Error en la BBD" });
+    }
+};
+
+
+/**
+ * Descripción: Esta función llama desde la ruta /api/users al modelo editUser
+ * Este espera recibir por body uno de los dos campos editables (role_id / is_active) y el email del usuario a editar.
+ * @memberof SQLUserQueries 
+ * @method updateUsers
+ * @async 
+ * @param {Object} req objeto de petición HTTP de Express.
+ * @param {Object} res objeto de respuesta HTTP de Express.
+ * @throws {Error} Error al editar el usuario
+ */
+const updateUsers = async (req, res) => {
+    console.log(req.body)
+   try {
+            console.log(req.body)
+            const response = await usersEntry.editUser(req.body);
+            console.log(response)
+            res.status(201).json({
+                items_updated: response.rowCount,
+                message: `Se ha modificado el usuario ${response.email}`
+            });
+        } catch (error) {
+            res.status(500).json({ error: "Error en la BBDD" });
+        }
+};
+
+/**
+ * Descripción: Esta función llama desde la ruta /api/users/pass al modelo editPasswordByUser
+ * Este espera recibir por body un nuevo valor de password_hash y el email del usuario a editar.
+ * @memberof SQLUserQueries 
+ * @method updatePassword
+ * @async 
+ * @param {Object} req objeto de petición HTTP de Express.
+ * @param {Object} res objeto de respuesta HTTP de Express.
+ * @throws {Error} Error al editar la contraseña del usuario
+ */
+const updatePassword = async (req, res) => {
+    if (req.body.password_hash) {
+        console.log(req.body)
+        try {
+            const response = await usersEntry.editPasswordByUser(req.body);
+            console.log(response)
+            res.status(201).json({
+                items_updated: response.rowCount,
+                message: `Se ha modificado la contraseña del usuario ${response.email}`
+            });
+        } catch (error) {
+            res.status(500).json({ error: "Error en la BBDD" });
+        }
+    } else {
+        res.status(400).json({ error: "Faltan campos en la entrada" });
+    }
+};
+
+module.exports = {
+    createUser,
+    getUsers,
+    deleteUser,
+    updateUsers,
+    updatePassword
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="AuthMiddlewareFunctions.html">AuthMiddlewareFunctions</a></li><li><a href="LoginRegisterFunction.html">LoginRegisterFunction</a></li><li><a href="LoginRegisterWebFunction.html">LoginRegisterWebFunction</a></li><li><a href="MongoDBFunctions.html">MongoDBFunctions</a></li><li><a href="MongoDBSchemas.html">MongoDBSchemas</a></li><li><a href="MongoDBWebFunctions.html">MongoDBWebFunctions</a></li><li><a href="RolesFunctions.html">RolesFunctions</a></li><li><a href="SQLUserFavQueries.html">SQLUserFavQueries</a></li><li><a href="SQLUserFavWebQueries.html">SQLUserFavWebQueries</a></li><li><a href="SQLUserQueries.html">SQLUserQueries</a></li><li><a href="SQLUserWebQueries.html">SQLUserWebQueries</a></li><li><a href="ScraperFunctions.html">ScraperFunctions</a></li><li><a href="UserFavoriteFunctions.html">UserFavoriteFunctions</a></li><li><a href="UserFunctions.html">UserFunctions</a></li><li><a href="dashboardFunctions.html">dashboardFunctions</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Fri Jul 05 2024 10:20:19 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -7,7 +7,7 @@
 const eventService = require('../services/events.services');
 
 /**
- * Descripción: Esta función llama desde la ruta http://localhost:3000/api/events al método createEvent
+ * Descripción: Esta función llama desde la ruta /api/events al modelo createEvent
  * Este espera recibir por body un JSON con todos los campos del evento.
  * @memberof MongoDBFunctions 
  * @method createEvent 
@@ -26,9 +26,9 @@ const createEvent = async (req, res) => {
 };
 
 /**
- * Descripción: Esta función llama desde la ruta http://localhost:3000/api/events al método getEvent
+ * Descripción: Esta función llama desde la ruta /api/events al modelo getEvents
  * @memberof MongoDBFunctions 
- * @method getEvent 
+ * @method getEvent
  * @async 
  * @param {Object} req objeto de petición HTTP
  * @param {Object} res objeto de respuesta HTTP
@@ -47,7 +47,7 @@ const getEvent = async (req, res) => {
 };
 
 /**
- * Descripción: Esta función llama desde la ruta http://localhost:3000/api/events al método searchByInput
+ * Descripción: Esta función llama desde la ruta /api/events al modelo searchByInput
  * @memberof MongoDBFunctions 
  * @method getEventID 
  * @async 
@@ -69,7 +69,7 @@ const getEventID = async (req, res) => {
 
 
 /**
- * Descripción: Esta función llama desde la ruta http://localhost:3000/api/events al método updateEvent
+ * Descripción: Esta función llama desde la ruta /api/events al modelo updateEvent
  * Este espera recibir por body los campos a modificar del evento
  * @memberof MongoDBFunctions 
  * @method updateEvent 
@@ -96,7 +96,7 @@ const updateEvent = async (req, res) => {
 };
 
 /**
- * Descripción: Esta función llama desde la ruta http://localhost:3000/api/events al método deleteEvent
+ * Descripción: Esta función llama desde la ruta /api/events al modelo deleteEvent
  * Este espera recibir por body el nombre del evento a eliminar.
  * @memberof MongoDBFunctions 
  * @method deleteEvent 

@@ -1,6 +1,3 @@
-const scrapEvent = require('.../utils/scraper.eventbrite.js')
-const scrapFerias = require('.../utils/scraper.nferias.js')
-
 document.getElementById("createEvent").addEventListener("submit", async (e) => {
     e.preventDefault();
     const res = await fetch("https://proyecto-eventos-futurefests.onrender.com/api/events", {

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: middlewares/authorization.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: middlewares/authorization.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @author Luis Carlos, Stephani, Sergio &lt;futurefest.com> 
+ * @exports middleware
+ * @namespace AuthMiddlewareFunctions 
+ */
+
+require('dotenv').config();
+const jsonwebtoken = require('jsonwebtoken');
+
+/**
+ * Descripción:  Middleware que verifica JWT token para cookies.
+ * @memberof AuthMiddlewareFunctions 
+ * @method verifyToken
+ * @async 
+ * @param {Object} req Objeto de solicitud de Express.
+ * @param {Object} res Objeto de respuesta de Express.
+ * @param {Function} next - Función de middleware siguiente de Express.
+ */
+const verifyToken = (req, res, next) => {
+    const token = req.cookies['access-token'];
+
+    console.log(token)
+
+    if (token) {
+        jsonwebtoken.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+            if (err) {
+                return res.status(401).json({ message: 'Token inválido' });
+            } else {
+                req.user = decoded;
+                next();
+            }
+        });
+    } else {
+        res.status(403).json({ message: 'No existe ningún token' });
+    }
+};
+
+/**
+ * Descripción:  Middleware para verificar si el usuario es un administrador basado en el token JWT.
+ * @memberof AuthMiddlewareFunctions 
+ * @method verifyAdmin
+ * @async 
+ * @param {Object} req Objeto de solicitud de Express.
+ * @param {Object} res Objeto de respuesta de Express.
+ * @param {Function} next - Función de middleware siguiente de Express.
+ */
+const verifyAdmin = (req, res, next) => {
+    const cookieJWT = req.headers.cookie.split("; ").find(cookie => cookie.startsWith("access-token=")).slice(13)
+    console.log(cookieJWT)
+    const decodificada = jsonwebtoken.verify(cookieJWT, process.env.JWT_SECRET)
+    console.log(decodificada)
+
+    if (decodificada.role_id == 1) {
+        next();
+    } else {
+        res.status(403).json({ message: 'Acceso denegado: zona restringida para administradores' });
+    }
+};
+
+// Obtener el estado de autenticación y el rol del usuario del token
+/*const isAuthenticated = !!req.cookies.token;
+let role = 2; // Rol por defecto si no está autenticado
+
+if (isAuthenticated) {
+    const token = req.cookies.token;
+    const decoded = jwt.decode(token);
+    role = decoded.role;
+}
+
+// Renderizar la vista con las variables locales
+res.render('header', { isAuthenticated, role });*/
+
+/**
+ * Descripción:  Middleware para verificar el rol del usuario y enviar datos del header en función del mismo.
+ * @memberof AuthMiddlewareFunctions 
+ * @method verifyHeader
+ * @async 
+ * @param {Object} req Objeto de solicitud de Express.
+ * @param {Object} res Objeto de respuesta de Express.
+ * @param {Function} next - Función de middleware siguiente de Express.
+ */
+const verifyHeader = (req, res, next) => {
+    if (!req.cookies['access-token']) {
+        req.isAuthenticated = false;
+        req.role = null;
+        next();
+    } else {
+        const token = req.cookies['access-token'];
+        console.log(token)
+        jsonwebtoken.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+            if (err) {
+                console.error('Invalid token:', err);
+                req.isAuthenticated = false;
+                req.role = null;
+            } else {
+                req.user = decoded;
+                req.isAuthenticated = true;
+                req.role=decoded.role_id;
+                console.log('Decoded: ', decoded)
+            }
+            next();
+        });
+    }
+
+};
+
+
+module.exports = {
+    verifyToken,
+    verifyAdmin,
+    verifyHeader
+};
+
+/*
+const revisarCookie = () => {
+try{
+    const cookieJWT = req.headers.cookie.split("; ").find(cookie => cookie.startsWith("jwt=")).slice(4)
+    const decodificada = jsonwebtoken.verify(cookieJWT, process.env.JWT_SECRET)
+    const usuarioAResvisar = usuarios.find(usuario => usuario.email === decodificada.email);
+    if (!usuarioAResvisar) {
+        return false;
+    } else { true }
+}
+catch{
+    return false;
+}
+}*/</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="AuthMiddlewareFunctions.html">AuthMiddlewareFunctions</a></li><li><a href="LoginRegisterFunction.html">LoginRegisterFunction</a></li><li><a href="LoginRegisterWebFunction.html">LoginRegisterWebFunction</a></li><li><a href="MongoDBFunctions.html">MongoDBFunctions</a></li><li><a href="MongoDBSchemas.html">MongoDBSchemas</a></li><li><a href="MongoDBWebFunctions.html">MongoDBWebFunctions</a></li><li><a href="RolesFunctions.html">RolesFunctions</a></li><li><a href="SQLUserFavQueries.html">SQLUserFavQueries</a></li><li><a href="SQLUserFavWebQueries.html">SQLUserFavWebQueries</a></li><li><a href="SQLUserQueries.html">SQLUserQueries</a></li><li><a href="SQLUserWebQueries.html">SQLUserWebQueries</a></li><li><a href="ScraperFunctions.html">ScraperFunctions</a></li><li><a href="UserFavoriteFunctions.html">UserFavoriteFunctions</a></li><li><a href="UserFunctions.html">UserFunctions</a></li><li><a href="dashboardFunctions.html">dashboardFunctions</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Fri Jul 05 2024 10:20:19 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

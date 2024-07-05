@@ -7,8 +7,8 @@
 const usersModel = require('../models/users.models')
 
 /**
- * Descripción: Esta función llama desde la ruta http://localhost:3000/api/users al método createUser
- * Este espera recibir por body todos los campos para crear el user
+ * Descripción: Esta función llama desde la ruta /api/users al modelo getAllUsers
+ * Y renderiza users.pug en base a ellos.
  * @memberof SQLUserWebQueries 
  * @method getUsersAdmin
  * @async 

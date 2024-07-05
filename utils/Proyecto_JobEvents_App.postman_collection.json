@@ -10,17 +10,18 @@
 			"name": "SQL",
 			"item": [
 				{
-					"name": "http://localhost:3000/api/users?email=user1@user.com",
+					"name": "/api/users?email=user1@user.com",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/users?email=user1@user.com",
-							"protocol": "http",
+							"raw": "https://proyecto-eventos-futurefests.onrender.com/api/users?email=anita@hotmail.com",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"proyecto-eventos-futurefests",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users"
@@ -28,7 +29,7 @@
 							"query": [
 								{
 									"key": "email",
-									"value": "user1@user.com"
+									"value": "anita@hotmail.com"
 								}
 							]
 						},
@@ -37,7 +38,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/api/users",
+					"name": "/api/users",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -53,13 +54,13 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/api/users",
+						"url": "https://proyecto-eventos-futurefests.onrender.com/api/users",
 						"description": "GET all users saved in SQL"
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/api/users",
+					"name": "/api/users",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -72,13 +73,13 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/api/users",
+						"url": "https://proyecto-eventos-futurefests.onrender.com/api/users",
 						"description": "POST to create a user in SQL Data Base"
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/api/users",
+					"name": "/api/users",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -91,23 +92,24 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/api/users",
+						"url": "https://proyecto-eventos-futurefests.onrender.com/api/users",
 						"description": "DELETE a user by his/her email"
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/api/users?email=pepito@hotmail.com",
+					"name": "/api/users?email=pepito@hotmail.com",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/users?email=pepito@hotmail.com",
-							"protocol": "http",
+							"raw": "https://proyecto-eventos-futurefests.onrender.com/api/users?email=anita@hotmail.com",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"proyecto-eventos-futurefests",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users"
@@ -115,7 +117,7 @@
 							"query": [
 								{
 									"key": "email",
-									"value": "pepito@hotmail.com"
+									"value": "anita@hotmail.com"
 								}
 							]
 						},
@@ -124,55 +126,56 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/api/users/pass",
+					"name": "/api/users/pass",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"password_hash\": \"safdsafsafasf97\",\n    \"email\":\"sergio@hotmail.com\"\n}",
+							"raw": "{\n    \"password_hash\": \"safdsafsafasf97\",\n    \"email\":\"al@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/api/users/pass",
+						"url": "https://proyecto-eventos-futurefests.onrender.com/api/users/pass",
 						"description": "PUT to change user password"
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/api/users",
+					"name": "/api/users",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"is_logged\": true,\n    \"last_time_logged\": \"1995-12-17T03:24:00\",\n    \"email\": \"sergio@admin.com\"\n}",
+							"raw": "{\n    \"role_id\": 2,\n    \"email\": \"al@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/api/users",
+						"url": "https://proyecto-eventos-futurefests.onrender.com/api/users",
 						"description": "PUT to edit user's role_id or is_active "
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/api/userfavorite?email=sergio@admin.com",
+					"name": "/api/userfavorite?email=email",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/userfavorite?email=sergio@admin.com",
-							"protocol": "http",
+							"raw": "https://proyecto-eventos-futurefests.onrender.com/api/userfavorite?email=antonio@fantastico.es",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"proyecto-eventos-futurefests",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"userfavorite"
@@ -180,7 +183,7 @@
 							"query": [
 								{
 									"key": "email",
-									"value": "sergio@admin.com"
+									"value": "antonio@fantastico.es"
 								}
 							]
 						}
@@ -188,39 +191,39 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/api/userFavorite",
+					"name": "/api/userFavorite",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user_id\": 4,\n    \"favorite_id\": \"667ef9de0182c19732723e92\"\n}",
+							"raw": "{\n    \"email\": \"stephani.damiani@gmail.com\",\n    \"favorite_id\": \"667e9d4b7d25fee2a6f1d4c0\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/api/userFavorite",
+						"url": "https://proyecto-eventos-futurefests.onrender.com/api/userFavorite",
 						"description": "POST to create user-favorite relationship by user_id and favorite_id"
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/api/userFavorite",
+					"name": "/api/userFavorite",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"sergio@admin.com\",\n    \"favorite_id\": \"6683390f9d661584086b0d2a\"\n}",
+							"raw": "{\n    \"email\": \"stephani.damiani@gmail.com\",\n    \"favorite_id\": \"667e9d4b7d25fee2a6f1d4c0\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/api/userFavorite",
+						"url": "https://proyecto-eventos-futurefests.onrender.com/api/userFavorite",
 						"description": "DELETE to delete user-favorite relationship by user_id and favorite_id"
 					},
 					"response": []
@@ -231,17 +234,18 @@
 			"name": "MongoDB",
 			"item": [
 				{
-					"name": "http://localhost:3000/api/events",
+					"name": "/api/events",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/events?_id=667ef9de0182c19732723e92",
-							"protocol": "http",
+							"raw": "https://proyecto-eventos-futurefests.onrender.com/api/events?_id=66840a4ad7a3246bf00f4421",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"proyecto-eventos-futurefests",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"events"
@@ -249,7 +253,7 @@
 							"query": [
 								{
 									"key": "_id",
-									"value": "667ef9de0182c19732723e92"
+									"value": "66840a4ad7a3246bf00f4421"
 								}
 							]
 						},
@@ -258,57 +262,57 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/api/events",
+					"name": "/api/events",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"event_name\": \"The Bridge Webinnar Week 2024\",\n    \"description\": \"Los mejores webinnar tecnológicos.\",\n    \"date_start\": \"2024-12-01\",\n    \"date_end\": \"2024-12-03\",\n    \"address\": \"Paseo de Recoletos, 23, Madrid\",\n    \"technologies\": [\"Data Science\", \"Full Stack Development\", \"Cibersecurity\"],\n    \"event_type\": \"Webinnar\",\n    \"price\": 50,\n    \"url\": \"https://www.thebridge.com\",\n    \"speakers\": [\n        {\n            \"name\": \"Alejandro\",\n            \"bio\": \"Expert in FS\",\n            \"company\": \"The Bridge\"\n        },\n        {\n            \"name\": \"Guillermo\",\n            \"bio\": \"FS Developer\",\n            \"company\": \"The Bridge\"\n        }\n    ],\n    \"participants\": 250,\n    \"poster\": \"https://media.licdn.com/dms/image/D5610AQGIZlmtUeqo2A/image-shrink_800/0/1692792610833/financiacion_bootcamps_TB_6_1080x1080_12jpg?e=2147483647&v=beta&t=uPE6ZDdN6VX_31zlALkgDyiccK0jkPHjYM0bYdL7Ef4\"\n}",
+							"raw": "{\n    \"event_name\": \"Seminario IA en 2025\",\n    \"description\": \"Un seminario de los nuevos paradigmas de la IA\",\n    \"date_start\": \"2024-12-01\",\n    \"date_end\": \"2024-12-03\",\n    \"address\": \"Paseo de Recoletos, 23, Madrid\",\n    \"technologies\": [\"Data Science\", \"Full Stack Development\", \"Cibersecurity\"],\n    \"event_type\": \"Webinnar\",\n    \"price\": 50,\n    \"url\": \"https://www.thebridge.com\",\n    \"speakers\": [\n        {\n            \"name\": \"Alejandro\",\n            \"bio\": \"Expert in FS\",\n            \"company\": \"The Bridge\"\n        },\n        {\n            \"name\": \"Guillermo\",\n            \"bio\": \"FS Developer\",\n            \"company\": \"The Bridge\"\n        }\n    ],\n    \"participants\": 250,\n    \"poster\": \"https://s3.ppllstatics.com/rc/www/multimedia/2023/12/18/ia-comercial.jpg\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/api/events"
+						"url": "https://proyecto-eventos-futurefests.onrender.com/api/events"
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/api/events",
+					"name": "/api/events",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"event_name\": \"The Bridge Webinnar Week 2024\",\n    \"description\": \"Los mejores webinnar tecnológicos.\",\n    \"date_start\": \"2024-12-02\",\n    \"date_end\": \"2024-12-04\",\n    \"address\": \"Paseo de Recoletos, 23, Madrid\",\n    \"technologies\": [\"Data Science\", \"Full Stack Development\", \"Cibersecurity\", \"AI\"],\n    \"event_type\": \"Webinnar\",\n    \"price\": 50,\n    \"url\": \"https://www.thebridge.com\",\n    \"speakers\": [\n        {\n            \"name\": \"Alejandro\",\n            \"bio\": \"Expert in FS\",\n            \"company\": \"The Bridge\"\n        },\n        {\n            \"name\": \"Guillermo\",\n            \"bio\": \"FS Developer\",\n            \"company\": \"The Bridge\"\n        }\n    ],\n    \"participants\": 250,\n    \"poster\": \"https://media.licdn.com/dms/image/D5610AQGIZlmtUeqo2A/image-shrink_800/0/1692792610833/financiacion_bootcamps_TB_6_1080x1080_12jpg?e=2147483647&v=beta&t=uPE6ZDdN6VX_31zlALkgDyiccK0jkPHjYM0bYdL7Ef4\"\n}",
+							"raw": "{\n    \"event_name\": \"Madrid Tech Show\",\n    \"poster\": \"https://pbs.twimg.com/profile_images/1224661152073953282/QQ1L-Lyo_400x400.jpg\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/api/events",
+						"url": "https://proyecto-eventos-futurefests.onrender.com/api/events",
 						"description": "PUT to Update any field of and event document by its event_name"
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/api/events",
+					"name": "/api/events",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"event_name\": \"The Bridge Webinnar Week 2024\"\n}",
+							"raw": "{\n    \"event_name\": \"Conferencia para desarrolladores 2024\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/api/events",
+						"url": "https://proyecto-eventos-futurefests.onrender.com/api/events",
 						"description": "DELETE to delete an event from its event_name"
 					},
 					"response": []

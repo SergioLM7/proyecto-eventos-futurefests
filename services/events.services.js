@@ -26,9 +26,9 @@ const createEvent = async (eventData) => {
 };
 
 /**
- * Descripción: Esta función obtiene todos los eventos existentes
+ * Descripción: Esta función encuentra un evento por su ID o todos los eventos existentes
  * @memberof MongoDBFunctions 
- * @method getAllEvents 
+ * @method getEvents 
  * @async 
  * @throws {Error} Error al obtener todos los eventos
  */
@@ -47,6 +47,13 @@ const getEvents = async (eventData) => {
     }
 };
 
+/**
+ * Descripción: Esta función encuentra los 10 primeros eventos existentes
+ * @memberof MongoDBFunctions 
+ * @method getEvents2
+ * @async 
+ * @throws {Error} Error al obtener todos los eventos
+ */
 const getEvents2 = async () => {
     try {
         const result = await Event.find().limit(10);
@@ -56,6 +63,13 @@ const getEvents2 = async () => {
     }
 };
 
+/**
+ * Descripción: Esta función encuentra un favorito por su ID
+ * @memberof MongoDBFunctions 
+ * @method getFavorites 
+ * @async 
+ * @throws {Error} Error al obtener el favorito
+ */
 const getFavorites = async (eventData) => {
     try {
         if (!eventData) {
@@ -65,7 +79,7 @@ const getFavorites = async (eventData) => {
             return eventFind;
         }
     } catch (error) {
-        throw new Error('Error al obtener los eventos');
+        throw new Error('Error al obtener el favorito');
     }
 };
 
@@ -103,7 +117,7 @@ const updateEvent = async (eventData) => {
 };
 
 /**
- * Descripción: Esta función elimina un evento
+ * Descripción: Esta función elimina un evento en base a su nombre.
  * @memberof MongoDBFunctions 
  * @method deleteEvent 
  * @async 
@@ -119,7 +133,15 @@ const deleteEvent = async (eventName) => {
     }
 };
 
-
+/**
+ * Descripción: Esta función encuentra todos los eventos si no recibe input, o el evento por su nombre.
+ * @memberof MongoDBFunctions 
+ * @method searchByInput 
+ * @async 
+ * @param {JSON} eventName -JSON con el nombre del evento a eliminar
+ * @return {Object} -Un objeto con el número de filas eliminadas y acknowledged: true
+ * @throws {Error} Error al eliminar el evento
+ */
 const searchByInput = async (input) => {
     if (!input) {
         const result = await Event.find().limit(10);

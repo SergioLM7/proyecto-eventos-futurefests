@@ -39,11 +39,11 @@ const createUser = async (entry) => {
 };
 
 /**
- * Descripción: Esta función edita el rol o el is_active de un usuario en la tabla users
+ * Descripción: Esta función edita el rol, el is_active o el is_logged de un usuario en la tabla users
  * @memberof UserFunctions 
  * @method editUser 
  * @async 
- * @param {JSON} entry - Un JSON con el nuevo valor de role_id o is_active a modificar, más el email del usuario a editar
+ * @param {JSON} entry - Un JSON con el nuevo valor de role_id, is_active o is_logged a modificar, más el email del usuario a editar
  * @return {Object} Devuelve un objeto con el número de filas modificadas y el email del usuario
  * @throws {Error} Error de consulta a la BBDD
  */

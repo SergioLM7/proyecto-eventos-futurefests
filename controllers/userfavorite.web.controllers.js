@@ -11,6 +11,7 @@ const jwt = require('jsonwebtoken');
 
 /**
  * Descripción: Esta función obtiene los favoritos de un usuario basado en el token JWT proporcionado en las cookies de la solicitud HTTP.
+ * Realiza un fetch para encontrar y renderizar favorites.pug en base a ellos.
  * @memberof SQLUserFavWebQueries 
  * @method getUserFavoritesWeb
  * @async 

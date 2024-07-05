@@ -22,12 +22,13 @@ html
         section#searched_container
           section#all_events_container
             each event in events
-              article
-                p Evento: #{event.event_name}
-                p Descripción: #{event.description}
-                p Fecha inicio: #{event.date_start}
+              article.event-card
+                p.event-name Evento: #{event.event_name}
+                p.event-description Descripción: #{event.description}
+                p.event-date Fecha inicio: #{event.date_start}
                 a.button(href=event.url target="_blank") Enlace
-                img(src=event.poster, alt=event.event_name, width="300")
+                div.event-image
+                  img(src=event.poster, alt=event.event_name)
       include footer.pug
       script(src="/js/dashboard.js")
       script(src="/js/script.js")

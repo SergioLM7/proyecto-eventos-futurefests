@@ -6,18 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "generate-docs": "jsdoc -c ./jsdoc.json"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/steph-d989/ProyectoEventos.git"
+    "url": "git+https://github.com/SergioLM7/proyecto-eventos-futurefests.git"
   },
   "author": "Luis Carlos, Sergio, Stephani",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/steph-d989/ProyectoEventos/issues"
+    "url": "https://github.com/SergioLM7/proyecto-eventos-futurefests.git"
   },
-  "homepage": "https://github.com/steph-d989/ProyectoEventos#readme",
+  "homepage": "https://github.com/SergioLM7/proyecto-eventos-futurefests#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",

@@ -11,7 +11,7 @@ const jsonwebtoken = require('jsonwebtoken');
 require('dotenv').config();
 
 /**
- * Descripción: Esta función llama desde la ruta http://localhost:3000/login a la funcion Login
+ * Descripción: Esta función llama desde la ruta /login a la funcion Login
  * Este espera recibir por body un JSON con todos los campos del usuario.
  * @memberof LoginRegisterFunction 
  * @method login 
@@ -67,8 +67,8 @@ const login = async (req, res) => {
 };
 
 /**
- * Descripción: Esta función llama desde la ruta http://localhost:3000/register a la funcion register
- * Este espera recibir por body un JSON con todos los campos del usuario.
+ * Descripción: Esta función llama desde la ruta /register a la funcion register
+ * Este espera recibir por body un JSON con todos los campos del usuario y hashea la password.
  * @memberof LoginRegisterFunction 
  * @method register 
  * @async 
@@ -114,14 +114,14 @@ const register = async (req, res) => {
 
 
 /**
- * Descripción: Esta función llama desde la ruta http://localhost:3000/register a la funcion register
- * Este espera recibir por body un JSON con todos los campos del usuario.
+ * Descripción: Esta función de callback para la autenticación de Google OAuth.
  * @memberof LoginRegisterFunction 
  * @method googleCallback 
  * @async 
- * @param {Object} req objeto de petición HTTP
+ * @param {Object} req El objeto de solicitud de Express.
+ * @param {Object} req.user El objeto de usuario autenticado.
  * @param {Object} res objeto de respuesta HTTP
- * @throws {Error} Error al inicio sesion
+ * @throws {Error} Una promesa que se resuelve cuando la función se completa.
  */
 const googleCallback = async (req, res) => {
     const payload = {
@@ -147,11 +147,9 @@ const googleCallback = async (req, res) => {
 
 
 /**
- * Descripción: Esta función llama desde la ruta http://localhost:3000/register a la funcion register
- * Este espera recibir por body un JSON con todos los campos del usuario.
+ * Descripción: Esta función de callback para manejar fallos de autenticación.
  * @memberof LoginRegisterFunction 
  * @method authFailure 
- * @async 
  * @param {Object} req objeto de petición HTTP
  * @param {Object} res objeto de respuesta HTTP
  */

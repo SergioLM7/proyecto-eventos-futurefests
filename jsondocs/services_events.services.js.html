@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: services/events.services.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: services/events.services.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @author Luis Carlos, Stephani, Sergio &lt;futurefest.com> 
+ * @exports services
+ * @namespace MongoDBFunctions 
+ */
+
+const Event = require('../models/events.models');
+
+/**
+ * Descripción: Esta función crea un evento
+ * @memberof MongoDBFunctions 
+ * @method createEvent 
+ * @async 
+ * @param {JSON} eventData -JSON con todos los campos para crear un evento
+ * @return {Object} -El objeto del evento creado con todos sus campos
+ * @throws {Error} Error al crear el evento
+ */
+const createEvent = async (eventData) => {
+    try {
+        const newEvent = new Event(eventData);
+        return await newEvent.save();
+    } catch (error) {
+        console.error('Error al crear el evento:', error.message);
+        throw new Error('Error al crear el evento');
+    }
+};
+
+/**
+ * Descripción: Esta función encuentra un evento por su ID o todos los eventos existentes
+ * @memberof MongoDBFunctions 
+ * @method getEvents 
+ * @async 
+ * @throws {Error} Error al obtener todos los eventos
+ */
+const getEvents = async (eventData) => {
+    try {
+        let result;
+        if (eventData._id) {
+            const eventFind = await Event.findById(eventData._id, '-_id event_name description date_start url poster');
+            return eventFind;
+        } else {
+            result = await Event.find().limit(10);
+            return result;
+        }
+    } catch (error) {
+        throw new Error('Error al obtener los eventos');
+    }
+};
+
+/**
+ * Descripción: Esta función encuentra los 10 primeros eventos existentes
+ * @memberof MongoDBFunctions 
+ * @method getEvents2
+ * @async 
+ * @throws {Error} Error al obtener todos los eventos
+ */
+const getEvents2 = async () => {
+    try {
+        const result = await Event.find().limit(10);
+            return result;
+    } catch (error) {
+        throw new Error('Error al obtener los eventos');
+    }
+};
+
+/**
+ * Descripción: Esta función encuentra un favorito por su ID
+ * @memberof MongoDBFunctions 
+ * @method getFavorites 
+ * @async 
+ * @throws {Error} Error al obtener el favorito
+ */
+const getFavorites = async (eventData) => {
+    try {
+        if (!eventData) {
+            throw new Error('El usuario no tiene favoritos');
+        } else {
+            const eventFind = await Event.findById(eventData, '-_id event_name description date_start url poster');
+            return eventFind;
+        }
+    } catch (error) {
+        throw new Error('Error al obtener el favorito');
+    }
+};
+
+/*const getFavoriteID = async (name) => {
+    try {
+        if (!name) {
+            throw new Error('El usuario no tiene favoritos');
+        } else {
+            console.log(name)
+            const nameToFind = await Event.find({event_name:name}, '_id');
+            console.log(nameToFind)
+            return nameToFind;
+        }
+    } catch (error) {
+        throw new Error('Error al obtener los eventos');
+    }
+};*/
+//getFavoriteID('Mobile World Congress 2025').then(data=>console.log(data));
+
+/**
+ * Descripción: Esta función actualiza un evento
+ * @memberof MongoDBFunctions 
+ * @method updateEvent 
+ * @async 
+ * @param {JSON} eventData -JSON con todos los campos a editar de un evento
+ * @return {Object} -El objeto del evento actualizado con todos sus campos
+ * @throws {Error} Error al actualizar el evento
+ */
+const updateEvent = async (eventData) => {
+    try {
+        return await Event.findOneAndUpdate({ event_name: eventData.event_name }, eventData, { new: true });
+    } catch (error) {
+        throw new Error('Error al actualizar el evento');
+    }
+};
+
+/**
+ * Descripción: Esta función elimina un evento en base a su nombre.
+ * @memberof MongoDBFunctions 
+ * @method deleteEvent 
+ * @async 
+ * @param {JSON} eventName -JSON con el nombre del evento a eliminar
+ * @return {Object} -Un objeto con el número de filas eliminadas y acknowledged: true
+ * @throws {Error} Error al eliminar el evento
+ */
+const deleteEvent = async (eventName) => {
+    try {
+        return await Event.deleteOne({ event_name: eventName });
+    } catch (error) {
+        throw new Error('Error al eliminar el evento');
+    }
+};
+
+/**
+ * Descripción: Esta función encuentra todos los eventos si no recibe input, o el evento por su nombre.
+ * @memberof MongoDBFunctions 
+ * @method searchByInput 
+ * @async 
+ * @param {JSON} eventName -JSON con el nombre del evento a eliminar
+ * @return {Object} -Un objeto con el número de filas eliminadas y acknowledged: true
+ * @throws {Error} Error al eliminar el evento
+ */
+const searchByInput = async (input) => {
+    if (!input) {
+        const result = await Event.find().limit(10);
+        return result;
+    }
+    try {
+        const regex = new RegExp(input, 'i');
+        const results = await Event.find({ event_name: regex }).limit(10);
+        return results;
+    } catch (err) {
+        throw new Error('Error al buscar:', err);
+    } 
+};
+
+
+
+module.exports = {
+    createEvent,
+    getEvents,
+    updateEvent,
+    deleteEvent,
+    searchByInput,
+    getFavorites,
+    getEvents2
+};
+
+//PRUEBAS
+//const input = "brid";
+//searchByInput(input).then(data=>console.log(data))
+
+
+/*const objPrueba = {
+    event_name: "Devops Barcelona 2023",
+    description: "Una feria única en una ciudad única",
+    date_start: "2023-11-14",
+    date_end: "2023-11-15",
+    address: "Gran Via de les Corts Catalanes, 521, Barcelona",
+    technologies: ["AI", "DevOps"],
+    event_type: "Feria",
+    price: 299,
+    url: "https://devops.barcelona.com",
+    speakers: [
+        {
+            name: "Juan Palacios",
+            bio: "Expert in AI and Machine Learning",
+            company: "TechCorp"
+        },
+        {
+            name: "Jaime De La Vega",
+            bio: "Blockchain Developer",
+            company: "Blockchain Inc."
+        }
+    ],
+    participants: 2000,
+    poster: "https://cdn.slidesharecdn.com/ss_thumbnails/devops-intro-180409201218-thumbnail.jpg"
+};*/
+
+/*const objUpdate = {
+    event_name: "Mobile World Congress 2025",
+    address: "C/Monalisa, 21, Barcelona, Spain",
+    event_type: "Congreso",
+    price: 9.99,
+    url: "http://www.eventazo.com",
+    participants: 900,
+    poster: "https://event-assets.gsma.com/Header-Images/_1200x630_crop_center-center_82_none/MWC_GSMA_IMAGE.png"
+};*/
+
+
+//createEvent(objPrueba).then(data=> console.log(data));
+//deleteEvent('Devops Barcelona 2023').then(data => console.log(data));
+//updateEvent(objUpdate).then(data=>console.log(data));</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="AuthMiddlewareFunctions.html">AuthMiddlewareFunctions</a></li><li><a href="LoginRegisterFunction.html">LoginRegisterFunction</a></li><li><a href="LoginRegisterWebFunction.html">LoginRegisterWebFunction</a></li><li><a href="MongoDBFunctions.html">MongoDBFunctions</a></li><li><a href="MongoDBSchemas.html">MongoDBSchemas</a></li><li><a href="MongoDBWebFunctions.html">MongoDBWebFunctions</a></li><li><a href="RolesFunctions.html">RolesFunctions</a></li><li><a href="SQLUserFavQueries.html">SQLUserFavQueries</a></li><li><a href="SQLUserFavWebQueries.html">SQLUserFavWebQueries</a></li><li><a href="SQLUserQueries.html">SQLUserQueries</a></li><li><a href="SQLUserWebQueries.html">SQLUserWebQueries</a></li><li><a href="ScraperFunctions.html">ScraperFunctions</a></li><li><a href="UserFavoriteFunctions.html">UserFavoriteFunctions</a></li><li><a href="UserFunctions.html">UserFunctions</a></li><li><a href="dashboardFunctions.html">dashboardFunctions</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Fri Jul 05 2024 10:20:19 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/events.controllers.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/events.controllers.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @author Luis Carlos, Stephani, Sergio &lt;futurefest.com> 
+ * @exports controllers
+ * @namespace MongoDBFunctions 
+ */
+
+const eventService = require('../services/events.services');
+
+/**
+ * Descripción: Esta función llama desde la ruta /api/events al modelo createEvent
+ * Este espera recibir por body un JSON con todos los campos del evento.
+ * @memberof MongoDBFunctions 
+ * @method createEvent 
+ * @async 
+ * @param {Object} req objeto de petición HTTP
+ * @param {Object} res objeto de respuesta HTTP
+ * @throws {Error} Error al crear el evento
+ */
+const createEvent = async (req, res) => {
+    try {
+        const newEvent = await eventService.createEvent(req.body);
+        res.status(201).json({ message: `Evento ${newEvent.event_name} creado`, event: newEvent });
+    } catch (error) {
+        res.status(500).json({ message: 'Error al crear el evento', error });
+    }
+};
+
+/**
+ * Descripción: Esta función llama desde la ruta /api/events al modelo getEvents
+ * @memberof MongoDBFunctions 
+ * @method getEvent
+ * @async 
+ * @param {Object} req objeto de petición HTTP
+ * @param {Object} res objeto de respuesta HTTP
+ * @throws {Error} Error al buscar los eventos
+ */
+const getEvent = async (req, res) => {
+    try {
+        const eventData = req.body._id ? { _id: req.body._id } : req.query;
+        const events = await eventService.getEvents(eventData);
+        res.status(200).json(events);
+    }
+    catch (error) {
+        console.log(`ERROR: ${error.stack}`);
+        res.status(500).json({ msj: `Error al buscar los eventos: ${error.stack}` });
+    }
+};
+
+/**
+ * Descripción: Esta función llama desde la ruta /api/events al modelo searchByInput
+ * @memberof MongoDBFunctions 
+ * @method getEventID 
+ * @async 
+ * @param {Object} req  Objeto de petición HTTP de Express que contiene los parámetros de búsqueda en `req.query`.
+ * @param {Object} res objeto de respuesta HTTP de Express.
+ * @throws {Error} Error al buscar los eventos
+ */
+const getEventID = async (req, res) => {
+    try {
+        const eventData = req.query;
+        const events = await eventService.searchByInput(eventData);
+        res.status(200).json(events);
+    }
+    catch (error) {
+        console.log(`ERROR: ${error.stack}`);
+        res.status(500).json({ msj: `Error al buscar los eventos: ${error.stack}` });
+    }
+};
+
+
+/**
+ * Descripción: Esta función llama desde la ruta /api/events al modelo updateEvent
+ * Este espera recibir por body los campos a modificar del evento
+ * @memberof MongoDBFunctions 
+ * @method updateEvent 
+ * @async 
+ * @param {Object} req objeto de petición HTTP de Express
+ * @param {Object} res objeto de respuesta HTTP de Express
+ * @throws {Error} Error al actualizar el evento.
+ */
+const updateEvent = async (req, res) => {
+    try {
+        const data = req.body;
+        const answer = await eventService.updateEvent(data, { new: true });
+
+        if (answer) {
+            res.status(200).send({ message: `Se ha actualizado el producto: ${answer.event_name}`, event: answer });
+        } else {
+            res.status(404).send({ message: "Evento no encontrado", event: answer });
+        }
+    }
+    catch (error) {
+        console.log(`ERROR: ${error.stack}`);
+        res.status(500).json({ msj: `ERROR: ${error.stack}` });
+    }
+};
+
+/**
+ * Descripción: Esta función llama desde la ruta /api/events al modelo deleteEvent
+ * Este espera recibir por body el nombre del evento a eliminar.
+ * @memberof MongoDBFunctions 
+ * @method deleteEvent 
+ * @async 
+ * @param {Object} req objeto de petición HTTP de Express.
+ * @param {Object} res objeto de respuesta HTTP de Express.
+ * @throws {Error} Error al eliminar el evento.
+ */
+const deleteEvent = async (req, res) => {
+    try {
+        const eventName = req.body;
+        const answer = await eventService.deleteEvent(eventName.event_name);
+        res.status(200).send({ message: `Se ha borrado el evento ${eventName.event_name}` });
+    } catch (error) {
+        console.log(`ERROR: ${error.stack}`);
+        res.status(500).json({ msj: `ERROR: ${error.stack}` });
+    }
+};
+
+
+module.exports = {
+    createEvent,
+    getEvent,
+    updateEvent,
+    deleteEvent,
+    getEventID
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="AuthMiddlewareFunctions.html">AuthMiddlewareFunctions</a></li><li><a href="LoginRegisterFunction.html">LoginRegisterFunction</a></li><li><a href="LoginRegisterWebFunction.html">LoginRegisterWebFunction</a></li><li><a href="MongoDBFunctions.html">MongoDBFunctions</a></li><li><a href="MongoDBSchemas.html">MongoDBSchemas</a></li><li><a href="MongoDBWebFunctions.html">MongoDBWebFunctions</a></li><li><a href="RolesFunctions.html">RolesFunctions</a></li><li><a href="SQLUserFavQueries.html">SQLUserFavQueries</a></li><li><a href="SQLUserFavWebQueries.html">SQLUserFavWebQueries</a></li><li><a href="SQLUserQueries.html">SQLUserQueries</a></li><li><a href="SQLUserWebQueries.html">SQLUserWebQueries</a></li><li><a href="ScraperFunctions.html">ScraperFunctions</a></li><li><a href="UserFavoriteFunctions.html">UserFavoriteFunctions</a></li><li><a href="UserFunctions.html">UserFunctions</a></li><li><a href="dashboardFunctions.html">dashboardFunctions</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Fri Jul 05 2024 10:20:19 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
