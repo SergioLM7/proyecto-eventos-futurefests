@@ -1,55 +1,68 @@
 ![logotipo de The Bridge](https://user-images.githubusercontent.com/27650532/77754601-e8365180-702b-11ea-8bed-5bc14a43f869.png "logotipo de The Bridge")
 # FUTURE FESTS
-Bienvenido a FutureFest, tu portal de referencia para descubrir los eventos tecnológicos más importantes que tienen lugar en Madrid. Nuestro objetivo es conectar a entusiastas profesionales y empresas del sector tecnológico con eventos que abordan las últimas tendencias y avances en tecnología, desde conferencias y seminarios hasta talleres y ferias.
+Bienvenido a FutureFests, tu portal de referencia para descubrir los eventos tecnológicos más importantes que tienen lugar cada mes. Nuestro objetivo es conectar a entusiastas profesionales y empresas del sector tecnológico con eventos que abordan las últimas tendencias y avances en tecnología, desde conferencias y seminarios, hasta talleres y ferias.
+
+![Pruébalo](public/assets/qrcode_proyecto-eventos-futurefests.onrender.com.png)
 ## ¿Que Ofrecemos?
-##### 1. Amplia variedad de Eventos.
-En FutureFest, encontrarás una extensa lista de eventos tecnológicos que se realizan en Madrid.
+##### 1. Amplia variedad de eventos.
+En FutureFests, encontrarás una extensa lista de eventos tecnológicos.
 ##### 2. Interfaz intuitiva.
-Nuestra plataforma está diseñada para ser intuitiva y fácil de usar. Podrás buscar eventos por nombre y palabra clave, lo que te permitirá encontrar rápidamente los eventos que más te interesan.
+Nuestra plataforma está diseñada para ser intuitiva y fácil de usar. Podrás buscar eventos por nombre o palabras que lo integren, lo que te permitirá encontrar rápidamente los que más te interesen.
 ##### 3. Detalles completos de los eventos.
-Cada evento listado en FutureFest viene con una descripción detallada, información sobre los ponentes, horarios, ubicación, y cómo registrarse. Esto te asegura tener toda la información necesaria para decidir a qué eventos asistir.
+Cada evento listado en Future Fest viene con una descripción detallada, fechas y enlace para más información. Esto te asegura tener toda la información necesaria para decidir a qué eventos asistir.
 ##### 4. Alternativa de elegir tus eventos favoritos.
-Crea una lista de tus eventos favoritos. Nunca te perderás un evento importante nuevamente.
-## ¿Por Qué FutureFest?
-Madrid se está posicionando como un hub tecnológico en Europa, y nosotros queremos ser tu guía en este emocionante ecosistema. FutureFest está aquí para ayudarte a aprovechar al máximo todas las oportunidades que la ciudad ofrece, conectándote con la comunidad tecnológica local e internacional.
-Únete a FutureFest hoy y descubre cómo puedes ser parte del futuro tecnológico de Madrid. ¡Explora, conecta y crece con nosotros!
+Pero no solo eso. Si creas una cuenta con nosotros podrás guardar tus eventos favoritos. Nunca te perderás un evento importante nuevamente. Por supuesto, si ya han pasado o has cambiado de opinión, podrás eliminarlos.
+## ¿Por qué Future Fests?
+El mundo tecnológico cambia a velocidad de vértigo y nosotros queremos ser tu guía en esta emocionante realidad. Future Fests está aquí para ayudarte a aprovechar al máximo todas las oportunidades que este tipo de eventos ofrece, conectándote con la comunidad tecnológica local e internacional.
+Únete a Future Fests hoy y descubre cómo puedes ser parte del futuro tecnológico. ¡Explora, conecta y crece con nosotros!
 ## Informacion tecnica
-### Tecnologias usadas
-- TRELLO.
-- GITHUB.
-- TEST UNITARIO JEST.
-- MOBILE FIRST.
-- MORGAN.
-- SWAGGER.
-- JSDOC.
-- DESPLIEGUE EN RENDER.
-- WEB SCRAPING.
+### Tecnologias y herramientas usadas
+- NODE JS.
 - EXPRESS.
 - MONGODB.
 - POSTGRE SQL.
-- MVC.
 - API REST.
 - AUTENTICACIÓN CON JWT USER+PASSWORD.
-- AUTENTICACIÓN CON GOOGLE.
+- AUTENTICACIÓN CON PASSPORT GOOGLE.
+- MVC.
+- MOBILE FIRST.
+- DESPLIEGUE EN RENDER.
+- WEB SCRAPING (PUPPETEER)
+- TRELLO.
+- GITHUB.
+- MORGAN.
+- SWAGGER.
+- JSDOC.
 ### Mobile First
-Puesto que en la actualidad es tan importante, el uso de los aplicativos en móviles, nuestra aplicación se adapta a los diferentes tamaños de pantalla tanto para pantallas de móviles como de ordenadores de sobre mesa, como podemos observar en las siguientes imágenes:
+Puesto que en la actualidad es tan importante, el uso de los aplicativos en móviles, nuestra aplicación se adapta a los diferentes tamaños de pantalla, tanto para pantallas de móviles, como de ordenadores de sobremesa, como podemos observar en las siguientes imágenes:
+- **Vista iPad**:
+![Vista Ipad](public/assets/vista_ipad.png "Vista Ipad página inicial")
 - **Vista movil**:
-![Vista movil](/assets/VistaMovilBienvenida-final.jpg "Vista movil página inicial")
-- **Vista IPad**:
-![Vista Ipad](/assets/BienvenidaIpad.png "Vista Ipad página inicial")
+![Vista móvil](public/assets/Vista_mobile.jpg "Vista movil Log In")
 - **Vista Desktop**:
-![Vista desktop](/assets/BienvenidaDesktop.png "Vista desktop página inicial")
+![Vista desktop](public/assets/Vista_desktop.jpg "Vista desktop página inicial")
 ### Objetivos
-:marca_de_verificación_gruesa: Se logró un trabajo ordenado gracias al uso de Trello.
-:marca_de_verificación_gruesa: Se trabajó de manera correcta por el uso de ramas en GitHub.
-:marca_de_verificación_gruesa: Se logró una vista mobile First.
-:marca_de_verificación_gruesa: Se trabajo con las rutas.
-:marca_de_verificación_gruesa: Se implementaron Middlewares como morgan.
-:marca_de_verificación_gruesa: Se implementó el uso de JSDOC para la la documentación.
-:marca_de_verificación_gruesa: Proyecto desplegado en render y MongoDB Atlas.
-:marca_de_verificación_gruesa: Se realizó correctamente el scraping.
-:marca_de_verificación_gruesa: Se implementó la autenticacion con correo y password.
-:marca_de_verificación_gruesa: Se implementó la autenticación con Google.
+✅ Bases de datos y app desplegadas en Render y MongoDB Atlas.
+
+✅ Se implementó la autenticacion con email/password y con Passport Google.
+
+✅ Se implementaron middlewares para controlar el acceso a rutas privadas.
+
+✅ Se realizó correctamente el scraping de dos páginas.
+
+✅ Se implementó un menú hamburguesa.
+
+✅ Se trabajó con diferentes vistas en formato Pug.
+
+✅ Se utilizó adecuadamente el modelo Vista-Controlador.
+
+✅ Se implementó el uso de JSDOC para la la documentación.
+
+✅ Se consiguió una vista mobile First.
+
+✅ Se logró un trabajo ordenado gracias a la puesta en marcha de una metodología ágil (Scrum, Trello).
+
+✅ Se gestionó de manera correcta el uso de ramas en GitHub.
 ### Organización
 #### Manejo de ramas GitHub
 ![Manejo de ramas](./public/assets/Manejo_de_ramas.png "Manejo de ramas")
@@ -68,8 +81,6 @@ Puesto que en la actualidad es tan importante, el uso de los aplicativos en móv
 ![iniciar sesion](./public/assets/Vista_login.png "Vista iniciar sesion")
 #### Vista perfil
 ![perfil](./public/assets/Vista_profile.png "Vista perfil")
-#### Vista recuperar contraseña
-![recuperar contraseña](./public/assets/Vista_recuperar_contrasena.png "Vista recuperar contraseña")
 #### Vista registro
 ![registro](./public/assets/Vista_registro.png "Vista registro")
 #### Vista de usuarios por administrador
