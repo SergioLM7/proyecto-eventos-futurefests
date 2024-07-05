@@ -21,8 +21,9 @@ passport.use(new GoogleStrategy({
 
         // Buscar usuario en la base de datos
         const buscaUsuario = await userModel.getUsersByEmail(user.email);
+        console.log(buscaUsuario)
 
-        if (buscaUsuario.length > 0) {
+        if (buscaUsuario) {
             console.log("Usuario existe en BBDD");
         } else {
             const crearUsuario = await userModel.createUser(user);

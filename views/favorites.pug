@@ -12,7 +12,7 @@ html(lang="es")
             section#all_events_container
                 each result in results
                     article
-                        button.buttonDeleteFavorite(id=${result.event_name}) Eliminar
+                        button.buttonDeleteFavorite(id=`${result.event_name}`) Eliminar
                         p Evento: #{result.event_name}
                         p Descripción: #{result.description}
                         -const fecha = new Date (result.date_start)
