@@ -105,7 +105,7 @@ Puesto que en la actualidad es tan importante, el uso de los aplicativos en móv
 - **index.js**: Punto de entrada y configuración inicial de la aplicación.
 ### Documentación
 - **JSDOCs**: [Documentación de funciones](https://proyecto-eventos-futurefests.onrender.com/api-jsdoc/)
-- **Swagger**: [Documentación de rutas](http://localhost:3000/api-docs/)
+- **Swagger**: [Documentación de rutas]([http://localhost:3000/api-docs/](https://proyecto-eventos-futurefests.onrender.com/api-docs/))
 ### Contribución
 Si deseas contribuir a este proyecto, por favor sigue los siguientes pasos:
 - Haz un fork del repositorio.
