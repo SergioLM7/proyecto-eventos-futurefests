@@ -3,7 +3,7 @@ const scraper = require('../controllers/scraper.controllers') // Importamos el c
 
 const router = express.Router()
 
-router.get('/scraping/eventbrite',scraper.getEventsEventBrite);
+router.get('/scraping/eventbrite',scraper.getEventsEventBrite, res.redirect('/'));
 router.get('/scraping/nferias',scraper.getEventsNFerias);
 
 

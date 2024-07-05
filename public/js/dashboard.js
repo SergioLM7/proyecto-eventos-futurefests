@@ -23,12 +23,3 @@ document.getElementById("createEvent").addEventListener("submit", async (e) => {
     //     window.location.href = resJson.redirect;
     // }
 });
-
-document.querySelector('.buttonScrap').addEventListener('click', async () => {
-    try {
-        await scrapFerias("https://www.nferias.com/tecnologia/espana/")
-        await scrapEvent("https://www.eventbrite.es/d/spain/software-conference/")
-    } catch {
-        console.error('Fallo en el scraping')
-    }
-});
