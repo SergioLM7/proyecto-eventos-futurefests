@@ -23,3 +23,14 @@ document.getElementById("createEvent").addEventListener("submit", async (e) => {
     //     window.location.href = resJson.redirect;
     // }
 });
+
+document.querySelector('.buttonScrap').addEventListener('click', async () => {
+    try {
+        const response = await fetch('https://proyecto-eventos-futurefests.onrender.com/scraping/eventbrite', { method: 'POST' });
+        const result = await response.json();
+        console.log('Scraping completado y datos guardados en MongoDB:', result);
+        window.location.href = '/';
+    } catch (error) {
+        console.error('Fallo en el scraping:', error);
+    }
+});
