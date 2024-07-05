@@ -28,8 +28,6 @@ const login = async (req, res) => {
         if (!email || !password_hash) {
             return res.status(400).send({ status: "Error", message: "Los campos están incompletos" });
         }
-
-        //llamar al modelo NO fetch
         const response = await userModel.getUsersByEmail(email);
         console.log(response)
 

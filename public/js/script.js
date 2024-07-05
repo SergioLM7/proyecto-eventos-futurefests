@@ -42,7 +42,7 @@ const pintarEncontrados = (encontrados) => {
     const input = document.getElementById("filterInput").value;
     console.log(input);
     try {
-      const response = await fetch(`http://localhost:3000/search?input=${input}`)
+      const response = await fetch(`https://proyecto-eventos-futurefests.onrender.com/search?input=${input}`)
       console.log(response)
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -58,7 +58,7 @@ const pintarEncontrados = (encontrados) => {
 document.querySelector(".btnCerrarSesion").addEventListener("click", ()=>{
       const last_time_logged = new Date(Date.now());
       console.log(last_time_logged);
-      /*await fetch ('http://localhost:3000/users?email=sergio@admin.com',
+      /*await fetch ('https://proyecto-eventos-futurefests.onrender.com/users?email=sergio@admin.com',
         {
           method: 'PUT',
 
@@ -129,7 +129,7 @@ botonesFavoritos.forEach(button => {
 
     let searchResult;
     try {
-      const searchResponse = await fetch(`http://localhost:3000/search?input=${encodedId}`, {
+      const searchResponse = await fetch(`https://proyecto-eventos-futurefests.onrender.com/search?input=${encodedId}`, {
         method: 'GET', 
         headers: {
           'Content-Type': 'application/json'
@@ -153,7 +153,7 @@ botonesFavoritos.forEach(button => {
     };
 
     try {
-      const response = await fetch('http://localhost:3000/api/userfavorite', {
+      const response = await fetch('https://proyecto-eventos-futurefests.onrender.com/api/userfavorite', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

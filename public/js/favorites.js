@@ -79,7 +79,7 @@ botonesDelete.forEach(button => {
     };
 
     try {
-      const response = await fetch('http://localhost:3000/api/userfavorite', {
+      const response = await fetch('https://proyecto-eventos-futurefests.onrender.com/api/userfavorite', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'

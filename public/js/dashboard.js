@@ -1,6 +1,6 @@
 document.getElementById("createEvent").addEventListener("submit", async (e) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:3000/api/events", {
+    const res = await fetch("https://proyecto-eventos-futurefests.onrender.com/api/events", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

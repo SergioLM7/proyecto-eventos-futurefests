@@ -4,7 +4,7 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const email = e.target.children.email.value; 
     const password_hash = e.target.children.password_hash.value;
-    const res = await fetch("http://localhost:3000/api/login", {
+    const res = await fetch("https://proyecto-eventos-futurefests.onrender.com/api/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

@@ -14,7 +14,7 @@ require("./config/passport");
 //Conexion a MongoDB Atlas
 connectToDatabase();
 app.listen(port, () => {
-  console.log(`Funcionando en: http://localhost:${port}`)
+  console.log(`Funcionando en: Render.com`)
 });
 
 // Middlewares

@@ -1,7 +1,7 @@
 const mensajeError = document.getElementsByClassName("error")[0];
 document.getElementById("register-form").addEventListener("submit", async (e) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:3000/api/register", {
+    const res = await fetch("https://proyecto-eventos-futurefests.onrender.com/api/register", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

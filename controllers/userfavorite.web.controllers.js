@@ -32,8 +32,9 @@ const getUserFavoritesWeb = async (req, res) => {
       return res.status(401).json({ message: 'No token provided' });
     }
       const email = decodificada.email;
+      
 
-    await fetch(`http://localhost:3000/api/userfavorite?email=${email}`, {
+    await fetch(`https://proyecto-eventos-futurefests.onrender.com/api/userfavorite?email=${email}`, {
         method: "GET",
     })
         .then((res) => res.json())
@@ -51,16 +52,8 @@ const getUserFavoritesWeb = async (req, res) => {
     });
 };
 
-/**
- * Descripción: Esta función obtiene los favoritos de un usuario basado en el token JWT proporcionado en las cookies de la solicitud HTTP.
- * @memberof SQLUserFavWebQueries 
- * @method createUserFavoriteWEB
- * @async 
- * @param {Object} req Objeto de petición HTTP de Express que contiene los datos para crear la relación en `req.body`.
- * @param {Object} res Objeto de respuesta HTTP de Express.
- * @throws {Error} Error al crear la relación usuario-favorito.
- */
-const createUserFavoriteWEB = async (req, res) => {
+
+/*const createUserFavoriteWEB = async (req, res) => {
     try {
         const response = await userFavoriteEntry.createUserFavorite(req.body);
         res.status(201).json({
@@ -69,7 +62,7 @@ const createUserFavoriteWEB = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Error al crear la tabla usuario-favorito', error });
     }
-};
+};*/
 
 
 module.exports = {
