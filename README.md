@@ -86,10 +86,10 @@ Puesto que en la actualidad es tan importante, el uso de los aplicativos en móv
 #### Vista de usuarios por administrador
 ![usuarios por administrador](./public/assets/Vista_usuarios_admin.png "Vista usuarios por administrador")
 ### Uso
-1. [Ingresa aqui para enterarte de los mejores eventos](https://proyecto-eventos-futurefests.onrender.com)
+1. [Ingresa aquí para descubrir nuestra aplicación](https://proyecto-eventos-futurefests.onrender.com)
 2. Regístrate o inicia sesión.
-3. Comienza el revisar los eventos que te ofrecemos.
-4. Marca como favoritas las que te interecen y no te pierdas de ninguno.
+3. Comienza a revisar los eventos que te ofrecemos.
+4. Marca como favoritos los que te interesen y no te pierdas ninguno.
 ### Estructura del proyecto
 - **Config/**: Configuración de la aplicación.
 - **Controllers/**: Lógica de negocio y manejo de solicitudes.
@@ -105,7 +105,7 @@ Puesto que en la actualidad es tan importante, el uso de los aplicativos en móv
 - **index.js**: Punto de entrada y configuración inicial de la aplicación.
 ### Documentación
 - **JSDOCs**: [Documentación de funciones](https://proyecto-eventos-futurefests.onrender.com/api-jsdoc/)
-- **Swagger**: [Documentación de rutas]([http://localhost:3000/api-docs/](https://proyecto-eventos-futurefests.onrender.com/api-docs/))
+- **Swagger**: [Documentación de rutas](https://proyecto-eventos-futurefests.onrender.com/api-docs/))
 ### Contribución
 Si deseas contribuir a este proyecto, por favor sigue los siguientes pasos:
 - Haz un fork del repositorio.
@@ -114,7 +114,7 @@ Si deseas contribuir a este proyecto, por favor sigue los siguientes pasos:
 - Sube tus cambios a la rama (git push origin nueva-característica).
 - Abre un Pull Request.
 ### Colaboradores
-Los colaboradores de este proyecto somos Luis Carlos Acosta, Sergio Lillo y Stephani Damiani, estudiantes de Full Stack TheBridge.
+Los colaboradores de este proyecto somos Luis Carlos Acosta, Sergio Lillo y Stephani Damiani, estudiantes de Full Stack Development en The Bridge | Digital Talent Accelerator.
 - [Luis Carlos Acosta GitHub](https://github.com/luiscacostas)
 - [Sergio Lillo GitHub](https://github.com/SergioLM7)
 - [Stephani Damiani  GitHub](https://github.com/steph-d989)
